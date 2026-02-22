@@ -180,28 +180,30 @@ const ballShadow = $("ballShadow");
 
     function buildSummaryHTML(){
     const rows = state.history.slice().filter(r=>r.resolved);
-    const wrong = rows.filter(r=>!r.correct && !r.timeout);
 
+    // SOLO ERRATE (no timeout) come richiesto
+    const wrong = rows.filter(r=>!r.correct && !r.timeout);
     const wrongL = wrong.filter(r=>r.side==="L");
     const wrongR = wrong.filter(r=>r.side==="R");
 
     const header = `
       <div class="sumKpi">
-        <div class="sumKpiTitle">Operazioni errate (con risultato corretto + errore)</div>
+        <div class="sumKpiTitle">Operazioni errate (risultato corretto + errore)</div>
         <div class="sumKpiVal">BLU: ${wrongL.length} • ROSSO: ${wrongR.length}</div>
       </div>
     `;
 
-    function renderCol(side, arr){
+    function renderSection(side, arr){
       const isL = side==="L";
       const title = isL ? "BLU" : "ROSSO";
       const dotCls = isL ? "blue" : "red";
 
-      const items = arr.slice(-60).map(r=>{
+      const items = arr.slice(-120).map(r=>{
         const err = (typeof r.input === "number") ? Math.abs(r.input - r.a) : null;
         const op = `[ ${r.q} = ${r.a} ]`;
         const errTxt = (err==null) ? "[ TIMEOUT ]" : `[ ERROR ${err} ]`;
 
+        // Mobile: operazione sopra, errore sotto
         return `
           <div class="sumOpRow">
             <div class="sumOpText"><code>${op}</code></div>
@@ -223,11 +225,12 @@ const ballShadow = $("ballShadow");
       `;
     }
 
+    // Mobile: prima BLU poi ROSSO, scroll unico (gestito da CSS su .sumBody)
     return `
       ${header}
-      <div class="sumCols">
-        ${renderCol("L", wrongL)}
-        ${renderCol("R", wrongR)}
+      <div class="sumCols sumColsStack">
+        ${renderSection("L", wrongL)}
+        ${renderSection("R", wrongR)}
       </div>
     `;
   }

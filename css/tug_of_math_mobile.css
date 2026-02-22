@@ -93,12 +93,13 @@ body.tugMobile{
 .pitch{
   height: 155px;
   border-radius: 18px;
+  margin-bottom: 3px;
 }
 
 /* dots (dentro campo) */
 .turnDots{
   position:absolute;
-  top:10px;
+  bottom:10px;
   left:0;
   right:0;
   display:flex;
@@ -119,11 +120,17 @@ body.tugMobile{
 .dot.red{ background: var(--red); }
 .dot.active{
   opacity: 1;
-  transform: scale(1.22);
-  filter: brightness(1.15) saturate(1.15);
-  box-shadow: 0 0 14px rgba(47,123,255,.55);
+  transform: scale(1.45);
+  filter: brightness(1.25) saturate(1.25);
+  box-shadow:
+    0 0 0 4px rgba(255,255,255,.18),
+    0 0 18px rgba(47,123,255,.75);
 }
-.dot.red.active{ box-shadow: 0 0 14px rgba(255,59,59,.55); }
+.dot.red.active{
+  box-shadow:
+    0 0 0 4px rgba(255,255,255,.18),
+    0 0 18px rgba(255,59,59,.75);
+}
 
 /* energy row */
 .mEnergyRow{
@@ -330,4 +337,45 @@ body.tugMobile.isPlaying .pitch{
 .mKeypad .key.keyOK{
   grid-column:auto;       /* NON deve occupare tutta la riga */
   background:#1d8b5a;
+}
+
+/* ===== RIEPILOGO MOBILE: VERTICALE + OPERAZIONE SOPRA / ERRORE SOTTO ===== */
+
+/* 1 sola colonna, prima BLU poi ROSSO */
+.sumCols{
+  display:flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+/* ogni riga: stack verticale */
+.sumOpRow{
+  display:flex !important;
+  flex-direction: column !important;
+  align-items:flex-start !important;
+  gap: 6px !important;
+}
+
+/* operazione: non deve "spezzarsi" in verticale */
+.sumOpText code{
+  white-space: nowrap !important;     /* resta in una riga */
+  overflow-x: auto !important;        /* se è lunga, scroll orizzontale */
+  max-width: 100% !important;
+  display:block !important;
+}
+
+/* badge errore sotto */
+.sumErrBadge{
+  align-self: flex-start !important;
+}
+
+/* UNO SCROLL SOLO: lo fa il body del riepilogo */
+.sumBody{
+  overflow:auto !important;
+}
+
+/* le liste interne non devono avere scroll separato */
+.sumColList{
+  max-height: none !important;
+  overflow: visible !important;
 }

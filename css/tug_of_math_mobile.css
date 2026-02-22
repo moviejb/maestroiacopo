@@ -309,3 +309,8 @@ body.tugMobile.isPlaying .mOpText{
 .mOpTop{
   display:none !important;
 }
+
+
+body.tugMobile.isPlaying .pitch{
+  height:120px;
+}

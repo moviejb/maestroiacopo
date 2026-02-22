@@ -155,6 +155,7 @@ body.tugMobile{
 .mTurnLabel{
   font-weight:1000;
   color:#0b1220;
+   display:none !important;
 }
 .mTimer{
   background: rgba(0,0,0,.04);
@@ -265,3 +266,46 @@ body.tugMobile .sumCols{
   grid-template-columns: 1fr !important;
 }
 body.tugMobile .sumCard{ width: calc(100vw - 24px) !important; }
+
+
+/* ===== MOBILE PLAY MODE: tutto visibile (campo più basso + UI compatta) ===== */
+body.tugMobile.isPlaying .mWrap{
+  gap: 10px;
+}
+
+body.tugMobile.isPlaying .mPitchCard,
+body.tugMobile.isPlaying .mOpCard,
+body.tugMobile.isPlaying .mPadCard{
+  padding: 10px;
+}
+
+/* Campo più basso (anche il box bianco lo segue perché è padding della card) */
+body.tugMobile.isPlaying .pitch{
+  height: 135px;          /* ↓ da 175 */
+}
+
+/* Nascondi etichetta turno (usiamo già i pallini) */
+body.tugMobile.isPlaying .mTurnLabel{
+  display: none;
+}
+
+/* Operazione un po' più piccola */
+body.tugMobile.isPlaying .mOpText{
+  font-size: 30px;        /* ↓ da 36 */
+  margin: 6px 0 8px 0;
+}
+
+/* Input risposta NON deve uscire dallo schermo */
+.mAnswerRow{
+  display: block;
+}
+.mAnswerRow .answer{
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: block;
+}
+
+.mOpTop{
+  display:none !important;
+}

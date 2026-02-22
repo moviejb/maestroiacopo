@@ -33,6 +33,7 @@ const statusOne = $("statusOne");
   const scoreL = $("scoreL");
   const scoreR = $("scoreR");
   const marker = $("marker");
+  const pitch = $("pitch");
   const announce = $("announce");
 
   const energyLFill = $("energyLFill");
@@ -439,7 +440,15 @@ const ballShadow = $("ballShadow");
 
   function move(delta){
     state.pos = clamp(state.pos + delta, -100, 100);
-    const x = (state.pos / 100) * 260;
+    const range = (function(){
+      if(!pitch || !marker) return 260;
+      const w = pitch.clientWidth || 0;
+      const bw = marker.offsetWidth || 34;
+      const pad = 22; // margine interno per non uscire dal campo
+      const r = Math.max(90, (w/2) - (bw/2) - pad);
+      return Number.isFinite(r) ? r : 260;
+    })();
+    const x = (state.pos / 100) * range;
 
     const rot = state.pos * 0.8;
     marker.style.transform = `translate(calc(-50% + ${x}px), -50%) rotate(${rot}deg)`;

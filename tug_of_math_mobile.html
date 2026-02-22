@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Tiro alla Fune - Matematica (Mobile)</title>
+  <link rel="stylesheet" href="css/tug_of_math_mobile.css" />
+</head>
+<body class="tugMobile">
+
+  <script src="js/nav.js"></script>
+  <script src="js/menu.js"></script>
+
+  <!-- TOP: impostazioni collassabili -->
+  <header class="mTop" id="mTop">
+    <button class="mGear" id="btnSettings" type="button" aria-expanded="true" aria-controls="settingsPanel">
+      <span class="mGearIcon">⚙️</span>
+      <span class="mGearTxt">Impostazioni</span>
+      <span class="mGearChevron" id="settingsChevron">▾</span>
+    </button>
+
+    <div class="mSettings" id="settingsPanel">
+      <div class="controls mControls">
+        <label class="ctrl">
+          Modalità:
+          <select id="modeSel">
+            <option value="add">Solo Addizioni</option>
+            <option value="sub">Solo Sottrazioni</option>
+            <option value="mul">Solo Moltiplicazioni</option>
+            <option value="div">Solo Divisioni</option>
+            <option value="mix" selected>Miste</option>
+          </select>
+        </label>
+
+        <label class="ctrl">
+          Difficoltà:
+          <select id="diffSel">
+            <option value="easy" selected>Facile</option>
+            <option value="med">Medio</option>
+            <option value="hard">Difficile</option>
+          </select>
+        </label>
+
+        <label class="ctrl">
+          Passo:
+          <select id="stepSel">
+            <option value="8">8</option>
+            <option value="10" selected>10</option>
+            <option value="12">12</option>
+            <option value="15">15</option>
+          </select>
+        </label>
+
+        <label class="ctrl">
+          Tempo:
+          <input id="timerOn" type="checkbox" />
+          <select id="timerSec" disabled>
+            <option value="6">6s</option>
+            <option value="8" selected>8s</option>
+            <option value="10">10s</option>
+            <option value="12">12s</option>
+          </select>
+        </label>
+
+        <label class="ctrl musicCtrl">
+          Musica:
+          <input id="bgOn" type="checkbox" />
+          <input id="bgVol" type="range" min="0" max="100" value="35" />
+        </label>
+
+        <label class="ctrl">
+          Zoom:
+          <button id="btnZoomOut" class="miniBtn" type="button" title="Zoom -">−</button>
+          <select id="zoomSel">
+            <option value="0.7">70%</option>
+            <option value="0.8">80%</option>
+            <option value="0.9">90%</option>
+            <option value="1.0" selected>100%</option>
+            <option value="1.1">110%</option>
+            <option value="1.2">120%</option>
+          </select>
+          <button id="btnZoomIn" class="miniBtn" type="button" title="Zoom +">+</button>
+        </label>
+
+        <!-- appare solo dopo che cambi un’impostazione -->
+        <button id="btnStart" class="btn btnPlay" style="display:none;">GIOCA</button>
+        <button id="btnReset" class="btn">Reset</button>
+      </div>
+
+      <div class="setupBanner" id="setupBanner">
+        Imposta il gioco e poi premi <b>GIOCA</b>.
+      </div>
+    </div>
+  </header>
+
+  <!-- AREA ZOOM (come desktop) -->
+  <div id="zoomArea">
+    <main class="mWrap" id="mobileRoot">
+
+      <!-- CAMPO -->
+      <section class="mPitchCard" aria-label="Campo di gioco">
+        <div class="pitchWrap">
+          <div class="pitch" id="pitch">
+            <div class="pitchMid"></div>
+
+            <div class="goal goalL"><div class="net"></div></div>
+            <div class="goal goalR"><div class="net"></div></div>
+
+            <div class="ball" id="marker" aria-label="Pallone"></div>
+            <div class="ballShadow" id="ballShadow" aria-hidden="true"></div>
+
+            <!-- pallini turno (dentro il campo, in alto alle estremità) -->
+            <div class="turnDots" aria-hidden="false">
+              <div class="dot blue" id="dotL" title="Tocca ai Blu"></div>
+              <div class="dot red"  id="dotR" title="Tocca ai Rossi"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scoreRow">
+          <div class="score blue">Blu: <span id="scoreL">0</span></div>
+          <div class="score red">Rosso: <span id="scoreR">0</span></div>
+        </div>
+
+        <!-- energie slim (opzionale ma utile) -->
+        <div class="mEnergyRow" aria-label="Energia squadre" style="display: none;">
+          <div class="mEnergyBox">
+            <div class="mEnergyTop">
+              <span class="mEnergyName blue">BLU</span>
+              <span class="mEnergyPct" id="energyLPct">50%</span>
+            </div>
+            <div class="energyBar blue"><div class="energyFill" id="energyLFill" style="width:50%"></div></div>
+          </div>
+          <div class="mEnergyBox">
+            <div class="mEnergyTop">
+              <span class="mEnergyName red">ROSSO</span>
+              <span class="mEnergyPct" id="energyRPct">50%</span>
+            </div>
+            <div class="energyBar red"><div class="energyFill" id="energyRFill" style="width:50%"></div></div>
+          </div>
+        </div>
+
+        <div class="announce" id="announce"></div>
+      </section>
+
+      <!-- OPERAZIONE + TIMER -->
+      <section class="mOpCard" aria-label="Operazione">
+        <div class="mOpTop">
+          <div class="mTurnLabel" id="turnLabel">Tocca ai <b>BLU</b></div>
+          <div class="timer mTimer" id="timerOne">—</div>
+        </div>
+
+        <div class="opText mOpText" id="opOne">—</div>
+
+        <div class="answerRow mAnswerRow">
+          <input id="inOne" class="answer" inputmode="numeric" readonly />
+</div>
+
+        <div class="status" id="statusOne"></div>
+      </section>
+
+      <!-- TASTIERA -->
+      <section class="mPadCard" aria-label="Tastiera">
+        <div class="keypad mKeypad" id="padOne" aria-label="Tastiera"></div>
+      </section>
+
+      <!-- WIN EFFECT (riuso) -->
+      <div class="winFX" id="winFX" aria-hidden="true">
+        <div class="winFXCard">
+          <div class="winFXTitle" id="winFXTitle">VINTO!</div>
+          <div class="winFXSub" id="winFXSub">—</div>
+
+          <div class="winFXButtons">
+            <button class="winBtnPrimary" id="btnReplay">RIGIOCA</button>
+      <button class="winBtnGhost" id="btnSummary">RIEPILOGO</button>
+            <button class="winBtnGhost" id="btnHome">HOME</button>
+          </div>
+  <!-- RIEPILOGO PARTITA -->
+  <div class="sumModal" id="sumModal" aria-hidden="true">
+    <div class="sumCard" role="dialog" aria-modal="true" aria-label="Riepilogo partita">
+      <div class="sumTitle">📊 Riepilogo partita</div>
+      <div class="sumBody" id="sumBody"></div>
+      <div class="sumActions">
+        <button class="winBtnPrimary" id="btnSumClose" type="button">CHIUDI</button>
+      </div>
+    </div>
+  </div>
+
+        </div>
+
+        <div class="confetti" aria-hidden="true"></div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/tug_of_math_mobile.js"></script>
+</body>
+</html>

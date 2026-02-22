@@ -1,0 +1,2329 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>MEMORY – Abbinamenti</title>
+  <style>
+  :root{
+  --bg1:#f4f6f8;
+  --bg2:#f4f6f8;
+  --card:#ffffff;
+  --card2:#ffffff;
+  --line:rgba(15,23,42,.08);
+  --txt:#0f172a;
+  --muted:hsl(220, 9%, 46%);
+
+  --accent:#22d3ee;
+  --accent2:#a78bfa;
+  --good:#22c55e;
+  --bad:#ef4444;
+  --warn:#f59e0b;
+}
+
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--txt);
+      background: #f4f6f8;
+
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    
+
+    /* LAYOUT */
+    .wrap{ max-width:1200px; margin:0 auto; padding:18px 16px 28px; }
+    .row{ display:flex; gap:14px; align-items:stretch; flex-wrap:wrap; }
+
+    .panel{
+      background: linear-gradient(180deg, rgb(255, 255, 255), rgb(255, 255, 255));
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .panel.pad{ padding:14px; }
+    .panelTitle{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    h1{ font-size:20px; margin:0; letter-spacing:.2px; }
+    .muted{ color:var(--muted); font-size:13px; }
+
+    /* SETUP */
+    .setup{
+      flex: 1 1 360px;
+      min-width: 320px;
+    }
+    .setupGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .field label{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+      margin:0 0 6px;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+    select, input[type="number"], input[type="range"]{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      color:var(--txt);
+      outline:none;
+      font-weight:650;
+    }
+    input[type="range"]{ padding:10px 0; }
+    .btnbar{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    .btn{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:var(--txt);
+      padding:12px 14px;
+      border-radius:14px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.18s ease;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
+    .btn.primary{
+      border-color: rgba(34,211,238,.35);
+      background: rgba(34,211,238,.12);
+      box-shadow: 0 0 22px rgba(34,211,238,.14);
+    }
+    .btn.danger{
+      border-color: rgba(239,68,68,.35);
+      background: rgba(239,68,68,.10);
+    }
+
+    /* PLAYERS */
+    .players{
+      flex: 1 1 360px;
+      min-width: 320px;
+    }
+    .playersRow{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap:10px;
+    }
+    .pCard{
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      position:relative;
+      overflow:hidden;
+      min-height:86px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      opacity:.55;
+      filter:saturate(.85);
+      transition:.18s ease;
+    }
+    .pCard .name{ font-weight:900; font-size:14px; letter-spacing:.2px; }
+    .pCard .score{ font-weight:900; font-size:22px; line-height:1; }
+    .pCard .sub{ color:var(--muted); font-size:12px; }
+    .pCard.active{
+      opacity:1;
+      filter:saturate(1.05);
+      border-color: rgba(167,139,250,.35);
+      box-shadow: 0 0 18px rgba(167,139,250,.18), inset 0 0 0 1px rgba(167,139,250,.10);
+      background: rgba(167,139,250,.10);
+    }
+    .pCard.active::after{
+      content:"";
+      position:absolute; inset:-40px;
+      background: radial-gradient(circle at 20% 20%, rgba(167,139,250,.22), transparent 55%);
+      pointer-events:none;
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse{ 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
+
+    /* GAME */
+    .game{
+      margin-top:14px;
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:stretch;
+    }
+    .board{
+      flex: 2 1 640px;
+      min-width: 320px;
+    }
+    .boardTop{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      justify-content:space-between;
+      margin-bottom:10px;
+    }
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color:var(--muted);
+      font-weight:750;
+      font-size:12px;
+    }
+    .pill b{ color:var(--txt); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap:12px;
+    }
+
+    /* FLIP CARD */
+    .mcard{
+      height: 130px;
+      perspective: 900px;
+    }
+    .inner{
+      width:100%; height:100%;
+      position:relative;
+      transform-style: preserve-3d;
+      transition: transform .38s ease;
+      border-radius:18px;
+    }
+    .mcard.flipped .inner{ transform: rotateY(180deg); }
+    .face{
+      position:absolute; inset:0;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.14);
+      backface-visibility:hidden;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .front{  /* COLORE CARD MEMORY */
+      background: linear-gradient(180deg, rgba(162, 169, 249, 0.385), rgba(114, 105, 238, 0.444));
+    }
+    .front .q{
+      width:54px;height:54px;border-radius:16px;
+      border:1px solid rgba(34,211,238,.28);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:1000;
+      font-size:24px;
+      color:rgba(24, 15, 150, 0.9);
+      box-shadow: 0 0 18px rgba(34,211,238,.14);
+      background: rgba(34,211,238,.10);
+    }
+    .back{
+      transform: rotateY(180deg);
+      background: linear-gradient(180deg, rgba(0,0,0,.24), rgba(0,0,0,.12));
+    }
+    .back img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:saturate(1.05) contrast(1.05);
+    }
+
+    .mcard.clickable{ cursor:pointer; }
+    .mcard.matched .face{
+      border-color: rgba(34,197,94,.42);
+      box-shadow: 0 0 18px rgba(34,197,94,.18);
+    }
+    .mcard.blocked{ pointer-events:none; }
+
+    /* MODAL CLASSIFICA FINALE*/
+    .modal{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.65);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:20000;
+      padding:18px;
+    }
+    .modal.show{ display:flex; }
+    .modalBox{
+  width:min(720px, 100%);
+  border-radius:20px;
+  border:1px solid rgba(15,23,42,.08);
+  background: #ffffff;
+  box-shadow: 0 18px 60px rgba(0,0,0,.18);
+  overflow:hidden;
+}
+
+    .modalHead{
+      padding:14px 16px;
+      border-bottom:1px solid rgba(255,255,255,.12);
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+    }
+    .modalHead h2{ margin:0; font-size:16px; letter-spacing:.2px; }
+    .modalBody{ padding:14px 16px; }
+    .rank{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:10px;
+    }
+   .rankItem{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 12px;
+  border-radius:16px;
+  border:1px solid rgba(15,23,42,.08);
+  background: #f8fafc;
+}
+
+    .rankLeft{ display:flex; gap:10px; align-items:center; }
+    .badge{
+      width:34px;height:34px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:1000;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+    }
+    .winner{
+  border:2px solid #f59e0b;
+  background: #fff7e6;
+}
+
+.winner .badge{
+  border-color:#f59e0b;
+  background:#fef3c7;
+  box-shadow:none;
+}
+
+    .small{ font-size:12px; color:var(--muted); }
+
+    /* RESPONSIVE */
+    @media (max-width: 560px){
+      .setupGrid{ grid-template-columns:1fr; }
+      .playersRow{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .mcard{ height: 110px; }
+      .grid{ grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap:10px; }
+    }
+  
+
+    /* OVERLAY GIOCO (le carte appaiono grandi sopra ai comandi) */
+    .gameOverlay{
+      position:fixed;
+      inset:0;
+      z-index:10000;
+      display:none;
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(4px);
+      overflow-y:auto;
+    }
+    .gameOverlay.show{ display:block; }
+
+  .overlayInner{
+  position:absolute;
+  top:66px;
+  left:8px;
+  right:8px;
+  bottom:10px; /* recupera spazio: niente barra in basso */
+  
+  max-width:1400px;
+  margin:0 auto;
+}
+
+
+/* layout: giocatori a lato + griglia al centro */
+.overlayLayout{
+  height:100%;
+  display:grid;
+  grid-template-columns: 160px 1fr;
+  gap:10px;
+  align-items:stretch;
+}
+
+/* meno padding nei pannelli dell'overlay (recupera spazio per le carte) */
+.overlayLayout .panel.pad{
+  padding:10px;
+}
+
+.playersSide{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.playersSide .pCard{
+  opacity:1;
+  min-height:60px;
+  padding:8px;
+}
+
+.playersSide .pCard .score{
+  font-size:18px;
+}
+
+.playersSide .pAvatar{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+}
+
+/* griglia: senza scroll, più compatta 
+#gameOverlay[data-pairs="9"] .grid{
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap:8px;
+}
+#gameOverlay[data-pairs="9"] .mcard{ height: 132px; }*/
+
+#gameOverlay[data-pairs="9"] .grid{
+  grid-template-columns: repeat(5, minmax(0, 1fr)); /* 6 colonne */
+  gap: 10px;
+}
+
+#gameOverlay[data-pairs="9"] .mcard{
+  height: auto;
+  aspect-ratio: 1 / 1;  /* quadrate */
+}
+
+
+
+/* 4 coppie (8 carte): 2 righe da 3 → carte più grandi */
+#gameOverlay[data-pairs="4"] .grid{
+  grid-template-columns: repeat(4, minmax(0, 1fr));  /* 4 colonne */
+  gap:12px;
+}
+/*#gameOverlay[data-pairs="5"] .mcard{ height: 160px; }*/
+#gameOverlay[data-pairs="4"] .mcard{
+  height: auto;
+  aspect-ratio: 1 / 1;  /* quadrate */
+}
+
+
+
+/* 6 coppie (12 carte): 4 colonne × 3 righe, carte quadrate */
+#gameOverlay[data-pairs="6"] .grid{
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+#gameOverlay[data-pairs="6"] .mcard{
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
+/* 12 coppie (24 carte): 6 colonne × 4 righe, carte quadrate */
+#gameOverlay[data-pairs="12"] .grid{
+  grid-template-columns: repeat(6, minmax(0, 1fr)); /* 6 colonne */
+  gap: 10px;
+}
+
+#gameOverlay[data-pairs="12"] .mcard{
+  height: auto;
+  aspect-ratio: 1 / 1;  /* quadrate */
+}
+
+
+@media (max-width: 720px){
+  .overlayLayout{ grid-template-columns: 1fr; }
+  .playersSide{ flex-direction:row; flex-wrap:wrap; justify-content:center; }
+}
+
+
+
+    .overlayClose{
+      position:absolute;
+      top:14px;
+      right:14px;
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.25);
+      color: rgba(255,255,255,.9);
+      font-weight:1000;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      transition:.18s ease;
+      user-select:none;
+    }
+    .overlayClose:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
+
+    /* ingrandisci le carte dentro overlay */
+    .gameOverlay .grid{
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap:14px;
+      overflow-y:auto;
+    }
+    .gameOverlay .mcard{ height: 180px; }
+    .gameOverlay .front .q{
+      width:64px;height:64px;border-radius:18px;font-size:28px;
+    }
+
+    /* PLAYERS BAR IN BASSO */
+    .playersBottom{
+      position:fixed;
+      left:0; right:0; bottom:0;
+      z-index:10002;
+      display:none;
+      padding:10px 12px 12px;
+      background: rgba(5,10,18,.72);
+      border-top:1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(8px);
+    }
+    .playersBottom.show{ display:block; }
+    .playersBottomInner{
+      max-width:1200px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap:10px;
+    }
+
+    /* player card con avatar */
+    .pCard{
+      flex-direction:row;
+      align-items:center;
+      gap:10px;
+      min-height:78px;
+    }
+    .pAvatar{
+      width:54px;height:54px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      overflow:hidden;
+      flex:0 0 auto;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .pAvatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .pInfo{ display:flex; flex-direction:column; gap:4px; min-width:0; }
+    .pInfo .name{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .pInfo .sub{ margin-top:2px; }
+
+    @media (max-width: 720px){
+      .playersBottomInner{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .gameOverlay .grid{ grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+      .gameOverlay .mcard{ height: 150px; }
+      .overlayInner{ inset:68px 10px 120px 10px; }
+    }
+
+    /* ===== Modalità LIM (attiva con ?lim=1) ===== */
+body.lim{
+  overflow: hidden !important;   /* niente scroll */
+  touch-action: manipulation;
+}
+
+/* un “frame” che entra sempre nello schermo */
+.lim-stage{
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+/* contenitore del tuo gioco dentro cui tutto scala */
+.lim-fit{
+  width: 1920px;   /* base 16:9 */
+  height: 1080px;
+  transform-origin: center center;
+}
+
+
+  
+    /* ===== Zoom board (per schermi diversi) ===== */
+    #zoomTarget{ transform-origin: top center; }
+    .zoomPill{ gap:8px; }
+    .zoomPill span{ font-weight:600; opacity:.85; }
+    .zoomBtn{
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.92);
+      border-radius: 10px;
+      padding: 6px 10px;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .zoomBtn:active{ transform: scale(.98); }
+
+    /* evidenzia numero coppie attuale (pill GIOCA CON) */
+    .pairsBtn.active{
+      background: rgba(34,211,238,.22) !important;
+      border-color: rgba(34,211,238,.55) !important;
+      color: var(--txt) !important;
+      box-shadow: 0 0 18px rgba(34,211,238,.28);
+      transform: translateY(-1px);
+    }
+
+
+
+
+    .rankAvatar{
+  width:34px;
+  height:34px;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.rankAvatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+
+
+
+/* ===== ABBINAMENTI: card per ARGOMENTO (stile pairs_select) ===== */
+.presetTabs{
+  display:flex; gap:8px; flex-wrap:wrap;
+  margin:0 0 10px;
+}
+.tabBtn{
+  border:1px solid rgba(15,23,42,.12);
+  background:#fff;
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:850;
+  cursor:pointer;
+  font-size:13px;
+  line-height:1;
+}
+.tabBtn.on{
+  background:#0f172a;
+  color:#fff;
+  border-color:#0f172a;
+}
+.tabBtn:disabled{ opacity:.35; cursor:not-allowed; }
+
+.topicGrid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap:12px;
+}
+
+.topicCard{
+  border:1px solid rgba(15,23,42,.08);
+  background:#fff;
+  border-radius:18px;
+  box-shadow: 0 10px 22px rgba(15,23,42,.05);
+  padding:12px;
+}
+
+.topicImg{
+  width:100%;
+  aspect-ratio:16/9;
+  border-radius:14px;
+  object-fit:cover;
+  display:block;
+  background: rgba(15,23,42,.04);
+}
+
+.topicTitle{
+  margin-top:10px;
+  font-weight:950;
+  font-size:14px;
+}
+.topicTitle b{ font-weight:1000; }
+
+.playRow{
+  margin-top:10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.playRow .lbl{
+  font-weight:950;
+  font-size:13px;
+  letter-spacing:.2px;
+  white-space:nowrap;
+}
+
+.pillBtn{
+  width:36px;
+  height:36px;
+  border-radius:999px;
+  border:1px solid rgba(15,23,42,.12);
+  background:#fff;
+  font-weight:950;
+  cursor:pointer;
+}
+.pillBtn:disabled{ opacity:.35; cursor:not-allowed; }
+
+
+/* ===== Selettore CLASSE (3/4/5) accanto alle discipline ===== */
+.tabsRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:0 0 10px;
+}
+.classPills{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.classPill{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  border:1px solid rgba(15,23,42,.12);
+  background:#fff;
+  font-weight:950;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+  font-size:13px;
+}
+.classPill.on{
+  background:#0f172a;
+  color:#fff;
+  border-color:#0f172a;
+}
+
+
+#playerSetup{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+@media (max-width:520px){#playerSetup{grid-template-columns:1fr;}}
+
+/* ==========================
+   MOBILE (Wordwall style): 3 colonne + tutto nello schermo (no scroll)
+   - 4 coppie -> 2 colonne (più grande)
+   - 6/9/12 -> 3 colonne
+   - override delle regole per-pairs (4/6/9/12) già presenti
+   ========================== */
+@media (max-width: 560px){
+
+  /* overlay: giocatori sopra, gioco sotto */
+  .overlayLayout{ grid-template-columns: 1fr !important; }
+  .playersSide{ flex-direction:row !important; flex-wrap:wrap !important; justify-content:center !important; }
+
+  /* griglia: default 3 colonne */
+  #gameOverlay .grid{
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  /* 4 coppie (8 carte) -> 2 colonne */
+  #gameOverlay[data-pairs="4"] .grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  /* carte quadrate e grandi */
+  #gameOverlay .mcard{
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+  }
+
+  /* numero più leggibile */
+  #gameOverlay .front .q{
+    width: 64px !important;
+    height: 64px !important;
+    font-size: 28px !important;
+    border-radius: 18px !important;
+  }
+}
+
+/* ==========================
+   WOW: ENTRATA CARTE (slide + pop + cascade)
+   ========================== */
+@keyframes wowBoardIn{
+  from{ transform: translateY(16px) scale(.98); opacity:0; }
+  to{ transform: translateY(0) scale(1); opacity:1; }
+}
+@keyframes wowCardIn{
+  from{ transform: translateY(22px) scale(.86); opacity:0; filter: blur(1px); }
+  to{ transform: translateY(0) scale(1); opacity:1; filter: blur(0); }
+}
+@keyframes wowCardInSide{
+  from{ transform: translateX(-14px) translateY(10px) scale(.86); opacity:0; filter: blur(1px); }
+  to{ transform: translateX(0) translateY(0) scale(1); opacity:1; filter: blur(0); }
+}
+
+.grid.grid-wow-in{
+  animation: wowBoardIn .20s ease-out both;
+  will-change: transform, opacity;
+}
+
+.grid.grid-wow-in .mcard{
+  animation: wowCardIn .26s cubic-bezier(.15,.95,.15,1) both;
+  animation-delay: calc(var(--i, 0) * 14ms);
+  will-change: transform, opacity, filter;
+}
+
+/* ==========================
+   WOW: ENTRATA CARTE (fly da sinistra/destra + pop)
+   ========================== */
+@keyframes wowBoardIn{
+  from{ transform: translateY(22px) scale(.98); opacity:0; }
+  to{ transform: translateY(0) scale(1); opacity:1; }
+}
+@keyframes wowCardIn{
+  0%{ transform: translateY(28px) scale(.82); opacity:0; filter: blur(2px); }
+  70%{ transform: translateY(-6px) scale(1.06); opacity:1; filter: blur(0); }
+  100%{ transform: translateY(0) scale(1); opacity:1; }
+}
+@keyframes wowFlyL{
+  0%{ transform: translateX(-240px) rotate(-7deg) scale(.78); opacity:0; filter: blur(2px); }
+  70%{ transform: translateX(10px) rotate(1deg) scale(1.06); opacity:1; filter: blur(0); }
+  100%{ transform: translateX(0) rotate(0) scale(1); opacity:1; }
+}
+@keyframes wowFlyR{
+  0%{ transform: translateX(240px) rotate(7deg) scale(.78); opacity:0; filter: blur(2px); }
+  70%{ transform: translateX(-10px) rotate(-1deg) scale(1.06); opacity:1; filter: blur(0); }
+  100%{ transform: translateX(0) rotate(0) scale(1); opacity:1; }
+}
+
+.grid.grid-wow-in{
+  animation: wowBoardIn .26s ease-out both;
+  will-change: transform, opacity;
+}
+
+.grid.grid-wow-in .mcard{
+  animation: wowCardIn .40s cubic-bezier(.15,.95,.15,1) both;
+  animation-delay: calc(var(--i, 0) * 18ms);
+  will-change: transform, opacity, filter;
+}
+
+/* FLY: le carte arrivano da sinistra/destra alternando */
+.grid.grid-wow-fly .mcard{
+  animation-duration: .46s;
+  animation-timing-function: cubic-bezier(.12,.95,.12,1);
+  animation-fill-mode: both;
+  animation-delay: calc(var(--i, 0) * 16ms);
+  will-change: transform, opacity, filter;
+}
+.grid.grid-wow-fly .mcard:nth-child(odd){ animation-name: wowFlyL; }
+.grid.grid-wow-fly .mcard:nth-child(even){ animation-name: wowFlyR; }
+
+</style>
+
+
+</head>
+
+<body>
+
+
+  <div class="wrap">
+    <div class="row">
+      <!-- SETUP -->
+      <div class="panel pad setup">
+        <div class="panelTitle">
+          <h1>Memory – Abbinamenti</h1>
+          <div class="muted">2 immagini diverse da accoppiare</div>
+        </div>
+
+        <div class="setupGrid">
+          <div class="field" style="display:none">
+            <label>MATERIA / DISCIPLINA</label>
+            <select id="deckSelect"></select>
+          </div>
+
+          <div class="field">
+            <label>GIOCATORI (1–4)</label>
+            <select id="playersSelect">
+              <option value="1">1 giocatore</option>
+              <option value="2" selected>2 giocatori</option>
+              <option value="3">3 giocatori</option>
+              <option value="4">4 giocatori</option>
+            </select>
+          </div>
+
+          <div class="field" style="display:none">
+            <label>NUMERO ACCOPPIAMENTI</label>
+            <select id="pairsSelect"></select>
+          </div>
+
+          <div class="field">
+            <label>REGOLA TURNO</label>
+            <select id="ruleSelect">
+              <option value="keep" selected>Se fai MATCH resti tu</option>
+              <option value="pass">Se fai MATCH passa il turno</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="btnbar">
+          <button class="btn primary" id="btnStart" style="display:none">▶️ Avvia partita</button>
+          <button class="btn" id="btnRestart" disabled style="display:none">🔁 Ricomincia</button>
+          <button class="btn danger" id="btnReset">⛔ Reset</button>
+        </div>
+
+     
+
+
+
+
+      <!--   <div class="muted" style="margin-top:10px">
+          Suggerimento: aggiungi i tuoi mazzi in <b>DECKS</b> (in fondo al file).
+        </div> 
+        -->
+      </div>
+      <!-- PLAYER SETUP (nomi + avatar) -->
+      <div class="panel pad players" style="flex: 1 1 360px; min-width: 320px;">
+        <div class="panelTitle">
+          <h1>Giocatori</h1>
+          <div class="muted">Imposta il nome </div>
+        </div>
+
+        <div id="playerSetup" class="setupGrid" style="grid-template-columns:  1fr 1fr;">
+          <!-- creato via JS -->
+        </div>
+
+        
+      </div>
+    </div>
+
+
+
+     
+<!-- ===== ABBINAMENTI (card per ARGOMENTO) ===== -->
+<div class="panel pad" style="margin-top:14px;">
+  <div class="panelTitle">
+    <h1>MEMORY ABBINAMENTI</h1>
+    <div class="muted" id="topicTotal">— coppie totali</div>
+  </div>
+
+  <div class="tabsRow">
+  <div class="presetTabs" id="topicTabs"></div>
+  <div class="classPills" id="classPills"></div>
+</div>
+  <div class="topicGrid" id="topicGrid"></div>
+
+  <div class="muted" id="topicEmpty" style="display:none;margin-top:10px;">
+    Nessun argomento disponibile in pairs.js
+  </div>
+</div>
+    <!-- GAME (placeholder nascosto: usiamo overlay) -->
+    <div class="game" style="display:none"></div>
+
+    <!-- OVERLAY GIOCO -->
+    <div class="gameOverlay" id="gameOverlay" aria-hidden="true">
+      <button class="overlayClose" id="btnCloseOverlay" title="Chiudi">✕</button>
+      <div class="overlayInner">
+      <div class="overlayLayout">
+        <div class="panel pad playersSide" id="playersSide"></div>
+        <div class="panel pad board">
+        <div class="boardTop">
+          <div class="pill">CARD: <b id="pillDeck">—</b></div>
+          <div class="pill">COPPIE: <b id="pillPairs">—</b></div>
+          <div class="pill" style="display:none">Trovati: <b id="pillFound">0</b></div>
+          
+       <div class="pill" style="display:none">Mosse: <b id="pillMoves">0</b></div> 
+          <div class="pill" id="pillChange">
+  <span style="font-weight:900">GIOCA CON</span>
+  <button type="button" class="zoomBtn pairsBtn" data-pairs="4" onclick="memChangePairs(4)">4</button>
+  <button type="button" class="zoomBtn pairsBtn" data-pairs="6" onclick="memChangePairs(6)">6</button>
+  <button type="button" class="zoomBtn pairsBtn" data-pairs="9" onclick="memChangePairs(9)">9</button>
+  <button type="button" class="zoomBtn pairsBtn" data-pairs="12" onclick="memChangePairs(12)">12</button>
+  <span style="font-weight:900">COPPIE</span>
+</div>
+          <div class="pill zoomPill"><span>Zoom:</span> 
+            <button type="button" class="zoomBtn" onclick="memZoomStep(-1)">−</button>
+            <button type="button" class="zoomBtn" onclick="memZoomReset()">100%</button>
+            <button type="button" class="zoomBtn" onclick="memZoomStep(1)">+</button>
+            <b id="pillZoom">100%</b>
+          </div>
+        </div>
+
+        <div id="zoomTarget"><div class="grid" id="grid"></div></div>
+      </div>
+    </div>
+      </div>
+    </div>
+
+    <!-- PLAYERS BAR IN BASSO -->
+    <div class="playersBottom" id="playersBottom">
+      <div class="playersBottomInner" id="playersBottomInner"></div>
+    </div>
+
+  </div>
+
+  <!-- MODAL FINE -->
+  <div class="modal" id="modal">
+    <div class="modalBox">
+      <div class="modalHead">
+        <h2>🏁 Classifica finale</h2>
+        <button class="btn primary" id="btnCloseModal">Chiudi</button>
+      </div>
+      <div class="modalBody">
+        <div class="small" id="finalSummary"></div>
+        <div class="rank" id="rankList"></div>
+        <div class="btnbar" style="margin-top:12px">
+          <button class="btn primary" id="btnPlayAgain">🔁 Gioca ancora</button>
+          <a class="btn" href="memory.html" style="text-decoration:none;display:inline-flex;align-items:center;">🏠 Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/pairs.js"></script>
+
+
+<script>
+/* ---------------------------------------------------------
+   AUDIO (metti i file in /audio/...)
+--------------------------------------------------------- */
+const SFX = {
+  match: new Audio("audio/effetto_sonoro_din.mp3"),
+  error: new Audio("audio/taglio.mp3"),
+  victory: new Audio("audio/super_mario_vittoria.mp3") // opzionale
+};
+function playSfx(a){
+  try{
+    if(!a) return;
+    a.currentTime = 0;
+    a.play().catch(()=>{});
+  }catch(e){}
+}
+
+
+
+  
+function updatePairsButtonsActive(n){
+  try{
+    const wrap = document.getElementById("pillChange");
+    if(!wrap) return;
+    wrap.querySelectorAll(".pairsBtn").forEach(btn=>{
+      btn.classList.toggle("active", btn.getAttribute("data-pairs") === String(n));
+    });
+  }catch(e){}
+}
+
+window.memChangePairs = function(n){
+
+  if(!state.started) return;
+
+  const deck = getDeck(state.deckId);
+  if(!deck) return;
+
+  // filtra come nello startGame
+  let basePairs = [...deck.pairs];
+
+  if(state.filter && state.filter.classe){
+    const cls = String(state.filter.classe).trim();
+    basePairs = basePairs.filter(p => String(p.meta?.classe || "").trim() === cls);
+  }
+
+  if(state.filter && state.filter.argomento){
+    basePairs = basePairs.filter(p => _metaHasTopic(p.meta, state.filter.argomento));
+  }
+
+  if(basePairs.length < n){
+    alert(`Non ci sono abbastanza coppie per ${n}. Disponibili: ${basePairs.length}`);
+    return;
+  }
+
+  state.totalPairs = n;
+  gameOverlay.dataset.pairs = String(n);
+  updatePairsButtonsActive(n);
+
+  state.flipped = [];
+  state.matchedCount = 0;
+  state.moves = 0;
+  state.locked = false;
+  state.scores = [0,0,0,0];
+  state.currentPlayer = 0;
+
+  const selectedPairs = shuffle(basePairs).slice(0, n);
+
+  const cards = [];
+  for(const p of selectedPairs){
+    cards.push({ pairId: p.pairId, img: p.a.img, alt: p.a.alt, matched:false });
+    cards.push({ pairId: p.pairId, img: p.b.img, alt: p.b.alt, matched:false });
+  }
+
+  state.cards = shuffle(cards);
+
+  pillPairs.textContent = String(n);
+  pillFound.textContent = "0";
+  pillMoves.textContent = "0";
+
+  renderPlayers();
+  setWowMode("fly");
+  renderBoard();
+  try{ requestAnimationFrame(memAutoFitMobile); }catch(e){}
+};
+
+/* ---------------------------------------------------------
+   PERSISTENZA NOMI GIOCATORI (localStorage)
+   - I nomi restano quando cambi pagina / torni alla home
+   - Con RESET tornano ai default "Giocatore 1..4"
+--------------------------------------------------------- */
+const LS_PLAYER_NAMES_KEY = "memory_player_names_v1";
+
+function defaultPlayerNames(){
+  return ["Giocatore 1","Giocatore 2","Giocatore 3","Giocatore 4"];
+}
+
+function loadPlayerNames(){
+  try{
+    const raw = localStorage.getItem(LS_PLAYER_NAMES_KEY);
+    const arr = raw ? JSON.parse(raw) : null;
+    if(!Array.isArray(arr)) return defaultPlayerNames();
+    const out = defaultPlayerNames();
+    for(let i=0;i<4;i++){
+      if(typeof arr[i] === "string" && arr[i].trim()) out[i] = arr[i].trim();
+    }
+    return out;
+  }catch(e){
+    return defaultPlayerNames();
+  }
+}
+
+function savePlayerNames(names){
+  try{
+    localStorage.setItem(LS_PLAYER_NAMES_KEY, JSON.stringify(names));
+  }catch(e){}
+}
+
+function clearPlayerNames(){
+  try{
+    localStorage.removeItem(LS_PLAYER_NAMES_KEY);
+  }catch(e){}
+}
+
+function syncStateNamesFromStorage(){
+  const saved = loadPlayerNames();
+  for(let i=0;i<4;i++){
+    if(state.playerMeta[i]) state.playerMeta[i].name = saved[i];
+  }
+}
+    function goIndex(){
+    // sicurezza: pulisce eventuale screen
+    window.location.href = "index.html";
+  }
+
+
+  /* ---------------------------------------------------------
+   GENERA DECKS DINAMICAMENTE DA window.PAIRS
+--------------------------------------------------------- */
+const DECKS = buildDecksFromPairs();
+
+function buildDecksFromPairs(){
+  if(!window.PAIRS || !Array.isArray(window.PAIRS)) return [];
+
+  const grouped = {};
+
+  window.PAIRS.forEach(p=>{
+    const disc = p.meta?.disciplina || "altro";
+
+    if(!grouped[disc]){
+      grouped[disc] = {
+        id: disc,
+        name: disc.charAt(0).toUpperCase() + disc.slice(1) + " – Abbinamenti",
+        pairs: []
+      };
+    }
+
+    grouped[disc].pairs.push({
+      pairId: p.id,
+      a: { img: p.left?.src, alt: p.id },
+      b: { img: p.right?.src, alt: p.id },
+      meta: p.meta || {}
+    });
+  });
+
+  return Object.values(grouped);
+}
+
+
+/* ---------------------------------------------------------
+   STATO PARTITA
+--------------------------------------------------------- */
+let state = {
+  started:false,
+  deckId:null,
+  rule:"keep",
+  players:2,
+  totalPairs:6,
+  cards:[],
+  flipped:[],      // indices carte scoperte (max 2)
+  matchedCount:0,  // numero coppie trovate
+  moves:0,
+  currentPlayer:0,
+  scores:[0,0,0,0],
+  locked:false,
+  playerMeta: [
+    {name:"Giocatore 1", avatar:"img/players/p1.png"},
+    {name:"Giocatore 2", avatar:"img/players/p2.png"},
+    {name:"Giocatore 3", avatar:"img/players/p3.png"},
+    {name:"Giocatore 4", avatar:"img/players/p4.png"}
+  ]
+,
+  filter: { disciplina: "", argomento: "", classe: "" }
+};
+
+const $ = (id)=>document.getElementById(id);
+const deckSelect = $("deckSelect");
+const playersSelect = $("playersSelect");
+const pairsSelect = $("pairsSelect");
+const ruleSelect = $("ruleSelect");
+
+const btnStart = $("btnStart");
+const btnRestart = $("btnRestart");
+const btnReset = $("btnReset");
+
+const playerSetup = $("playerSetup");
+const gameOverlay = $("gameOverlay");
+const btnCloseOverlay = $("btnCloseOverlay");
+const playersBottom = $("playersBottom");
+const playersBottomInner = $("playersBottomInner");
+
+const playersSide = $("playersSide");
+
+
+const pillDeck = $("pillDeck");
+const pillPairs = $("pillPairs");
+const pillFound = $("pillFound");
+const pillMoves = $("pillMoves");
+
+const grid = $("grid");
+
+const modal = $("modal");
+const rankList = $("rankList");
+const finalSummary = $("finalSummary");
+const btnCloseModal = $("btnCloseModal");
+const btnPlayAgain = $("btnPlayAgain");
+
+
+
+
+/* ---------------------------------------------------------
+   ABBINAMENTI (stile pairs_select): TAB disciplina + CARD per ARGOMENTO
+   - 1 card per argomento (cover = prima immagine)
+   - bottoni 4/6/9/12 coppie (abilitati se disponibili)
+   - click: imposta disciplina + argomento + numero coppie e AVVIA
+--------------------------------------------------------- */
+
+/* ---------------------------------------------------------
+   TOPICS: argomento + argomentoSecondario (come in match_pairs)
+--------------------------------------------------------- */
+function _normTopic(s){ return (s ?? "").toString().trim().toLowerCase(); }
+function _splitTopics(s){
+  return _normTopic(s).split(/\s*[,;|]+\s*/).filter(Boolean);
+}
+function _getTopicsFromMeta(meta){
+  const out = [];
+  const a1 = (meta?.argomento ?? "").toString().trim();
+  if(a1) out.push(a1);
+
+  const a2raw = meta?.argomentoSecondario ?? meta?.argomentiSecondari ?? "";
+  if(Array.isArray(a2raw)){
+    for(const v of a2raw){
+      const t = (v ?? "").toString().trim();
+      if(t) out.push(t);
+    }
+  }else{
+    // split mantenendo case
+    const raw = (a2raw ?? "").toString();
+    raw.split(/\s*[,;|]+\s*/).map(x=>x.trim()).filter(Boolean).forEach(t=>out.push(t));
+  }
+
+  // dedup (case-insensitive), preservando il primo valore (case)
+  const seen = new Set();
+  const uniq = [];
+  for(const t of out){
+    const k = _normTopic(t);
+    if(!k || seen.has(k)) continue;
+    seen.add(k);
+    uniq.push(t);
+  }
+  return uniq;
+}
+function _metaHasTopic(meta, topic){
+  const want = _normTopic(topic);
+  if(!want) return true;
+  const topics = _getTopicsFromMeta(meta).map(_normTopic);
+  return topics.includes(want);
+}
+
+
+
+function buildTopicCards(){
+  const tabs = document.getElementById("topicTabs");
+  const classBox = document.getElementById("classPills");
+  const grid = document.getElementById("topicGrid");
+  const empty = document.getElementById("topicEmpty");
+  const tot = document.getElementById("topicTotal");
+  if(!tabs || !grid || !empty) return;
+
+  const DISC_LABEL = {
+    storia:"STORIA", italiano:"ITALIANO", matematica:"MATEMATICA",
+    geografia:"GEOGRAFIA", scienze:"SCIENZE", inglese:"INGLESE"
+  };
+
+  const all = Array.isArray(window.PAIRS) ? window.PAIRS : [];
+  if(tot) tot.textContent = `${all.length} coppie totali`;
+
+  // discipline disponibili (dalla sorgente reale)
+  const discs = [...new Set(all.map(p=>p?.meta?.disciplina).filter(Boolean))];
+
+  if(!discs.length){
+    tabs.innerHTML = "";
+    if(classBox) classBox.innerHTML = "";
+    grid.innerHTML = "";
+    empty.style.display = "block";
+    return;
+  }
+  empty.style.display = "none";
+
+  // disciplina attiva
+  let activeDisc = state.filter?.disciplina || localStorage.getItem("pairs_last_disciplina") || discs[0];
+  if(!discs.includes(activeDisc)) activeDisc = discs[0];
+
+  // classi disponibili per disciplina
+  function classesForDisc(disc){
+    const set = new Set();
+    for(const p of all){
+      if((p?.meta?.disciplina || "") !== disc) continue;
+      const c = String(p?.meta?.classe || "").trim();
+      if(c) set.add(c);
+    }
+    // ordina numericamente (3,4,5...)
+    return [...set].sort((a,b)=>parseInt(a,10)-parseInt(b,10));
+  }
+
+  // classe attiva: se non impostata, scegli la prima disponibile
+  let activeClass = (state.filter?.classe || "").trim();
+  const discClasses = classesForDisc(activeDisc);
+  if(!activeClass || !discClasses.includes(activeClass)){
+    activeClass = discClasses[0] || "";
+  }
+  state.filter.classe = activeClass;
+
+  const sizes = [4,6,9,12];
+
+  function paintTabs(){
+    tabs.innerHTML = "";
+    discs.forEach(d=>{
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "tabBtn" + (d===activeDisc ? " on":"");
+      b.textContent = (DISC_LABEL[d] || d).toUpperCase();
+      b.addEventListener("click", ()=>{
+        activeDisc = d;
+        localStorage.setItem("pairs_last_disciplina", activeDisc);
+
+        // reset argomento; classe -> prima disponibile della disciplina
+        state.filter.disciplina = activeDisc;
+        state.filter.argomento = "";
+        const cls = classesForDisc(activeDisc);
+        state.filter.classe = cls[0] || "";
+
+        // sincronizza select sopra (disciplina)
+        deckSelect.value = activeDisc;
+        state._keepTopic = true;
+        deckSelect.dispatchEvent(new Event("change",{bubbles:true}));
+
+        paintTabs();
+        paintClassPills();
+        paintGrid();
+      });
+      tabs.appendChild(b);
+    });
+  }
+
+  function paintClassPills(){
+  if(!classBox) return;
+
+  const cls = classesForDisc(activeDisc);
+  classBox.innerHTML = "";
+
+  if(!cls.length) return;
+
+  // Scritta CLASSE
+  const label = document.createElement("span");
+  label.textContent = "CLASSE";
+  label.style.fontWeight = "900";
+  label.style.fontSize = "13px";
+  label.style.marginRight = "2px";
+  classBox.appendChild(label);
+
+  // Numeri con trattino
+  cls.forEach((c, i)=>{
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "classPill" + (c===activeClass ? " on":"");
+    b.title = "Classe " + c;
+    b.textContent = c;
+
+    b.addEventListener("click", ()=>{
+      activeClass = c;
+      state.filter.classe = activeClass;
+      state.filter.argomento = "";
+      paintClassPills();
+      paintGrid();
+    });
+
+    classBox.appendChild(b);
+
+    // trattino tra i numeri
+    if(i < cls.length - 1){
+      const sep = document.createElement("span");
+      sep.textContent = "-";
+      sep.style.opacity = "0.6";
+      sep.style.fontWeight = "900";
+      classBox.appendChild(sep);
+    }
+  });
+}
+
+
+  function paintGrid(){
+    grid.innerHTML = "";
+
+    // filtra per disciplina + classe
+    const filtered = all.filter(p =>
+      (p?.meta?.disciplina || "") === activeDisc &&
+      String(p?.meta?.classe || "").trim() === String(activeClass || "").trim()
+    );
+
+    // raggruppa per topic: argomento + argomentoSecondario
+    const byTopic = new Map(); // key -> { items:[], related:Set }
+    for(const p of filtered){
+      const topics = _getTopicsFromMeta(p?.meta || {});
+      const list = topics.length ? topics : ["Senza argomento"];
+
+      for(const t of list){
+        if(!byTopic.has(t)) byTopic.set(t, { items:[], related:new Set() });
+        const entry = byTopic.get(t);
+        entry.items.push(p);
+
+        for(const other of list){
+          if(other && other !== t) entry.related.add(other);
+        }
+      }
+    }
+
+    if(byTopic.size === 0){
+      empty.style.display = "block";
+      return;
+    }
+    empty.style.display = "none";
+
+    // ordinamento argomenti
+    const topics = [...byTopic.keys()].sort((a,b)=>a.localeCompare(b,"it",{numeric:true,sensitivity:"base"}));
+
+    for(const topic of topics){
+      const entry = byTopic.get(topic) || {items:[], related:new Set()};
+      const arr = entry.items || [];
+    const fallback = arr[0]?.left?.src || arr[0]?.right?.src || "";
+
+      
+const card = document.createElement("div");
+card.className = "topicCard";
+card.innerHTML = `
+  <img class="topicImg" alt="">
+  <div class="topicTitle"><b>${(DISC_LABEL[activeDisc] || activeDisc)}</b> – ${escapeHtml(topic)}</div>
+  <div class="playRow">
+    <span class="lbl">GIOCA CON</span>
+    <span class="btns"></span>
+    <span class="lbl">COPPIE</span>
+  </div>
+`;
+const img = card.querySelector(".topicImg");
+
+const slug = topic
+  .toLowerCase()
+  .trim()
+  .replace(/\s+/g, "_")
+  .replace(/[^a-z0-9_]/g, "");
+
+const exts = ["png","jpg","jpeg","webp"];
+let i = 0;
+
+function tryNext(){
+  if(i >= exts.length){
+    if(fallback){
+      img.src = fallback;
+    }else{
+      img.style.display = "none";
+    }
+    return;
+  }
+  img.src = `img/home/${activeDisc}_${slug}.${exts[i++]}`;
+}
+
+img.onerror = tryNext;
+tryNext();
+      const btns = card.querySelector(".btns");
+      for(const n of sizes){
+        const ok = arr.length >= n;
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "pillBtn";
+        b.textContent = String(n);
+        b.disabled = !ok;
+
+        if(ok){
+          b.addEventListener("click", ()=>{
+            // imposta filtro (disciplina+classe+argomento)
+            state.filter.disciplina = activeDisc;
+            state.filter.classe = activeClass;
+            state.filter.argomento = topic;
+
+            // sincronizza select sopra (disciplina)
+            deckSelect.value = activeDisc;
+            state._keepTopic = true;
+            deckSelect.dispatchEvent(new Event("change",{bubbles:true}));
+
+            // imposta numero coppie e avvia
+            setTimeout(()=>{
+              const exists = Array.from(pairsSelect.options).some(o => o.value === String(n));
+              if(exists){
+                pairsSelect.value = String(n);
+              }else{
+                if(pairsSelect.options.length>0) pairsSelect.selectedIndex = pairsSelect.options.length-1;
+              }
+              startGame();
+            }, 0);
+          });
+        }
+        btns.appendChild(b);
+      }
+
+      grid.appendChild(card);
+    }
+  }
+
+  paintTabs();
+  paintClassPills();
+  paintGrid();
+}
+
+
+/* ---------------------------------------------------------
+   INIT UI
+--------------------------------------------------------- */
+
+/* ---------------------------------------------------------
+   MOBILE: auto-fit per far entrare tutte le card nello schermo (senza scroll)
+   Usa #zoomTarget (già presente) e scala solo verso il basso.
+--------------------------------------------------------- */
+function memAutoFitMobile(){
+  try{
+    if(!window.matchMedia || !window.matchMedia("(max-width: 560px)").matches) return;
+
+    const overlay = document.getElementById("gameOverlay");
+    if(!overlay || !overlay.classList.contains("show")) return;
+
+    const zoomTarget = document.getElementById("zoomTarget");
+    const gridEl = document.getElementById("grid");
+    if(!zoomTarget || !gridEl) return;
+
+    // reset scala per misurare correttamente
+    zoomTarget.style.transform = "scale(1)";
+    zoomTarget.style.marginBottom = "0px";
+    zoomTarget.style.transformOrigin = "top center";
+
+    const board = overlay.querySelector(".panel.pad.board");
+    const top = overlay.querySelector(".boardTop");
+    if(!board || !top) return;
+
+    const avail = board.clientHeight - top.offsetHeight - 18; // buffer
+    const needed = gridEl.scrollHeight;
+
+    if(avail <= 0 || needed <= 0) return;
+
+    const s = Math.min(1, avail / needed);
+    zoomTarget.style.transform = `scale(${s})`;
+  }catch(e){}
+}
+
+window.addEventListener("resize", ()=>{ try{ requestAnimationFrame(memAutoFitMobile); }catch(e){} });
+
+// WOW animation mode for board renders
+let WOW_MODE = "fly"; // "fly" | "in"
+function setWowMode(m){ WOW_MODE = (m === "in") ? "in" : "fly"; }
+
+
+function init(){
+  // Popola select mazzi
+  deckSelect.innerHTML = "";
+  for(const d of DECKS){
+    const opt = document.createElement("option");
+    opt.value = d.id;
+    opt.textContent = d.name;
+    deckSelect.appendChild(opt);
+  }
+  deckSelect.value = DECKS[0]?.id || "";
+
+  
+
+
+  state.filter.disciplina = deckSelect.value || "";
+  state.filter.argomento = "";
+
+// imposta classe di default per la disciplina selezionata (prima disponibile)
+try{
+  const all = Array.isArray(window.PAIRS) ? window.PAIRS : [];
+  const disc = state.filter.disciplina || "";
+  const clsSet = new Set();
+  for(const p of all){
+    if((p?.meta?.disciplina || "") !== disc) continue;
+    const c = String(p?.meta?.classe || "").trim();
+    if(c) clsSet.add(c);
+  }
+  const clsArr = [...clsSet].sort((a,b)=>parseInt(a,10)-parseInt(b,10));
+  state.filter.classe = clsArr[0] || state.filter.classe || "";
+}catch(e){}
+
+if(!DECKS || !Array.isArray(DECKS) || DECKS.length===0){
+  try{
+    deckSelect.innerHTML = "";
+    const opt = document.createElement("option");
+    opt.value = "";
+    opt.textContent = "Nessun mazzo (pairs.js mancante o vuoto)";
+    deckSelect.appendChild(opt);
+    pairsSelect.innerHTML = "";
+    btnStart.disabled = true;
+  }catch(e){}
+return;
+}
+// Reazioni
+  deckSelect.addEventListener("change", ()=>{
+  state.filter.disciplina = deckSelect.value;
+
+  // Se il cambio disciplina è stato innescato da una CARD argomento,
+  // non azzerare l'argomento (serve per filtrare correttamente).
+  if(state._keepTopic){
+    state._keepTopic = false;
+  }else{
+    state.filter.argomento = "";
+  }
+
+  refreshPairsOptions();
+  buildTopicCards();
+});
+playersSelect.addEventListener("change", ()=>{renderPlayersPreview(); buildPlayerSetup();});
+  refreshPairsOptions();
+  // costruisci UI abbinamenti per argomento
+  buildTopicCards();
+  syncStateNamesFromStorage();
+  playersBottom.classList.remove("show");
+  if(playersSide) playersSide.innerHTML = "";
+  gameOverlay.classList.remove("show");
+  gameOverlay.setAttribute("aria-hidden","true");
+  /*// reset nomi + storage
+  clearPlayerNames();
+  const defs = defaultPlayerNames();
+  for(let i=0;i<4;i++) if(state.playerMeta[i]) state.playerMeta[i].name = defs[i];
+  savePlayerNames(defs);
+*/
+  buildPlayerSetup();
+  renderPlayersPreview();
+  btnReset.disabled = false;
+
+  buildPlayerSetup();
+
+  btnStart.addEventListener("click", startGame);
+  btnRestart.addEventListener("click", restartSameSettings);
+  btnReset.addEventListener("click", ()=>{ if(state.started){ hardReset(); } else { resetNamesOnly(); } });
+  btnCloseOverlay.addEventListener("click", closeOnlyCards);
+
+  btnCloseModal.addEventListener("click", ()=>modal.classList.remove("show"));
+  btnPlayAgain.addEventListener("click", ()=>{
+    modal.classList.remove("show");
+    restartSameSettings();
+});
+}
+
+function refreshPairsOptions(){
+  const deck = getDeck(deckSelect.value);
+  // maxPairs: considera anche filtro CLASSE (se impostato)
+  let maxPairs = deck ? deck.pairs.length : 0;
+  const cls = String(state.filter?.classe || "").trim();
+  if(deck && cls){
+    maxPairs = deck.pairs.filter(p => String(p.meta?.classe || "").trim() === cls).length;
+  }
+
+  pairsSelect.innerHTML = "";
+
+  // SOLO valori pari fissi numero di COPPIE  - ACCOPPIAMENTI
+  const allowed = [4, 6, 9, 12];
+
+  allowed.forEach(n=>{
+    if(n <= maxPairs){
+      const opt = document.createElement("option");
+      opt.value = String(n);
+      opt.textContent = `${n} accoppiamenti`;
+      pairsSelect.appendChild(opt);
+    }
+  });
+
+  // default = primo disponibile
+  if(pairsSelect.options.length > 0){
+    pairsSelect.selectedIndex = 0;
+  }
+
+  renderPlayersPreview();
+}
+
+
+function renderPlayersPreview(){
+  // In schermata di setup: abilita avvio, nasconde overlay/bar
+  btnStart.disabled = false;
+  playersBottom.classList.remove("show");
+  gameOverlay.classList.remove("show");
+  gameOverlay.setAttribute("aria-hidden","true");
+  btnReset.disabled = false;
+
+}
+
+/* crea i campi nome + avatar in base al numero giocatori */
+function buildPlayerSetup(){
+  const p = parseInt(playersSelect.value,10);
+  const defaults = state.playerMeta;
+
+  playerSetup.innerHTML = "";
+  for(let i=0;i<p;i++){
+    const row = document.createElement("div");
+    row.className = "field";
+    row.style.display = "flex";
+    row.style.alignItems = "center";
+    row.style.gap = "12px";
+
+    row.innerHTML = `
+      <img src="img/players/p${i+1}.png"
+           alt="Giocatore ${i+1}"
+           style="width:54px;height:54px;border-radius:16px;object-fit:cover;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06)"
+           onerror="this.style.display='none'">
+
+      <div style="flex:1; min-width:0">
+        <label>GIOCATORE ${i+1}</label>
+        <input id="pName${i}" type="text"
+               value="${escapeHtml((defaults[i] && typeof defaults[i].name === 'string') ? defaults[i].name : '')}"
+               placeholder="Giocatore ${i+1}"
+               style="width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.22);color:var(--txt);outline:none;font-weight:700" />
+      </div>
+    `;
+    playerSetup.appendChild(row);
+
+    // salva in tempo reale mentre scrivi
+    const inp = row.querySelector("#pName"+i);
+    if(inp){
+      inp.addEventListener("input", ()=>{
+        const names = loadPlayerNames();
+        names[i] = (inp.value || "").trim() || `Giocatore ${i+1}`;
+        savePlayerNames(names);
+        if(state.playerMeta[i]) state.playerMeta[i].name = names[i];
+      });
+    }
+  }
+}
+
+
+/* leggi nomi + avatar impostati prima di avviare */
+function readPlayerSetup(){
+  const p = parseInt(playersSelect.value,10);
+  const meta = [];
+  for(let i=0;i<p;i++){
+    const nameEl = document.getElementById("pName"+i);
+    const name = (nameEl?.value || `Giocatore ${i+1}`).trim() || `Giocatore ${i+1}`;
+    const avatar = `img/players/p${i+1}.png`; // fisso
+    meta.push({name, avatar});
+  }
+  while(meta.length < 4) meta.push({name:`Giocatore ${meta.length+1}`, avatar:`img/players/p${meta.length+1}.png`});
+  state.playerMeta = meta;
+  // persist names
+  savePlayerNames(state.playerMeta.map(x=>x?.name || "").slice(0,4));
+}
+
+/* mostra overlay con le carte grandi  con le carte grandi */
+function showCardsOverlay(){
+  gameOverlay.classList.add("show");
+  gameOverlay.setAttribute("aria-hidden","false");
+  if(!playersSide){ playersBottom.classList.add("show"); }
+}
+
+/* chiude SOLO le carte e torna alla schermata di scelta */
+function closeOnlyCards(){
+  state.started = false;
+  state.cards = [];
+  state.flipped = [];
+  state.matchedCount = 0;
+  state.moves = 0;
+  state.currentPlayer = 0;
+  state.scores = [0,0,0,0];
+  state.locked = false;
+
+  grid.innerHTML = "";
+  pillDeck.textContent = "—";
+  pillPairs.textContent = "—";
+  pillFound.textContent = "0";
+  pillMoves.textContent = "0";
+
+  btnStart.disabled = false;
+  btnRestart.disabled = true;
+  btnReset.disabled = false;
+
+  playersBottom.classList.remove("show");
+  gameOverlay.classList.remove("show");
+  gameOverlay.setAttribute("aria-hidden","true");
+  buildPlayerSetup();
+}
+
+/* ---------------------------------------------------------
+   START / RESET
+--------------------------------------------------------- */
+function startGame(){
+  const deckId = deckSelect.value;
+  const deck = getDeck(deckId);
+  if(!deck || deck.pairs.length < 2){
+    alert("Questo mazzo non ha abbastanza accoppiamenti.");
+    return;
+  }
+
+  readPlayerSetup();
+
+  state.started = true;
+  state.deckId = deckId;
+  state.players = parseInt(playersSelect.value,10);
+  state.totalPairs = parseInt(pairsSelect.value,10);
+  updatePairsButtonsActive(state.totalPairs);
+  try{ gameOverlay.dataset.pairs = String(state.totalPairs); }catch(e){}
+  state.rule = ruleSelect.value;
+
+  state.scores = [0,0,0,0];
+  state.currentPlayer = 0;
+  state.flipped = [];
+  state.matchedCount = 0;
+  state.moves = 0;
+  state.locked = false;
+
+  // crea carte (2 per pair) filtrando per ARGOMENTO (se scelto dalla card), poi shuffle
+let basePairs = [...deck.pairs];
+
+// ✅ filtro per CLASSE (se selezionata)
+if(state.filter && state.filter.classe){
+  const cls = String(state.filter.classe).trim();
+  basePairs = basePairs.filter(p => String(p.meta?.classe || "").trim() === cls);
+}
+
+if(state.filter && state.filter.argomento){
+  basePairs = basePairs.filter(p => _metaHasTopic(p.meta, state.filter.argomento));
+  if(basePairs.length < state.totalPairs){
+    alert(`Non ci sono abbastanza coppie per "${state.filter.argomento}". Disponibili: ${basePairs.length}`);
+    return;
+  }
+}
+
+const selectedPairs = shuffle(basePairs).slice(0, state.totalPairs);
+const cards = [];
+  for(const p of selectedPairs){
+    cards.push({ pairId: p.pairId, img: p.a.img, alt: p.a.alt, matched:false });
+    cards.push({ pairId: p.pairId, img: p.b.img, alt: p.b.alt, matched:false });
+  }
+  state.cards = shuffle(cards);
+
+  // UI
+  btnStart.disabled = true;
+  btnRestart.disabled = false;
+  btnReset.disabled = false;
+
+  pillDeck.textContent = deck.name;
+  pillPairs.textContent = String(state.totalPairs);
+  pillFound.textContent = "0";
+  pillMoves.textContent = "0";
+
+  renderPlayers();
+  setWowMode("fly");
+  renderBoard();
+  showCardsOverlay();
+  try{ requestAnimationFrame(memAutoFitMobile); }catch(e){}
+}
+
+function restartSameSettings(){
+  // mantiene le select correnti, ricrea partita
+  btnStart.disabled = false;
+  startGame();
+}
+
+function resetNamesOnly(){
+  // Solo nomi giocatori (setup)
+  clearPlayerNames();
+  if(!Array.isArray(state.playerMeta) || state.playerMeta.length<4){
+    state.playerMeta = [{name:"",avatar:"img/players/p1.png"},{name:"",avatar:"img/players/p2.png"},{name:"",avatar:"img/players/p3.png"},{name:"",avatar:"img/players/p4.png"}];
+  }
+  for(let i=0;i<4;i++){
+    if(!state.playerMeta[i]) state.playerMeta[i] = {name:"", avatar:`img/players/p${i+1}.png`};
+    state.playerMeta[i].name = "";
+  }
+  savePlayerNames(["","","",""]);
+  buildPlayerSetup();
+  renderPlayersPreview();
+}
+
+function hardReset(){
+  state.started = false;
+  state.cards = [];
+  state.flipped = [];
+  state.matchedCount = 0;
+  state.moves = 0;
+  state.currentPlayer = 0;
+  state.scores = [0,0,0,0];
+  state.locked = false;
+
+  grid.innerHTML = "";
+  pillDeck.textContent = "—";
+  pillPairs.textContent = "—";
+  pillFound.textContent = "0";
+  pillMoves.textContent = "0";
+
+  btnStart.disabled = false;
+  btnRestart.disabled = true;
+  btnReset.disabled = false;
+
+  playersBottom.classList.remove("show");
+  gameOverlay.classList.remove("show");
+  gameOverlay.setAttribute("aria-hidden","true");
+
+  clearPlayerNames();
+const defs = defaultPlayerNames();
+for(let i=0;i<4;i++) if(state.playerMeta[i]) state.playerMeta[i].name = defs[i];
+savePlayerNames(defs);
+
+  buildPlayerSetup();
+  renderPlayersPreview();
+}
+
+/* ---------------------------------------------------------
+   RENDER PLAYERS (stile quiz: si illuminano nel turno)
+--------------------------------------------------------- */
+function renderPlayers(){
+  const p = state.players;
+  const holder = playersSide || playersBottomInner;
+  holder.innerHTML = "";
+
+  for(let i=0;i<4;i++){
+    const visible = i < p;
+    if(!visible) continue;
+
+    const meta = state.playerMeta[i] || {name:`Giocatore ${i+1}`, avatar:""};
+    const card = document.createElement("div");
+    card.className = "pCard" + (i===state.currentPlayer ? " active":"");
+    const avatarHtml = meta.avatar
+      ? `<img src="${escapeHtml(meta.avatar)}" alt="${escapeHtml(meta.name)}" onerror="this.style.display='none'">`
+      : `<span style="font-weight:1000;color:rgba(255,255,255,.75)">👤</span>`;
+
+    card.innerHTML = `
+      <div class="pAvatar">${avatarHtml}</div>
+      <div class="pInfo">
+        <div class="name">${escapeHtml(meta.name)}</div>
+        <div class="score" id="score${i}">${state.scores[i]||0}</div>
+        <div class="sub" id="sub${i}">${i===state.currentPlayer ? "È il tuo turno!" : "In attesa..."}</div>
+      </div>
+    `;
+    holder.appendChild(card);
+  }
+}
+
+/* ---------------------------------------------------------
+   BOARD  
+--------------------------------------------------------- */
+function renderBoard(){
+  // reset + riattiva animazione WOW ad ogni render
+  grid.classList.remove("grid-wow-in","grid-wow-fly");
+  grid.innerHTML = "";
+
+  state.cards.forEach((c, idx)=>{
+    const card = document.createElement("div");
+    card.className = "mcard clickable";
+    card.dataset.index = String(idx);
+    card.style.setProperty("--i", idx);
+/* <div class="face front"><div class="q">?</div></div> NUMERI SULLE CARD O ?  */
+    card.innerHTML = ` 
+      <div class="inner">
+        <div class="face front"><div class="q">${idx + 1}</div></div>
+        <div class="face back"><img src="${c.img}" alt="${escapeHtml(c.alt||'carta')}" onerror="this.style.display='none'"></div>
+      </div>
+    `;
+
+    card.addEventListener("click", ()=>onCardClick(idx));
+    grid.appendChild(card);
+  });
+
+  updateBoardClasses();
+  // trigger WOW entrance
+  const wowCls = (WOW_MODE === "fly") ? "grid-wow-fly" : "grid-wow-in";
+  WOW_MODE = "fly";
+  requestAnimationFrame(()=>{ grid.classList.add(wowCls); });
+  try{ requestAnimationFrame(memAutoFitMobile); }catch(e){}
+}
+
+function updateBoardClasses(){
+  const nodes = grid.querySelectorAll(".mcard");
+  nodes.forEach((node)=>{
+    const idx = parseInt(node.dataset.index,10);
+    const c = state.cards[idx];
+    const isFlipped = state.flipped.includes(idx) || c.matched;
+    node.classList.toggle("flipped", isFlipped);
+    node.classList.toggle("matched", !!c.matched);
+    node.classList.toggle("blocked", state.locked || c.matched);
+
+    // evita doppio click sulla stessa carta mentre è nella coppia aperta
+    if(state.flipped.includes(idx)) node.classList.add("blocked");
+  });
+}
+
+/* ---------------------------------------------------------
+   CLICK LOGIC
+--------------------------------------------------------- */
+function onCardClick(idx){
+  if(!state.started) return;
+  if(state.locked) return;
+
+  const c = state.cards[idx];
+  if(c.matched) return;
+  if(state.flipped.includes(idx)) return;
+
+  // flip
+  state.flipped.push(idx);
+  updateBoardClasses();
+
+  // se due carte aperte -> verifica
+  if(state.flipped.length === 2){
+    state.locked = true;
+    state.moves++;
+    pillMoves.textContent = String(state.moves);
+
+    const [i1, i2] = state.flipped;
+    const a = state.cards[i1];
+    const b = state.cards[i2];
+
+    const isMatch = a.pairId === b.pairId;
+
+    setTimeout(()=>{
+      if(isMatch){
+        a.matched = true;
+        b.matched = true;
+        state.matchedCount++;
+        state.scores[state.currentPlayer] = (state.scores[state.currentPlayer]||0) + 1;
+
+        pillFound.textContent = String(state.matchedCount);
+        playSfx(SFX.match);
+
+        // regola turno
+        if(state.rule === "pass"){
+          nextPlayer();
+        } // keep: resta lo stesso
+
+        state.flipped = [];
+        state.locked = false;
+        renderPlayers();
+        updateBoardClasses();
+
+        // fine
+        if(state.matchedCount >= state.totalPairs){
+          endGame();
+        }
+      } else {
+        playSfx(SFX.error);
+
+        // richiudi
+        state.flipped = [];
+        nextPlayer();
+        state.locked = false;
+
+        renderPlayers();
+        updateBoardClasses();
+      }
+    }, 1500); // TEMPO A VIDEO DELLE CARD
+  }
+}
+
+function nextPlayer(){
+  state.currentPlayer = (state.currentPlayer + 1) % state.players;
+}
+
+/* ---------------------------------------------------------
+   END GAME + CLASSIFICA
+--------------------------------------------------------- */
+function endGame(){
+  try{ playSfx(SFX.victory); }catch(e){}
+
+  // classifica
+  const entries = [];
+  for(let i=0;i<state.players;i++){
+    entries.push({ player:i, score: state.scores[i]||0 });
+  }
+  entries.sort((x,y)=> y.score - x.score);
+
+  // costruisci lista
+  rankList.innerHTML = "";
+  entries.forEach((e, pos)=>{
+    const div = document.createElement("div");
+    div.className = "rankItem" + (pos===0 ? " winner":"");
+
+    const meta = state.playerMeta[e.player] || {name:`Giocatore ${e.player+1}`, avatar:""};
+    const avatarHtml = meta.avatar
+      ? `<img src="${escapeHtml(meta.avatar)}" alt="${escapeHtml(meta.name)}" onerror="this.style.display='none'">`
+      : `<span style="font-weight:1000;color:rgba(255,255,255,.75)">👤</span>`;
+
+    div.innerHTML = `
+      <div class="rankLeft">
+        <div class="badge">${pos+1}</div>
+        <div class="rankAvatar">${avatarHtml}</div>
+        <div>
+          <div style="font-weight:950">${escapeHtml(meta.name || (`Giocatore ${e.player+1}`))}</div>
+          <div class="small">Punti: ${e.score}</div>
+        </div>
+      </div>
+      <div style="font-weight:950; font-size:18px">${e.score}</div>
+    `;
+    rankList.appendChild(div);
+  });
+
+  finalSummary.textContent =
+    `Mosse totali: ${state.moves} • Accoppiamenti: ${state.totalPairs} • Mazzo: ${getDeck(state.deckId)?.name || ""}`;
+
+  modal.classList.add("show");
+}
+
+
+/* ---------------------------------------------------------
+   UTILS
+--------------------------------------------------------- */
+function getDeck(id){ return DECKS.find(d=>d.id===id); }
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]] = [arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function escapeHtml(s){
+  return String(s||"")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+init();
+</script>
+
+<script>
+(function(){
+  const params = new URLSearchParams(location.search);
+  const isLIM = params.get("lim") === "1";
+  if(!isLIM) return;
+
+  document.body.classList.add("lim");
+
+  // Se non esistono, creiamo stage+fit senza toccare il tuo HTML:
+  let stage = document.querySelector(".lim-stage");
+  let fit = document.querySelector(".lim-fit");
+
+  if(!stage){
+    stage = document.createElement("div");
+    stage.className = "lim-stage";
+    // prende TUTTO quello che c'è nel body e lo mette dentro fit
+    fit = document.createElement("div");
+    fit.className = "lim-fit";
+    while(document.body.firstChild) fit.appendChild(document.body.firstChild);
+    stage.appendChild(fit);
+    document.body.appendChild(stage);
+  }
+
+  function rescale(){
+    const baseW = 1920, baseH = 1080;
+    const s = Math.min(window.innerWidth/baseW, window.innerHeight/baseH);
+    fit.style.transform = `scale(${s})`;
+  }
+  window.addEventListener("resize", rescale);
+  rescale();
+})();
+</script>
+
+<script src="js/fit_screen.js" defer></script>
+
+<script>
+/* ===== Zoom manuale solo per la griglia delle card ===== */
+(function(){
+  const Z = [0.45,0.55,0.65,0.75, 0.85, 0.95, 1.0, 1.05, 1.15, 1.25,1.35];
+
+  let zi = 2; // 1.0
+  const KEY = "memoryZoomIndex";
+
+  function apply(){
+    // su smartphone, quando l'overlay è aperto, lascia gestire l'auto-fit
+    try{
+      if(window.matchMedia && window.matchMedia("(max-width: 560px)").matches){
+        const ov = document.getElementById("gameOverlay");
+        if(ov && ov.classList.contains("show")) return;
+      }
+    }catch(e){}
+
+    const t = document.getElementById("zoomTarget");
+    const lbl = document.getElementById("pillZoom");
+    if(!t) return;
+    const s = Z[zi] ?? 1.0;
+    t.style.transform = `scale(${s})`;
+    // piccolo margine sotto quando zoom > 1
+    t.style.marginBottom = (s > 1 ? "140px" : "0px");
+    if(lbl) lbl.textContent = `${Math.round(s*100)}%`;
+    try{ localStorage.setItem(KEY, String(zi)); }catch(e){}
+  }
+
+  window.memZoomStep = function(dir){
+    zi = Math.max(0, Math.min(Z.length-1, zi + dir));
+    apply();
+  }
+  window.memZoomReset = function(){
+    zi = 2;
+    apply();
+  }
+
+  // carica impostazione salvata
+  try{
+    const saved = localStorage.getItem(KEY);
+    if(saved !== null){
+      const n = parseInt(saved, 10);
+      if(!Number.isNaN(n)) zi = Math.max(0, Math.min(Z.length-1, n));
+    }
+  }catch(e){}
+  window.addEventListener("load", apply);
+  window.addEventListener("resize", apply);
+})();
+</script>
+
+<script>
+  /** =========================
+   *  ACCESSO PROTETTO (Area Docente / Archivio / (anche Choose se vuoi))
+   *  - Valido finché la scheda resta aperta (sessionStorage)
+   * ========================= */
+  const QM_ADMIN_CODE = "180184"; // <-- CAMBIA QUI se vuoi
+  const QM_ACCESS_FLAG = "QM_ACCESS_OK_V1";
+
+  function isAccessOk(){
+    return sessionStorage.getItem(QM_ACCESS_FLAG) === "1";
+  }
+
+  function showAccessModal(onSuccess){
+    if(document.getElementById("qmAccessOverlay")) return;
+
+    const overlay = document.createElement("div");
+    overlay.id = "qmAccessOverlay";
+    overlay.style.position = "fixed";
+    overlay.style.inset = "0";
+    overlay.style.zIndex = "999999";
+    overlay.style.background = "rgba(0,0,0,.6)";
+    overlay.style.display = "flex";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+    overlay.style.padding = "14px";
+
+    const card = document.createElement("div");
+    card.style.width = "min(520px, 96vw)";
+    card.style.background = "#fff";
+    card.style.borderRadius = "16px";
+    card.style.boxShadow = "0 12px 34px rgba(0,0,0,.25)";
+    card.style.padding = "14px";
+    card.style.textAlign = "left";
+
+    card.innerHTML = `
+      <div style="font-weight:900;font-size:18px;margin-bottom:6px;">🔒 Accesso protetto</div>
+      <div style="color:#556;margin-bottom:10px;">Inserisci il codice per entrare.</div>
+      <input id="qmAccessInput" type="password" placeholder="Codice"
+        style="width:100%;box-sizing:border-box;padding:12px;border-radius:12px;border:2px solid #cfd6dc;font-size:16px;">
+      <div id="qmAccessMsg" style="min-height:18px;margin-top:8px;color:#b00020;font-weight:800;"></div>
+      <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:10px;flex-wrap:wrap;">
+        <button id="qmAccessCancel" style="border:none;background:#e9eef3;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;">Annulla</button>
+        <button id="qmAccessOk" style="border:none;background:#111;color:#fff;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;">Entra</button>
+      </div>
+    `;
+
+    overlay.appendChild(card);
+    document.body.appendChild(overlay);
+
+    const inp = card.querySelector("#qmAccessInput");
+
+    // 👁️ mostra/nascondi
+    try{
+      const wrap = document.createElement("div");
+      wrap.style.position = "relative";
+      inp.parentNode.insertBefore(wrap, inp);
+      wrap.appendChild(inp);
+
+      const eye = document.createElement("span");
+      eye.textContent = "👁️";
+      eye.style.position = "absolute";
+      eye.style.right = "14px";
+      eye.style.top = "50%";
+      eye.style.transform = "translateY(-50%)";
+      eye.style.cursor = "pointer";
+      eye.style.userSelect = "none";
+      eye.style.opacity = ".7";
+      eye.addEventListener("click", ()=>{
+        const isPw = inp.type === "password";
+        inp.type = isPw ? "text" : "password";
+        eye.textContent = isPw ? "🙈" : "👁️";
+        inp.focus();
+      });
+      wrap.appendChild(eye);
+    }catch(e){}
+
+    const msg = card.querySelector("#qmAccessMsg");
+    const btnOk = card.querySelector("#qmAccessOk");
+    const btnCancel = card.querySelector("#qmAccessCancel");
+
+    function close(){ overlay.remove(); }
+
+    function tryOk(){
+      const code = String(inp.value || "").trim();
+      if(code === QM_ADMIN_CODE){
+        sessionStorage.setItem(QM_ACCESS_FLAG, "1");
+        close();
+        onSuccess && onSuccess();
+      }else{
+        msg.textContent = "❌ Codice errato.";
+        inp.focus();
+        inp.select();
+      }
+    }
+
+    btnCancel.addEventListener("click", close);
+    btnOk.addEventListener("click", tryOk);
+    overlay.addEventListener("click", (e)=>{ if(e.target === overlay) close(); });
+    inp.addEventListener("keydown", (e)=>{
+      if(e.key === "Enter") tryOk();
+      if(e.key === "Escape") close();
+    });
+
+    setTimeout(()=>{ try{ inp.focus(); }catch(e){} }, 0);
+  }
+</script>
+
+<script src="js/nav.js"></script>
+<script src="js/menu.js"></script>
+
+</body>
+</html>

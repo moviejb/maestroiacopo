@@ -1,0 +1,68 @@
+[
+  {
+    "id": "edaa372e-eba7-45a4-96e7-d372015a157e",
+    "class": "3",
+    "subject": "storia",
+    "level": "facile",
+    "topic": "Fonti storiche",
+    "media": {
+      "type": "image",
+      "src": "img/storia/le-fonti-storiche-2.jpg"
+    },
+    "question": "Che cos’è una fonte storica?",
+    "options": [
+      "Una traccia del passato",
+      "Una cosa moderna di oggi"
+    ],
+    "correct": 0,
+    "explain": "Una fonte storica è una traccia che ci aiuta a conoscere il passato."
+  },
+  {
+    "id": "06b08b37-55f1-4d5c-9719-38d36ef3ff45",
+    "class": "3",
+    "subject": "storia",
+    "level": "medio",
+    "topic": "Linea del tempo",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Timeline_icon.svg/512px-Timeline_icon.svg.png",
+    "question": "A cosa serve la linea del tempo?",
+    "options": [
+      "A mettere in ordine gli avvenimenti",
+      "A contare i giorni della settimana"
+    ],
+    "correct": 0,
+    "explain": "La linea del tempo mette gli avvenimenti in ordine: prima e dopo."
+  },
+  {
+    "id": "a2d805ec-0fa2-4f5f-8ceb-a6ccfce83489",
+    "class": "3",
+    "subject": "storia",
+    "level": "difficile",
+    "topic": "Paleolitico",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Campfire.jpg/640px-Campfire.jpg",
+    "question": "Perché la scoperta del fuoco è importante?",
+    "options": [
+      "Per scaldarsi, cucinare e difendersi",
+      "Solo per fare luce"
+    ],
+    "correct": 0,
+    "explain": "Il fuoco cambia la vita: calore, cucina e protezione."
+  },
+  {
+    "id": "fa5d37f6-7d49-443d-9ed6-ace5bd4fccfc",
+    "class": "3",
+    "subject": "storia",
+    "level": "facile",
+    "topic": "",
+    "media": {
+      "type": "image",
+      "src": "img/storia/neolitico.png"
+    },
+    "question": "prova domanda neolitico",
+    "options": [
+      "SEDENTARIO",
+      "NOMADE"
+    ],
+    "correct": 0,
+    "explain": ""
+  }
+]

@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tiro alla Fune - Matematica</title>
+  <link rel="stylesheet" href="css/tug_of_math.css" />
+</head>
+<body>
+
+  <script src="js/nav.js"></script>
+<script src="js/menu.js"></script>
+
+  <header class="topbar">
+    <!-- <div class="brand">TIRO ALLA FUNE • MATEMATICA</div> -->
+
+    <div class="controls">
+      <label class="ctrl">
+        Modalità:
+        <select id="modeSel">
+          <option value="add">Solo Addizioni</option>
+          <option value="sub">Solo Sottrazioni</option>
+          <option value="mul">Solo Moltiplicazioni</option>
+          <option value="div">Solo Divisioni</option>
+          <option value="mix" selected>Miste</option>
+        </select>
+      </label>
+
+      <label class="ctrl">
+        Difficoltà:
+        <select id="diffSel">
+          <option value="easy" selected>Facile</option>
+          <option value="med">Medio</option>
+          <option value="hard">Difficile</option>
+        </select>
+      </label>
+
+      <label class="ctrl">
+        Passo:
+        <select id="stepSel">
+          <option value="8">8</option>
+          <option value="10" selected>10</option>
+          <option value="12">12</option>
+          <option value="15">15</option>
+        </select>
+      </label>
+
+      <label class="ctrl">
+        Tempo:
+        <input id="timerOn" type="checkbox" />
+        <select id="timerSec" disabled>
+          <option value="6">6s</option>
+          <option value="8" selected>8s</option>
+          <option value="10">10s</option>
+          <option value="12">12s</option>
+        </select>
+      </label>
+
+    <label class="ctrl musicCtrl">
+  Musica:
+  <input id="bgOn" type="checkbox" />
+  <input id="bgVol" type="range" min="0" max="100" value="35" />
+</label>
+
+      <!-- ✅ appare solo dopo che cambi un’impostazione -->
+      <button id="btnStart" class="btn btnPlay" style="display:none;">GIOCA</button>
+
+      <button id="btnReset" class="btn">Reset</button>
+
+      <label class="ctrl">
+  Zoom:
+  <button id="btnZoomOut" class="miniBtn" type="button" title="Zoom -">−</button>
+  <select id="zoomSel">
+    <option value="0.8">80%</option>
+    <option value="0.9">90%</option>
+    <option value="1.0" selected>100%</option>
+    <option value="1.1">110%</option>
+    <option value="1.2">120%</option>
+  </select>
+  <button id="btnZoomIn" class="miniBtn" type="button" title="Zoom +">+</button>
+</label>
+    </div>
+  </header>
+
+  <!-- ✅ Banner non bloccante -->
+   <div id="zoomArea">
+  <div class="setupBanner" id="setupBanner">
+    Imposta il gioco (controlli in alto) e poi premi <b>GIOCA</b>.
+  </div>
+
+  <main class="layout">
+    <!-- SINISTRA -->
+    <section class="panel left" id="panelL" aria-label="Squadra sinistra">
+      <div class="teamHead blue">
+        <div class="teamName" id="teamLName">Squadra Blu</div>
+        <div class="timer" id="timerL">—</div>
+      </div>
+
+      <div class="energyBox">
+        <div class="energyTop">
+          <div class="energyLabel">Energia</div>
+          <div class="energyPct" id="energyLPct">50%</div>
+        </div>
+        <div class="energyBar blue">
+          <div class="energyFill" id="energyLFill" style="width:50%"></div>
+        </div>
+      </div>
+
+      <div class="opBox">
+        <div class="opLabel">Operazione</div>
+        <div class="opText" id="opL">—</div>
+      </div>
+
+      <div class="answerRow">
+        <input id="inL" class="answer" inputmode="numeric" readonly />
+        <button class="miniBtn" id="okL">OK</button>
+      </div>
+
+      <div class="keypad" id="padL" aria-label="Tastiera sinistra"></div>
+      <div class="status" id="statusL"></div>
+    </section>
+
+    <!-- CENTRO -->
+    <section class="center" aria-label="Campo di gioco">
+      <div class="arena">
+        <div class="flag flagL" title="Bandierina sinistra"></div>
+        <div class="flag flagR" title="Bandierina destra"></div>
+
+  <div class="pitch" id="pitch">
+  <div class="pitchMid"></div>
+
+  <div class="goal goalL">
+    <div class="net"></div>
+  </div>
+
+  <div class="goal goalR">
+    <div class="net"></div>
+  </div>
+
+  <!-- il marker resta lo stesso ID: ora è il pallone -->
+  <div class="ball" id="marker" aria-label="Pallone"></div>
+
+  <div class="ballShadow" id="ballShadow" aria-hidden="true"></div>
+</div>
+
+        <div class="scoreRow">
+          <div class="score blue">Blu: <span id="scoreL">0</span></div>
+          <div class="score red">Rosso: <span id="scoreR">0</span></div>
+        </div>
+
+<!-- ✅ WIN EFFECT -->
+<div class="winFX" id="winFX" aria-hidden="true">
+  <div class="winFXCard">
+    <div class="winFXTitle" id="winFXTitle">VINTO!</div>
+    <div class="winFXSub" id="winFXSub">—</div>
+
+    <div class="winFXButtons">
+      <button class="winBtnPrimary" id="btnReplay">RIGIOCA</button>
+      <button class="winBtnGhost" id="btnSummary">RIEPILOGO</button>
+      <button class="winBtnGhost" id="btnHome">HOME</button>
+    </div>
+  
+
+  </div>
+
+  <div class="confetti" aria-hidden="true"></div>
+</div>
+<!-- RIEPILOGO PARTITA -->
+  <div class="sumModal" id="sumModal" aria-hidden="true">
+    <div class="sumCard" role="dialog" aria-modal="true" aria-label="Riepilogo partita">
+      <div class="sumTitle">📊 Riepilogo partita</div>
+      <div class="sumBody" id="sumBody"></div>
+      <div class="sumActions">
+        <button class="winBtnPrimary" id="btnSumClose" type="button">CHIUDI</button>
+      </div>
+    </div>
+  </div>
+        <div class="announce" id="announce"></div>
+      </div>
+    </section>
+
+    <!-- DESTRA -->
+    <section class="panel right" id="panelR" aria-label="Squadra destra">
+      <div class="teamHead red">
+        <div class="teamName" id="teamRName">Squadra Rossa</div>
+        <div class="timer" id="timerR">—</div>
+      </div>
+
+      <div class="energyBox">
+        <div class="energyTop">
+          <div class="energyLabel">Energia</div>
+          <div class="energyPct" id="energyRPct">50%</div>
+        </div>
+        <div class="energyBar red">
+          <div class="energyFill" id="energyRFill" style="width:50%"></div>
+        </div>
+      </div>
+
+      <div class="opBox">
+        <div class="opLabel">Operazione</div>
+        <div class="opText" id="opR">—</div>
+      </div>
+
+      <div class="answerRow">
+        <input id="inR" class="answer" inputmode="numeric" readonly />
+        <button class="miniBtn" id="okR">OK</button>
+      </div>
+
+      <div class="keypad" id="padR" aria-label="Tastiera destra"></div>
+      <div class="status" id="statusR"></div>
+    </section>
+  </main>
+</div>
+
+  <script src="js/tug_of_math.js"></script>
+
+<script>
+(function(){
+  const MOBILE_MAX = 900;
+
+  function redirectIfNeeded(){
+    const isMobile = window.innerWidth <= MOBILE_MAX;
+    const isMobilePage = location.pathname.endsWith("tug_of_math_mobile.html");
+
+    if(isMobile && !isMobilePage){
+      location.replace("tug_of_math_mobile.html" + location.search + location.hash);
+    }
+  }
+
+  // subito
+  redirectIfNeeded();
+  // e quando cambi device / ruoti / ridimensioni
+  window.addEventListener("resize", redirectIfNeeded);
+})();
+</script>
+</body>
+</html>

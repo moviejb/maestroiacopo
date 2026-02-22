@@ -1,0 +1,78 @@
+/* shared/player_box.css */
+.playerBox {
+  border-radius: 14px;
+  padding: 14px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(6px);
+}
+
+.playerBox .rowTop{
+  display:flex;
+  gap:12px;
+  align-items:flex-end;
+  flex-wrap:wrap;
+}
+
+.playerBox .field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  min-width: 210px;
+}
+
+.playerBox label{
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.playerBox select, .playerBox input{
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.20);
+  color: inherit;
+  padding: 10px 12px;
+  outline: none;
+}
+
+.playerBox .namesGrid{
+  margin-top: 12px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.playerBox .namesGrid .nameField{
+  min-width: 0;
+}
+
+.playerBox .btnbar{
+  margin-top: 12px;
+  display:flex;
+  gap: 10px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.playerBox button{
+  border-radius: 12px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.18);
+  color: inherit;
+  cursor:pointer;
+}
+
+.playerBox button:hover{
+  background: rgba(0,0,0,0.26);
+}
+
+.playerBox .muted{
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+@media (max-width: 520px){
+  .playerBox .field{ min-width: 160px; }
+  .playerBox .namesGrid{ grid-template-columns: 1fr; }
+}

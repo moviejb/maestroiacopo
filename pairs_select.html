@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  
+  <title>ABBINAMENTI</title>
+
+  <style>
+    body{ margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; background:#f4f6f8; color:#0f172a; }
+    .wrap{ max-width:980px; margin:0 auto; padding:18px 14px 60px; }
+
+    .top{ display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    .h1{ font-size:24px; font-weight:850; margin:10px 0 4px; }
+    .sub{ margin:0; color:#6b7280; font-size:14px; }
+
+    .card{
+      margin-top:14px;
+      background:#fff;
+      border:1px solid rgba(15,23,42,.08);
+      border-radius:16px;
+      box-shadow: 0 10px 22px rgba(15,23,42,.05);
+      padding:14px;
+    }
+
+    .muted{ color:#6b7280; font-size:14px; }
+    .pill{
+      display:inline-block; padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(15,23,42,.12); background:rgba(15,23,42,.02);
+      font-size:13px; color:#0f172a;
+    }
+
+    /* Preset menu + cards */
+    .presetTabs{
+      display:flex; gap:8px; flex-wrap:wrap;
+      margin:0 0 10px;
+    }
+    
+/* ===== Selettore CLASSE (3/4/5) a destra delle discipline ===== */
+.tabsRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:0 0 10px;
+}
+.classPills{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.classPill{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  border:1px solid rgba(15,23,42,.12);
+  background:#fff;
+  font-weight:950;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+  font-size:13px;
+}
+.classPill.on{
+  background:#0f172a;
+  color:#fff;
+  border-color:#0f172a;
+}
+.tabBtn{
+      border:1px solid rgba(15,23,42,.12);
+      background:#fff;
+      border-radius:999px;
+      padding:8px 12px;
+      font-weight:850;
+      cursor:pointer;
+      font-size:13px;
+      line-height:1;
+    }
+    .tabBtn.on{
+      background:#0f172a;
+      color:#fff;
+      border-color:#0f172a;
+    }
+    .tabBtn:disabled{
+      opacity:.35;
+      cursor:not-allowed;
+    }
+
+    .presetGrid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:10px;
+    }
+    @media (max-width: 980px){ .presetGrid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 560px){ .presetGrid{ grid-template-columns: 1fr; } }
+
+    .presetCard{
+      border:1px solid rgba(15,23,42,.08);
+      background:#fff;
+      border-radius:16px;
+      box-shadow: 0 10px 22px rgba(15,23,42,.05);
+      padding:12px;
+    }
+    .presetImg{
+      width:100%;
+      aspect-ratio: 16 / 9;
+      border-radius:12px;
+      object-fit:cover;
+      background:rgba(15,23,42,.03);
+      display:block;
+      margin-bottom:8px;
+    }
+
+    .presetHeader{
+      margin-top:4px;
+      font-weight:900;
+      font-size:15px;
+      display:flex;
+      gap:6px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .presetDisc{ letter-spacing:.5px; }
+    .presetSep{ opacity:.55; }
+    .presetArg{ font-weight:750; opacity:.88; }
+
+    .presetPlayRow{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:6px;
+  margin-top:8px;
+  flex-wrap:nowrap;   /* ← IMPORTANTE */
+  white-space:nowrap;
+}
+
+    .playLabel{
+      font-weight:900;
+      font-size:11px;
+      color:#0f172a;
+      letter-spacing:.2px;
+      white-space:nowrap;
+    }
+   .presetSizes{
+  display:flex;
+  gap:4px;
+  align-items:center;
+}
+
+    
+  </style>
+  
+</head>
+
+<body>
+  <script src="js/nav.js"></script>
+  <script src="js/menu.js"></script>
+
+  <main class="wrap">
+    <div class="top">
+      <div>
+        <div class="h1">ABBINAMENTI</div>
+        <p class="sub">Scegli una materia, l'argomento, il numero di coppie e avvia il gioco</p>
+      </div>
+      <div class="pill" id="countPill">—</div>
+    </div>
+
+    <section class="card">
+      <div class="tabsRow">
+        <div class="presetTabs" id="presetTabs"></div>
+        <div class="classPills" id="classPills"></div>
+      </div>
+      <div class="presetGrid" id="presetGrid"></div>
+      <div class="muted" id="emptyMsg" style="display:none;margin-top:10px;">
+        Nessun set disponibile: serve almeno 6 coppie per argomento.
+      </div>
+    </section>
+  </main>
+
+  <!-- Dati -->
+  <script src="js/pairs.js"></script>
+
+  <script>
+  (function(){
+    const tabs = document.getElementById("presetTabs");
+    const classBox = document.getElementById("classPills");
+    const grid = document.getElementById("presetGrid");
+    const emptyMsg = document.getElementById("emptyMsg");
+    const countPill = document.getElementById("countPill");
+
+    const src = Array.isArray(window.PAIRS) ? window.PAIRS : [];
+    if(!src.length){
+      countPill.textContent = "0 coppie";
+      emptyMsg.style.display = "block";
+      return;
+    }
+
+    const metaOf = (p)=> (p && p.meta) ? p.meta : {};
+    const DISC_LABEL = {
+      storia: "Storia",
+      italiano: "Italiano",
+      matematica: "Matematica",
+      geografia: "Geografia",
+      scienze: "Scienze",
+      inglese: "Inglese"
+    };
+
+    function slugify(s){
+      return (s||"")
+        .toString()
+        .trim()
+        .toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+        .replace(/['’]/g,"")
+        .replace(/[^a-z0-9]+/g,"_")
+        .replace(/^_+|_+$/g,"");
+    }
+
+    function pickArgImage(disc, arg){
+      const base = slugify(disc + "_" + arg);
+      const exts = ["png","jpg","jpeg","webp","gif","avif"];
+      return exts.map(ext => `img/home/${base}.${ext}`);
+    }
+
+    // discipline disponibili (dalla sorgente reale)
+    let discs = [...new Set(src.map(p => metaOf(p)?.disciplina).filter(Boolean))];
+    discs = discs.sort((a,b)=>(a+"").localeCompare(b+"","it",{numeric:true,sensitivity:"base"}));
+
+    if(!discs.length){
+      countPill.textContent = "0 coppie";
+      emptyMsg.style.display = "block";
+      return;
+    }
+
+    // disciplina attiva (come in memory)
+    let activeDisc = localStorage.getItem("pairs_last_disciplina") || discs[0];
+    if(!discs.includes(activeDisc)) activeDisc = discs[0];
+
+    // --- CLASSE (persistente, uguale per tutti i giochi) ---
+const CLASSES = ["3","4","5"];
+let activeClass = String(localStorage.getItem("pairs_last_classe") || "").trim();
+if(!CLASSES.includes(activeClass)) activeClass = "3";
+
+/** Classi disponibili per la disciplina attiva: basta che esista ALMENO un record */
+function getAvailableClasses(){
+  const set = new Set();
+  for(const p of src){
+    const m = metaOf(p);
+    if((m?.disciplina || "") !== activeDisc) continue;
+    const c = String(m?.classe || "").trim();
+    if(CLASSES.includes(c)) set.add(c);
+  }
+  return CLASSES.filter(c => set.has(c)); // mantiene ordine 3-4-5
+}
+
+function ensureActiveClass(){
+  if(!CLASSES.includes(activeClass)) activeClass = "3";
+  const avail = getAvailableClasses();
+  if(avail.length && !avail.includes(activeClass)){
+    activeClass = avail[0];
+    localStorage.setItem("pairs_last_classe", activeClass);
+  }
+}
+    const sizes = [4,6,8,12];
+
+    // mappa calcolata per disciplina+classe correnti
+    const map = new Map(); // argomento -> {count, ordineMin}
+
+    function buildMap(){
+      map.clear();
+      for(const p of src){
+        const m = metaOf(p);
+        if((m?.disciplina || "") !== activeDisc) continue;
+        if(String(m?.classe || "").trim() !== String(activeClass || "").trim()) continue;
+
+        const arg1 = (m?.argomento || "").trim();
+        const arg2 = (m?.argomentoSecondario || "").trim();
+
+        const ord = (typeof m.ordine === "number") ? m.ordine :
+                    (m.ordine !== undefined && m.ordine !== null && m.ordine !== "" ? parseInt(m.ordine,10) : NaN);
+
+        function addKey(key){
+          if(!key) return;
+          if(!map.has(key)) map.set(key, { count:0, ordineMin: Number.POSITIVE_INFINITY });
+          const info = map.get(key);
+          info.count += 1;
+          if(Number.isFinite(ord)) info.ordineMin = Math.min(info.ordineMin, ord);
+        }
+
+        // ✅ Conta la coppia sia per Argomento principale che per Argomento secondario
+        addKey(arg1);
+        if(arg2 && arg2 !== arg1) addKey(arg2);
+      }
+    }
+
+    function paintTabs(){
+      tabs.innerHTML = "";
+      discs.forEach(d=>{
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "tabBtn" + (d===activeDisc ? " on" : "");
+        b.textContent = (DISC_LABEL[d] || d).toUpperCase();
+        b.addEventListener("click", ()=>{
+          activeDisc = d;
+          localStorage.setItem("pairs_last_disciplina", activeDisc);
+
+          paintTabs();
+          paintClassPills();
+          paintGrid();
+        });
+        tabs.appendChild(b);
+      });
+    }
+
+    
+function paintClassPills(){
+  if(!classBox) return;
+
+  const avail = getAvailableClasses();
+
+  // Se non esiste nessun record per 3/4/5 in questa disciplina, nascondi il selettore
+  if(!avail.length){
+    classBox.innerHTML = "";
+    classBox.style.display = "none";
+    return;
+  }
+
+  classBox.style.display = "flex";
+  ensureActiveClass();
+  classBox.innerHTML = "";
+
+  // Testo "CLASSE" + numeri disponibili
+  const label = document.createElement("span");
+  label.textContent = "CLASSE";
+  label.style.fontWeight = "900";
+  label.style.fontSize = "13px";
+  label.style.marginRight = "2px";
+  classBox.appendChild(label);
+
+  avail.forEach((c, i)=>{
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "classPill" + (c===activeClass ? " on" : "");
+    b.title = "Classe " + c;
+    b.textContent = c;
+
+    b.addEventListener("click", ()=>{
+      activeClass = c;
+      localStorage.setItem("pairs_last_classe", activeClass);
+      paintClassPills();
+      paintGrid();
+    });
+
+    classBox.appendChild(b);
+
+    if(i < avail.length - 1){
+      const sep = document.createElement("span");
+      sep.textContent = "-";
+      sep.style.opacity = "0.6";
+      sep.style.fontWeight = "900";
+      classBox.appendChild(sep);
+    }
+  });
+}
+
+function paintGrid(){
+      grid.innerHTML = "";
+      emptyMsg.style.display = "none";
+
+      ensureActiveClass();
+      buildMap();
+
+      // count pill: coppie (disciplina+classe)
+      const filteredCount = src.filter(p=>{
+        const m = metaOf(p);
+        return (m?.disciplina || "") === activeDisc && String(m?.classe || "").trim() === String(activeClass||"").trim();
+      }).length;
+      countPill.textContent = `${filteredCount} coppie (classe ${activeClass || "—"})`;
+
+      // argomenti validi (>=4) ordinati per ordineMin poi alfabeto
+      let args = Array.from(map.entries())
+        .filter(([,info]) => (info?.count || 0) >= 4)
+        .sort((A,B)=>{
+          const aName = A[0], aInfo = A[1];
+          const bName = B[0], bInfo = B[1];
+          const oa = Number.isFinite(aInfo.ordineMin) ? aInfo.ordineMin : 9999;
+          const ob = Number.isFinite(bInfo.ordineMin) ? bInfo.ordineMin : 9999;
+          if(oa !== ob) return oa - ob;
+          return (aName+"").localeCompare(bName+"","it",{numeric:true,sensitivity:"base"});
+        })
+        .map(([name])=>name);
+
+      if(!args.length){
+        grid.innerHTML = "";
+        emptyMsg.style.display = "block";
+        return;
+      }
+
+      for(const arg of args){
+        const info = map.get(arg);
+        const candidates = pickArgImage(activeDisc, arg);
+        const imgId = "img_" + slugify(activeDisc + "_" + arg);
+
+        const card = document.createElement("div");
+        card.className = "presetCard";
+        card.innerHTML = `
+          <img id="${imgId}" data-i="0" data-cand="${candidates.join("|")}" src="${candidates[0]}" class="presetImg" alt="">
+          <div class="presetHeader">
+            <span class="presetDisc">${(DISC_LABEL[activeDisc] || activeDisc).toUpperCase()}</span>
+            <span class="presetSep">–</span>
+            <span class="presetArg">${arg}</span>
+          </div>
+          <div class="presetPlayRow">
+            <span class="playLabel">GIOCA CON</span>
+            <div class="presetSizes"></div>
+            <span class="playLabel">COPPIE</span>
+          </div>
+        `;
+
+        // fallback immagine: prova estensioni, poi rimuove
+        const im = card.querySelector("#"+CSS.escape(imgId));
+        if(im){
+          im.addEventListener("error", function(){
+            const cand = (this.getAttribute("data-cand") || "").split("|").filter(Boolean);
+            let i = parseInt(this.getAttribute("data-i") || "0", 10);
+            i++;
+            if(i < cand.length){
+              this.setAttribute("data-i", String(i));
+              this.src = cand[i];
+            }else{
+              this.remove();
+            }
+          });
+        }
+
+        const box = card.querySelector(".presetSizes");
+        sizes.forEach(n=>{
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "tabBtn";
+          btn.textContent = String(n);
+
+          if((info?.count || 0) < n){
+            btn.disabled = true;
+          }else{
+            btn.addEventListener("click", ()=>{
+              localStorage.setItem("pairs_last_disciplina", activeDisc);
+              localStorage.setItem("pairs_last_classe", activeClass);
+
+              const p = new URLSearchParams();
+              p.set("classe", activeClass);
+              p.set("disciplina", activeDisc);
+              p.append("topics", arg);
+              //p.set("argomento", arg); // compatibilità
+              p.set("numero", String(n));
+              location.href = "match_pairs.html?" + p.toString();
+            });
+          }
+          box.appendChild(btn);
+        });
+
+        grid.appendChild(card);
+      }
+    }
+
+    // init
+    ensureActiveClass();
+    paintTabs();
+    paintClassPills();
+    paintGrid();
+  })();
+</script>
+
+ 
+</body>
+</html>

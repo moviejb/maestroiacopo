@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <title>IMPARIAMO GIOCANDO</title>
+  <style>
+    :root{ --bg:#f4f6f8; --card:#fff; --shadow:0 10px 24px rgba(0,0,0,.10); --r:18px; }
+    body{ margin:0; font-family:Arial, Helvetica, sans-serif; background:var(--bg); }
+    .wrap{ max-width:1100px; margin:0 auto; padding:18px; text-align:center; }
+    h1{ margin:10px 0 6px; font-size:1.9em; }
+    p{ margin:0 0 14px; color:#445; }
+   .grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 320px));
+  
+  gap:14px;
+  margin-top:14px;
+}
+    a.card{
+      text-decoration:none;
+      color:#111;
+      background:var(--card);
+      border-radius:var(--r);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      display:block;
+      border:1px solid rgba(0,0,0,.06);
+      transition: transform .08s ease;
+    }
+    a.card:active{ transform: scale(.99); }
+    a.card img{
+      width:100%;
+      height:150px;
+      object-fit:cover;
+      display:block;
+      background:#e9eef3;
+    }
+    .title{
+      padding:12px 12px;
+      font-weight:900;
+      font-size:1.05em;
+    }
+    .sub{
+      padding:0 12px 12px;
+      color:#556;
+      font-size:.95em;
+    }
+    .note{
+      margin-top:14px;
+      font-size:.92em;
+      color:#556;
+    }
+    code{ background:#eef2f5; padding:2px 6px; border-radius:8px; }
+  
+    .controls{
+      margin: 14px auto 8px;
+      max-width: 520px;
+      background: var(--card);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      border:1px solid rgba(0,0,0,.06);
+      padding: 12px;
+      text-align:left;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:space-between;
+    }
+    .controls label{ font-weight:900; }
+    .controls select{
+      padding:10px 12px;
+      border-radius: 12px;
+      border: 2px solid #cfd6dc;
+      font-size: 1em;
+      background:#fff;
+      min-width: 180px;
+    }
+    .controls .hint{
+      width:100%;
+      color:#445;
+      font-size:.95em;
+      margin-top:6px;
+    }
+
+    .qmPwToggle:hover{ opacity:1; }
+
+    .presetTabs{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+
+.tabBtn{
+  border:1px solid rgba(0,0,0,.10);
+  background:#fff;
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.tabBtn.on{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+}
+
+
+  
+/* ===== Selettore CLASSE (3/4/5) a destra delle discipline ===== */
+.tabsRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+.classPills{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.classPill{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,.10);
+  background:#fff;
+  font-weight:950;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+  font-size:13px;
+}
+.classPill.on{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+}
+
+/* ===== Selettore LIVELLO ===== */
+.levelTabs{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:14px;
+  align-items:center;
+}
+
+</style>
+</head>
+<body>
+<div id="appMenu"></div>
+
+
+
+  <div class="wrap">
+    <h1>QUIZ PRIMARIA</h1>
+    <p >Scegli l'argomento e buon divertimento</p>
+    <div class="controls">
+      <label for="players">Numero di giocatori</label>
+      <select id="players">
+        <option value="1" selected>1 giocatore</option>
+        <option value="2">2 giocatori</option>
+        <option value="3">3 giocatori</option>
+        <option value="4">4 giocatori</option>
+      </select>
+      <div class="hint">Domande: <b id="qCount">10</b> (3→15, 4→20)</div>
+    </div>
+
+
+    
+<div class="tabsRow">
+  <div class="presetTabs" id="quizPresetTabs"></div>
+  <div class="classPills" id="quizClassPills"></div>
+</div>
+<div class="grid" id="quizPresetGrid"></div>
+<div class="note" id="quizEmpty" style="display:none;">Nessun preset disponibile.</div>
+
+<script src="js/questions.js"></script>
+
+
+<script>
+  function goMemory(){
+  window.location.href = "memory.html";
+}
+
+(function(){
+  const sel = document.getElementById("players");
+  const qCountEl = document.getElementById("qCount");
+  if(!sel || !qCountEl) return;
+
+  function computeNumQ(players){
+    players = Number(players||1);
+    if(players <= 1) return 10;
+    if(players === 2) return 10;
+    if(players === 3) return 15;
+    if(players === 4) return 20;
+    return 10;
+  }
+  function refresh(){ qCountEl.textContent = computeNumQ(Number(sel.value)); }
+  sel.addEventListener("change", refresh);
+  refresh();
+
+  // ✅ Event delegation: funziona anche per card create dopo via JS
+document.addEventListener("click", (e)=>{
+  const a = e.target.closest("a.card");
+  if(!a) return;
+
+  const href = a.getAttribute("href") || "";
+  if(!href.includes("game_combo.html")) return;
+
+  const url = new URL(href, window.location.href);
+  const players = Number(sel.value);
+  const numQ = computeNumQ(players);
+  url.searchParams.set("players", String(players));
+  url.searchParams.set("numQ", String(numQ));
+
+  e.preventDefault();
+  window.location.href = url.toString();
+});
+})();
+</script>
+
+<script>
+window.addEventListener("DOMContentLoaded", function(){
+
+  const tabs = document.getElementById("quizPresetTabs");
+  const classBox = document.getElementById("quizClassPills");
+  const levelBox = document.getElementById("quizLevelTabs");
+  const grid = document.getElementById("quizPresetGrid");
+  const empty = document.getElementById("quizEmpty");
+
+  const src = (typeof QUESTIONS !== "undefined" && Array.isArray(QUESTIONS)) ? QUESTIONS : (Array.isArray(window.QUESTIONS) ? window.QUESTIONS : []);
+  if(!src.length){
+    console.log("QUESTIONS non caricato o vuoto:", window.QUESTIONS);
+    if(empty) empty.style.display = "block";
+    return;
+  }
+
+  // ===== Helpers =====
+  function slugify(s){
+    return (s||"")
+      .toString()
+      .trim()
+      .toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+      .replace(/[\'’]/g,"")
+      .replace(/[^a-z0-9]+/g,"_")
+      .replace(/^_+|_+$/g,"");
+  }
+  function pickArgImage(disc, arg){
+    const base = slugify(disc + "_" + arg);
+    const exts = ["png","jpg","jpeg","webp","gif","avif","jfif","bmp"];
+    return exts.map(ext => `img/home/${base}.${ext}`);
+  }
+
+
+function preferredDisc(discs){
+  // Priorità: URL ?disciplina=...  -> localStorage pairs_last_disciplina -> prima disponibile
+  try{
+    const p = new URLSearchParams(location.search);
+    const dUrl = (p.get("disciplina") || p.get("subject") || "").trim().toLowerCase();
+    if(dUrl && discs.includes(dUrl)) return dUrl;
+  }catch(e){}
+  const dLs = String(localStorage.getItem("pairs_last_disciplina") || "").trim().toLowerCase();
+  if(dLs && discs.includes(dLs)) return dLs;
+  return discs[0] || "";
+}
+
+  // ===== CLASSE (persistente, come pairs_select/memory) =====
+  let CLASSES = ["3","4","5"]; // verrà ricalcolato in base alle domande
+  const CLASS_KEY = "pairs_last_classe";
+  let activeClass = String(localStorage.getItem(CLASS_KEY) || "").trim();
+  if(!CLASSES.includes(activeClass)) activeClass = "3";
+
+  function qClassOf(q){
+    const raw = (q && (q.classe ?? q.class ?? q.grade)) ?? "";
+    const s = String(raw).trim();
+    if(!s) return "";
+    const m = s.match(/\d+/);
+    return m ? m[0] : s;
+  }
+
+
+function availableClasses(list){
+  const set = new Set();
+  for(const q of list){
+    const c = qClassOf(q);
+    if(c) set.add(c);
+  }
+  return Array.from(set).sort((a,b)=>parseInt(a,10)-parseInt(b,10));
+}
+  function hasAnyClass(list){ return list.some(q => !!qClassOf(q)); }
+
+  function ensureActiveClass(){
+  const any = hasAnyClass(src);
+  if(!any){
+    // se non c'è classe nei dati, mostro tutti (3/4/5) e tengo default 3
+    CLASSES = ["3","4","5"];
+    if(!CLASSES.includes(activeClass)) activeClass = "3";
+    return;
+  }
+
+  CLASSES = availableClasses(src); // solo classi realmente presenti
+  if(!CLASSES.length) CLASSES = ["3"]; // fallback super-sicuro
+
+  if(!CLASSES.includes(activeClass)){
+    activeClass = CLASSES[0];
+    localStorage.setItem(CLASS_KEY, activeClass);
+  }
+}
+
+  function paintClassPills(){
+    if(!classBox) return;
+    ensureActiveClass();
+    classBox.innerHTML = "";
+
+    const label = document.createElement("span");
+    label.textContent = "CLASSE";
+    label.style.fontWeight = "900";
+    label.style.fontSize = "13px";
+    label.style.marginRight = "2px";
+    classBox.appendChild(label);
+
+    CLASSES.forEach((c, i)=>{
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "classPill" + (c===activeClass ? " on" : "");
+      b.title = "Classe " + c;
+      b.textContent = c;
+      b.addEventListener("click", ()=>{
+        activeClass = c;
+        localStorage.setItem(CLASS_KEY, activeClass);
+        rebuild();
+      });
+      classBox.appendChild(b);
+
+      if(i < CLASSES.length - 1){
+        const sep = document.createElement("span");
+        sep.textContent = "-";
+        sep.style.opacity = "0.6";
+        sep.style.fontWeight = "900";
+        classBox.appendChild(sep);
+      }
+    });
+  }
+
+  // ===== LIVELLO (persistente) =====
+  const LEVELS = [
+    { id:"miste", label:"MISTE" },
+    { id:"facile", label:"FACILI" },
+    { id:"medio", label:"MEDIE" },
+    { id:"difficile", label:"DIFFICILI" },
+  ];
+  const LEVEL_KEY = "quiz_last_livello";
+  let activeLevel = String(localStorage.getItem(LEVEL_KEY) || "").trim().toLowerCase();
+  if(!LEVELS.some(x=>x.id===activeLevel)) activeLevel = "miste";
+
+  function paintLevelTabs(){
+    if(!levelBox) return;
+    levelBox.innerHTML = "";
+
+    const label = document.createElement("span");
+    label.textContent = "LIVELLO";
+    label.style.fontWeight = "900";
+    label.style.fontSize = "13px";
+    label.style.marginRight = "2px";
+    levelBox.appendChild(label);
+
+    LEVELS.forEach((lv, i)=>{
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "tabBtn" + (lv.id===activeLevel ? " on" : "");
+      b.textContent = lv.label;
+      b.addEventListener("click", ()=>{
+        activeLevel = lv.id;
+        localStorage.setItem(LEVEL_KEY, activeLevel);
+        paintLevelTabs();
+        paintGrid();
+      });
+      levelBox.appendChild(b);
+
+      if(i < LEVELS.length - 1){
+        const sep = document.createElement("span");
+        sep.textContent = "-";
+        sep.style.opacity = "0.35";
+        sep.style.fontWeight = "900";
+        sep.style.margin = "0 2px";
+        levelBox.appendChild(sep);
+      }
+    });
+  }
+
+  // ===== Dati: disciplina -> argomento -> count =====
+  const map = new Map();
+  let discs = [];
+  let activeDisc = "";
+
+  function rebuild(){
+    ensureActiveClass();
+    paintClassPills();
+
+    map.clear();
+
+    const any = hasAnyClass(src);
+    const filtered = any ? src.filter(q => qClassOf(q) === activeClass) : src;
+
+    for(const q of filtered){
+      const disc = String(q.disciplina || "").trim();
+      if(!disc) continue;
+
+      const main = String(q.argomento || "").trim();
+      const secondary = Array.isArray(q.argomentiSecondari) ? q.argomentiSecondari : [];
+
+      const allArgs = [];
+      if(main) allArgs.push(main);
+      for(const a of secondary){
+        const clean = String(a || "").trim();
+        if(clean && !allArgs.includes(clean)) allArgs.push(clean);
+      }
+      if(!allArgs.length) continue;
+
+      if(!map.has(disc)) map.set(disc, new Map());
+      const mArg = map.get(disc);
+
+      for(const arg of allArgs){
+        if(!mArg.has(arg)) mArg.set(arg, 0);
+        mArg.set(arg, mArg.get(arg) + 1);
+      }
+    }
+
+    discs = Array.from(map.keys());
+    if(!discs.length){
+      tabs.innerHTML = "";
+      grid.innerHTML = "";
+      if(empty) empty.style.display = "block";
+      return;
+    }
+    if(empty) empty.style.display = "none";
+
+    if(!activeDisc || !discs.includes(activeDisc)) activeDisc = preferredDisc(discs);
+    localStorage.setItem("pairs_last_disciplina", activeDisc);
+    paintTabs();
+    paintGrid();
+  }
+
+  function paintTabs(){
+    tabs.innerHTML = "";
+    discs.forEach(d=>{
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "tabBtn" + (d===activeDisc ? " on" : "");
+      b.textContent = d.toUpperCase();
+      b.addEventListener("click", ()=>{
+        activeDisc = d;
+        localStorage.setItem("pairs_last_disciplina", activeDisc);
+        paintTabs();
+        paintGrid();});
+      tabs.appendChild(b);
+    });
+  }
+
+  function paintGrid(){
+    grid.innerHTML = "";
+    const mArg = map.get(activeDisc);
+    if(!mArg) return;
+
+    for(const arg of mArg.keys()){
+      const count = mArg.get(arg);
+
+      const href =
+        `game_combo.html?classe=${encodeURIComponent(activeClass)}` +
+        `&disciplina=${encodeURIComponent(activeDisc)}` +
+        `&preset=${encodeURIComponent(activeDisc + "_" + activeLevel)}` +
+        `&topics=${encodeURIComponent(arg)}`;
+
+      const a = document.createElement("a");
+      a.className = "card";
+      a.href = href;
+
+      const candidates = pickArgImage(activeDisc, arg);
+      const img = document.createElement("img");
+      img.alt = `${activeDisc} - ${arg}`;
+      img.src = candidates[0];
+      img.dataset.i = "0";
+      img.dataset.cand = candidates.join("|");
+
+      img.addEventListener("error", function(){
+        const cand = (this.dataset.cand || "").split("|").filter(Boolean);
+        let i = parseInt(this.dataset.i || "0", 10);
+        i++;
+        if(i < cand.length){
+          this.dataset.i = String(i);
+          this.src = cand[i];
+        }else{
+          this.onerror = null;
+          this.src = "img/home/placeholder.png";
+          this.addEventListener("error", ()=>{ this.remove(); }, { once:true });
+        }
+      });
+
+      const title = document.createElement("div");
+      title.className = "title";
+      title.textContent = `${activeDisc.toUpperCase()} – ${arg}`;
+
+      const sub = document.createElement("div");
+      sub.className = "sub";
+      sub.textContent = `Domande: ${count}`;
+
+      a.appendChild(img);
+      a.appendChild(title);
+      a.appendChild(sub);
+
+      grid.appendChild(a);
+    }
+  }
+
+  // init
+  paintLevelTabs();
+  ensureActiveClass();
+  paintClassPills();
+  rebuild();
+});
+</script>
+
+<script>
+
+  function goChoose(){
+    const sel = document.getElementById("players");
+    const players = sel ? sel.value : "1";
+    // stessa logica del game_combo
+    window.location.href = `game_combo.html?screen=choose&players=${players}`;
+  }
+</script>
+
+
+
+<script>
+  /** =========================
+   *  ACCESSO PROTETTO (Area Docente / Archivio)
+   *  - Stesso popup di game_combo (NO prompt)
+   *  - Valido finché la scheda resta aperta (sessionStorage)
+   * ========================= */
+  const QM_ADMIN_CODE = "180184"; // <-- CAMBIA QUI
+  const QM_ACCESS_FLAG = "QM_ACCESS_OK_V1";
+
+  function isAccessOk(){
+    return sessionStorage.getItem(QM_ACCESS_FLAG) === "1";
+  }
+
+  /** Modale codice (come game_combo) */
+  function showAccessModal(onSuccess){
+    // già aperta?
+    if(document.getElementById("qmAccessOverlay")) return;
+
+    const overlay = document.createElement("div");
+    overlay.id = "qmAccessOverlay";
+    overlay.style.position = "fixed";
+    overlay.style.inset = "0";
+    overlay.style.zIndex = "999999";
+    overlay.style.background = "rgba(0,0,0,.6)";
+    overlay.style.display = "flex";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+    overlay.style.padding = "14px";
+
+    const card = document.createElement("div");
+    card.style.width = "min(520px, 96vw)";
+    card.style.background = "#fff";
+    card.style.borderRadius = "16px";
+    card.style.boxShadow = "0 12px 34px rgba(0,0,0,.25)";
+    card.style.padding = "14px";
+    card.style.textAlign = "left";
+
+    card.innerHTML = `
+      <div style="font-weight:900;font-size:18px;margin-bottom:6px;">🔒 Accesso protetto</div>
+      <div style="color:#556;margin-bottom:10px;">Inserisci il codice per entrare in <b>Area Docente</b> o <b>Archivio Domande</b>.</div>
+      <input id="qmAccessInput" type="password" placeholder="Codice"
+        style="width:100%;box-sizing:border-box;padding:12px;border-radius:12px;border:2px solid #cfd6dc;font-size:16px;">
+      <div id="qmAccessMsg" style="min-height:18px;margin-top:8px;color:#b00020;font-weight:800;"></div>
+      <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:10px;flex-wrap:wrap;">
+        <button id="qmAccessCancel" style="border:none;background:#e9eef3;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;">Annulla</button>
+        <button id="qmAccessOk" style="border:none;background:#111;color:#fff;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;">Entra</button>
+      </div>
+    `;
+
+    overlay.appendChild(card);
+    document.body.appendChild(overlay);
+
+    const inp = card.querySelector("#qmAccessInput");
+
+    // 👁️ Mostra/Nascondi password (come game_combo)
+    try{
+      const wrap = document.createElement("div");
+      wrap.className = "qmPwWrap";
+      wrap.style.marginTop = "0";
+      inp.parentNode.insertBefore(wrap, inp);
+      wrap.appendChild(inp);
+
+      const eye = document.createElement("span");
+      eye.className = "qmPwToggle";
+      eye.textContent = "👁️";
+      eye.title = "Mostra/Nascondi";
+      eye.setAttribute("aria-label","Mostra/Nascondi password");
+      eye.addEventListener("click", ()=>{
+        const isPw = inp.type === "password";
+        inp.type = isPw ? "text" : "password";
+        eye.textContent = isPw ? "🙈" : "👁️";
+        inp.focus();
+        try{ inp.setSelectionRange(inp.value.length, inp.value.length); }catch(e){}
+      });
+      wrap.appendChild(eye);
+    }catch(e){}
+
+    const msg = card.querySelector("#qmAccessMsg");
+    const btnOk = card.querySelector("#qmAccessOk");
+    const btnCancel = card.querySelector("#qmAccessCancel");
+
+    function close(){ overlay.remove(); }
+
+    function tryOk(){
+      const code = String(inp.value || "").trim();
+      if(code === QM_ADMIN_CODE){
+        sessionStorage.setItem(QM_ACCESS_FLAG, "1");
+        close();
+        onSuccess && onSuccess();
+      }else{
+        msg.textContent = "❌ Codice errato.";
+        inp.focus();
+        inp.select();
+      }
+    }
+
+    btnCancel.addEventListener("click", close);
+    btnOk.addEventListener("click", tryOk);
+    overlay.addEventListener("click", (e)=>{ if(e.target === overlay) close(); });
+    inp.addEventListener("keydown", (e)=>{
+      if(e.key === "Enter") tryOk();
+      if(e.key === "Escape") close();
+    });
+
+    // focus subito
+    setTimeout(()=>{ try{ inp.focus(); }catch(e){} }, 0);
+  }
+</script>
+
+
+<script>
+  function goProtected(screen){
+    const sel = document.getElementById("players");
+    const players = sel ? sel.value : "1";
+    const url = `game_combo.html?screen=${encodeURIComponent(screen)}&players=${encodeURIComponent(players)}`;
+
+    // 🔒 Se non è sbloccato, mostra il popup (stesso di game_combo)
+    if(typeof isAccessOk === "function" && !isAccessOk()){
+      return showAccessModal(()=>{ window.location.href = url; });
+    }
+
+    window.location.href = url;
+  }
+</script>
+
+<script src="js/nav.js"></script>
+<script src="js/menu.js"></script>
+
+
+
+</body>
+</html>

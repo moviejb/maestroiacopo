@@ -1,0 +1,267 @@
+/* Mobile wrapper: importa tutto il CSS desktop e poi sovrascrive */
+@import url("tug_of_math.css");
+
+/* ===== MOBILE LAYOUT (A TURNI) ===== */
+body.tugMobile{
+  background:#fff;
+}
+
+/* top */
+.mTop{
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background:#fff;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+
+.mGear{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 14px;
+  border:0;
+  background:#fff;
+  font-weight:1000;
+  letter-spacing:.2px;
+  cursor:pointer;
+}
+
+.mGearIcon{ font-size:18px; }
+.mGearTxt{ font-size:14px; }
+.mGearChevron{
+  opacity:.7;
+  transition: transform .2s ease;
+  font-size:16px;
+}
+.mGear[aria-expanded="false"] .mGearChevron{ transform: rotate(-90deg); }
+
+.mSettings{
+  padding: 0 10px 10px 10px;
+}
+.mSettings.isHidden{
+  display:none;
+}
+
+.mControls{
+  justify-content:flex-start;
+  overflow-x:auto;
+  padding: 8px 4px;
+  gap:10px;
+}
+.mControls .ctrl{
+  background:#0c142a0f; /* più chiaro sul bianco */
+  color:#24324f;
+  border:1px solid rgba(0,0,0,.08);
+}
+.mControls select{
+  background:#fff;
+  color:#0b1220;
+  border:1px solid rgba(0,0,0,.12);
+}
+
+/* banner */
+.tugMobile .setupBanner{
+  margin: 8px 4px 0 4px;
+  background: #0c142a0f;
+  border: 1px solid rgba(0,0,0,.08);
+  color:#24324f;
+}
+
+/* wrap */
+.mWrap{
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 12px 12px 18px 12px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* cards */
+.mPitchCard, .mOpCard, .mPadCard{
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+  background:#fff;
+  padding:12px;
+}
+
+/* pitch */
+.pitch{
+  height: 175px;
+  border-radius: 18px;
+}
+
+/* dots (dentro campo) */
+.turnDots{
+  position:absolute;
+  top:10px;
+  left:0;
+  right:0;
+  display:flex;
+  justify-content:space-between;
+  padding:0 12px;
+  z-index:6;
+  pointer-events:none;
+}
+.dot{
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  opacity: .30;
+  transform: scale(1);
+  transition: opacity .2s ease, transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+.dot.blue{ background: var(--blue); }
+.dot.red{ background: var(--red); }
+.dot.active{
+  opacity: 1;
+  transform: scale(1.22);
+  filter: brightness(1.15) saturate(1.15);
+  box-shadow: 0 0 14px rgba(47,123,255,.55);
+}
+.dot.red.active{ box-shadow: 0 0 14px rgba(255,59,59,.55); }
+
+/* energy row */
+.mEnergyRow{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+.mEnergyBox{ display:flex; flex-direction:column; gap:6px; }
+.mEnergyTop{ display:flex; align-items:center; justify-content:space-between; font-weight:900; }
+.mEnergyName{ font-size:12px; opacity:.95; }
+.mEnergyPct{
+  font-size:12px;
+  padding:4px 8px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,.10);
+  background: rgba(0,0,0,.04);
+  color:#0b1220;
+}
+
+/* op card */
+.mOpTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+.mTurnLabel{
+  font-weight:1000;
+  color:#0b1220;
+}
+.mTimer{
+  background: rgba(0,0,0,.04);
+  border: 1px solid rgba(0,0,0,.10);
+  color:#0b1220;
+}
+
+.mOpText{
+  text-align:center;
+  font-size: 36px;
+  color:#0b1220;
+  margin: 8px 0 10px 0;
+}
+
+.mAnswerRow .answer{
+  background:#fff;
+  color:#0b1220;
+  border:1px solid rgba(0,0,0,.12);
+}
+.mAnswerRow .miniBtn{
+  background:#0c142a;
+  border:1px solid rgba(0,0,0,.10);
+}
+
+/* status */
+#statusOne{
+  text-align:center;
+  font-weight: 900;
+  min-height: 22px;
+  color:#24324f;
+}
+
+/* keypad */
+.mKeypad .key{
+  border:1px solid rgba(0,0,0,.10);
+}
+.mKeypad .key.keyC{ background: #ff3b3b; }
+.mKeypad .key.keyOK{ background: #1d8b5a; }
+
+/* miglior scroll orizzontale pill */
+.mControls{ scrollbar-width: thin; }
+.mControls::-webkit-scrollbar{ height: 8px; }
+.mControls::-webkit-scrollbar-thumb{ background: rgba(0,0,0,.15); border-radius: 999px; }
+
+/* riduci un pelo l’ombra del ball su mobile */
+.ballShadow{ opacity: .45; }
+
+/* win overlay sopra tutto */
+.winFX{ position: fixed; inset:0; }
+
+/* quando inizi il gioco, possiamo “minimizzare” impostazioni */
+.mTop.compact .mSettings{ display:none; }
+
+
+/* ===== RIEPILOGO: formato richiesto (operazione + risultato corretto + errore) ===== */
+.sumLeft{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex: 1;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+.sumWho{
+  font-size:12px;
+  font-weight:1000;
+  padding:4px 8px;
+  border-radius:999px;
+  border:1px solid #ffffff22;
+  background:#00000022;
+  white-space:nowrap;
+}
+.sumWho.blue{ color:#9fc0ff; }
+.sumWho.red{ color:#ffb1b1; }
+
+.sumOp{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size:13px;
+  font-weight:1000;
+  opacity:.95;
+  line-height:1.25;
+}
+
+.sumErr{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size:12px;
+  font-weight:1000;
+  padding:4px 8px;
+  border-radius:999px;
+  border:1px solid #ffffff22;
+  background:#00000022;
+  color: var(--bad);
+  white-space:nowrap;
+}
+
+/* ===== COMPACT: MUSICA + VOLUME INSIEME ===== */
+.musicCtrl{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.musicCtrl input[type="range"]{
+  width: 140px;
+}
+
+/* ===== RIEPILOGO MOBILE: SEMPRE VERTICALE ===== */
+body.tugMobile .sumCols{
+  grid-template-columns: 1fr !important;
+}
+body.tugMobile .sumCard{ width: calc(100vw - 24px) !important; }

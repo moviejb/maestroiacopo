@@ -1,0 +1,1194 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin ABBINAMENTI</title>
+
+  <style>
+    body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background:#f4f6f8; color:#0f172a; }
+    .wrap{ max-width:1100px; margin:0 auto; padding:18px 14px 60px; }
+
+    .h1{ font-size:24px; font-weight:850; margin:10px 0 4px; }
+    .sub{ color:#6b7280; margin:0 0 16px; }
+
+    .grid{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; align-items:start; }
+    .card{
+      background:#fff; border:1px solid rgba(15,23,42,.08);
+      border-radius:18px; box-shadow: 0 10px 22px rgba(15,23,42,.05);
+      padding:14px;
+    }
+    .row{ display:flex; gap:10px; flex-wrap:wrap; }
+    label{ font-size:12px; color:#6b7280; font-weight:800; display:block; margin:10px 0 6px; letter-spacing:.2px; }
+    input, select, textarea{
+      width:100%; box-sizing:border-box;
+      border:1px solid rgba(15,23,42,.12);
+      border-radius:12px;
+      padding:10px 10px;
+      background:#fff;
+      font-size:14px;
+    }
+    textarea{ min-height:70px; resize:vertical; }
+
+    .btn{
+      border:1px solid rgba(15,23,42,.12);
+      background:#fff;
+      border-radius:14px;
+      padding:10px 12px;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .btn:hover{ background: rgba(15,23,42,.04); }
+    .btn.primary{
+      background:#0f172a; color:#fff; border-color:#0f172a;
+    }
+    .btn.primary:hover{ filter: brightness(1.05); }
+
+    .preview{
+      border:1px dashed rgba(15,23,42,.22);
+      border-radius:16px;
+      background: rgba(15,23,42,.02);
+      min-height:110px;
+      display:flex; align-items:center; justify-content:center;
+      padding:10px;
+    }
+    .preview img{ max-width:100%; max-height:120px; object-fit:contain; display:block; }
+    .preview .txt{ font-weight:900; text-align:center; padding:8px; }
+
+    .list{
+      margin-top:10px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .item{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      background:#fff;
+      padding:12px;
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap:10px;
+      align-items:center;
+    }
+    .item .meta{ color:#6b7280; font-size:12px; line-height:1.3; }
+    .item .actions{ display:flex; gap:8px; }
+    .pill{ display:inline-block; padding:4px 8px; border-radius:999px; border:1px solid rgba(15,23,42,.12); font-size:12px; color:#0f172a; background:rgba(15,23,42,.02); margin-right:6px; }
+
+    @media (max-width:900px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .item{ gap:12px; }
+.itemMain{ display:grid; grid-template-columns: 170px 1fr; gap:12px; align-items:center; }
+.itemThumbs{ display:grid; grid-template-columns: 1fr 1fr; gap:8px; }
+.thumb{
+  border:1px solid rgba(15,23,42,.10);
+  border-radius:14px;
+  background: rgba(15,23,42,.02);
+  height:92px;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+.thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.thumb .t{ padding:10px; text-align:center; font-weight:900; font-size:14px; line-height:1.1; }
+.itemTitle{ font-weight:950; margin-bottom:6px; display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+.itemId{ font-weight:950; }
+.itemMetaLine{ color:#6b7280; font-size:12px; line-height:1.25; margin-top:6px; }
+.badgeNew{
+  display:inline-block; padding:3px 8px; border-radius:999px;
+  font-size:12px; font-weight:900;
+  background:#16a34a20; border:1px solid #16a34a55; color:#166534;
+}
+
+.countLine{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin:0 0 10px;
+}
+.countTotal{
+  color:#6b7280;
+  font-weight:800;
+}
+.countSel{
+  display:inline-block;
+  padding:5px 10px;
+  border-radius:999px;
+  font-weight:950;
+  background:#0f172a;
+  color:#fff;
+  border:1px solid rgba(15,23,42,.12);
+}
+.countSel.all{
+  background: rgba(15,23,42,.06);
+  color:#0f172a;
+}
+
+
+/* Layout: form sopra, lista sotto */
+.stack{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+/* FORM orizzontale */
+.formRow{
+  display:grid;
+  grid-template-columns: 1.5fr 50px 1.5fr 3fr 260px;
+  gap:12px;
+  align-items:start;
+}
+
+@media (max-width: 1100px){
+  .formRow{ grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 700px){
+  .formRow{ grid-template-columns: 1fr; }
+}
+
+/* Mini preview compatte */
+.preview.compact{ min-height:78px; padding:8px; }
+.preview.compact img{ max-height:80px; }
+
+/* Box sezione dentro il form */
+.panel{
+  border:1px solid rgba(15,23,42,.08);
+  border-radius:16px;
+  background: rgba(15,23,42,.02);
+  padding:10px;
+}
+.panelTitle{
+  font-weight:950;
+  font-size:13px;
+  margin:0 0 8px;
+  color:#0f172a;
+}
+
+/* Lista con scroll interno */
+.listWrap{
+  max-height: calc(100vh - 360px);
+  overflow:auto;
+  padding-right:8px;
+}
+@media (max-width: 900px){
+  .listWrap{ max-height:none; overflow:visible; padding-right:0; }
+}
+
+/* Scrollbar carina (Chrome/Edge) */
+.listWrap::-webkit-scrollbar{ width:10px; }
+.listWrap::-webkit-scrollbar-thumb{
+  background: rgba(15,23,42,.18);
+  border-radius:999px;
+}
+.listWrap::-webkit-scrollbar-track{
+  background: rgba(15,23,42,.05);
+  border-radius:999px;
+}
+
+/* Prima riga superiore */
+.formTop{
+  display:grid;
+  grid-template-columns: 220px 220px 160px;
+  gap:12px;
+  align-items:end;
+  margin-bottom:14px;
+}
+.formTop .panel{
+  padding:10px;
+}
+@media (max-width: 800px){
+  .formTop{
+    grid-template-columns: 1fr;
+  }
+}
+
+.cardList{
+  background: #fff9db;  /* giallino chiaro elegante */
+  border:1px solid #f6e7a8;
+}
+
+  </style>
+</head>
+
+<body>
+  <script src="js/nav.js"></script>
+  <script src="js/menu.js"></script>
+
+  <main class="wrap">
+    <div class="h1">🔒 Admin ABBINAMENTI</div>
+    <div class="sub">Crea coppie (img-img / img-txt / txt-txt) ed esporta <b>pairs.js</b>.</div>
+
+    <section class="stack">
+
+      <!-- CREAZIONE -->
+      <div class="card">
+        <div class="row" style="justify-content:space-between; align-items:center;">
+          <div style="font-weight:900;">Nuova coppia</div>
+        </div>
+
+
+
+<div class="formTop">
+
+  <div class="panel">
+    <div class="panelTitle">Modalità</div>
+    <select id="mode">
+      <option value="img-img">Immagine → Immagine</option>
+      <option value="img-txt">Immagine → Testo</option>
+      <option value="txt-txt">Testo → Testo</option>
+    </select>
+  </div>
+
+  <div class="panel">
+    <div class="panelTitle">ID</div>
+    <input id="pid" type="text" placeholder="p001 (auto se vuoto)" />
+  </div>
+
+  <div class="panel">
+    <div class="panelTitle">Azioni</div>
+    <button class="btn" id="btnClear" type="button" style="width:100%;">↺ Pulisci</button>
+  </div>
+
+</div>
+
+<div class="formRow" style="margin-top:10px;">
+
+  
+
+  <!-- COL 2: Sinistra -->
+  <div class="panel">
+    <div class="panelTitle">SINISTRA</div>
+    <div class="preview compact" id="prevLeft"><div class="txt">—</div></div>
+
+    <div id="leftImgBox">
+      <label style="margin-top:10px;">Upload</label>
+      <input id="leftImgFile" type="file" accept="image/*" multiple />
+      <label>Percorso (salvato nel JS)</label>
+      <input id="leftImgPath" type="text" placeholder="../img/..." />
+    </div>
+
+    <div id="leftTxtBox" style="display:none;">
+      <label style="margin-top:10px;">Testo</label>
+      <input id="leftText" type="text" placeholder="Scrivi testo..." />
+    </div>
+  </div>
+
+
+<!-- COL CENTRALE: Switch -->
+<div class="panel" style="display:flex; align-items:center; justify-content:center;">
+ <button class="btn" id="btnSwap" type="button" style="font-size:14px; padding:6px 8px;">
+    ⇄
+  </button>
+</div>
+
+  <!-- COL 3: Destra -->
+  <div class="panel">
+    <div class="panelTitle">DESTRA</div>
+    <div class="preview compact" id="prevRight"><div class="txt">—</div></div>
+
+    <div id="rightImgBox">
+      <label style="margin-top:10px;">Upload</label>
+      <input id="rightImgFile" type="file" accept="image/*" />
+      <label>Percorso (salvato nel JS)</label>
+      <input id="rightImgPath" type="text" placeholder="../img/..." />
+    </div>
+
+    <div id="rightTxtBox" style="display:none;">
+      <label style="margin-top:10px;">Testo</label>
+      <input id="rightText" type="text" placeholder="Scrivi testo..." />
+    </div>
+  </div>
+
+  <!-- COL 4: Metadati -->
+  <div class="panel">
+    <div class="panelTitle">Metadati</div>
+
+    <div class="grid" style="grid-template-columns:repeat(3, minmax(0,1fr)); gap:10px;">
+      <div>
+        <label>Area</label>
+        <select id="mArea">
+          <option value="didattici">didattici</option>
+          <option value="gruppo">gruppo</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Classe</label>
+        <select id="mClasse"></select>
+      </div>
+
+      <div>
+        <label>Disciplina</label>
+        <select id="mDisc"></select>
+      </div>
+
+      <div>
+        <label>Livello</label>
+        <select id="mLiv"></select>
+      </div>
+
+      <div>
+        <label>Argomento</label>
+        <select id="mArg"></select>
+      </div>
+
+      <div>
+        <label>Argomento secondario</label>
+        <select id="mArg2"></select>
+      </div>
+
+      <div>
+        <label>Ordine</label>
+        <input id="mOrdine" type="number" min="1" placeholder="1" />
+      </div>
+    </div>
+  </div>
+
+  <!-- COL 5: Base immagini + CTA -->
+  <div class="panel">
+    <div class="panelTitle">Base immagini</div>
+    <input id="imgBase" type="text" value="img/pairs/" placeholder="img/pairs/" />
+
+    <div style="height:10px;"></div>
+
+    <button class="btn" id="btnFillLeft" type="button" style="width:100%; margin-bottom:8px;">↩︎ Usa per SIN</button>
+    <button class="btn" id="btnFillRight" type="button" style="width:100%;">↩︎ Usa per DES</button>
+
+    <div style="height:12px;"></div>
+
+    <button class="btn primary" id="btnAdd" type="button" style="width:100%;">➕ Aggiungi coppia</button>
+  </div>
+
+</div>
+
+
+
+
+
+
+      <!-- LISTA + IMPORT/EXPORT -->
+      <div class="card cardList">
+
+        <div class="row" style="justify-content:space-between; align-items:center;">
+          <div style="font-weight:900;">Coppie nel progetto</div>
+          <div class="row">
+            <button class="btn" id="btnImport" type="button">⬆ Importa pairs.js</button>
+            <button class="btn primary" id="btnExport" type="button">⬇ Esporta pairs.js</button>
+          </div>
+        </div>
+
+        <input id="fileIn" type="file" accept=".js" style="display:none;" />
+
+        <div class="sub" id="count">0 coppie</div>
+
+<div class="row" style="gap:10px; align-items:end; margin:10px 0 6px;">
+  <div style="flex:2; min-width:220px;">
+    <label style="margin:0 0 6px;">Cerca</label>
+    <input id="fSearch" type="text" placeholder="ID, testo, percorso img, argomento..." />
+  </div>
+
+  <div style="flex:1; min-width:160px;">
+    <label style="margin:0 0 6px;">Disciplina</label>
+    <select id="fDisc"></select>
+  </div>
+
+  <div style="flex:1; min-width:180px;">
+    <label style="margin:0 0 6px;">Argomento</label>
+    <select id="fArg"></select>
+  </div>
+
+  <div style="flex:1; min-width:180px;">
+    <label style="margin:0 0 6px;">Arg. secondario</label>
+    <select id="fArg2"></select>
+  </div>
+
+  <div style="flex:1; min-width:170px;">
+    <label style="margin:0 0 6px;">Ordina per</label>
+    <select id="fSort">
+      <option value="newest">Più recenti</option>
+      <option value="disc">Disciplina</option>
+      <option value="arg">Argomento</option>
+      <option value="id">ID</option>
+    </select>
+  </div>
+
+  <div style="min-width:140px;">
+    <label style="margin:0 0 6px;">&nbsp;</label>
+    <button class="btn" id="btnResetFilters" type="button" style="width:100%;">Reset filtri</button>
+  </div>
+</div>
+
+
+
+<div class="listWrap">
+  <div class="list" id="list"></div>
+</div>
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Protezione: usa il tuo sistema se esiste
+    (function protectAdmin(){
+      const goOut = () => { window.location.href = "../index.html"; };
+
+      if (typeof window.isAccessOk === "function" && typeof window.showAccessModal === "function") {
+        if (!window.isAccessOk()) return window.showAccessModal(() => {}, goOut);
+      }
+    })();
+
+    // Stato in memoria (modificabile + esportabile)
+    let pairs = [];
+
+    // ✅ Persistenza locale (mantiene la lista dopo refresh)
+    const LS_KEY = "ADMIN_PAIRS_DRAFT";
+    function savePairsToLocal(){
+      localStorage.setItem(LS_KEY, JSON.stringify(pairs));
+    }
+    function loadPairsFromLocal(){
+      try{
+        const raw = localStorage.getItem(LS_KEY);
+        if(raw){
+          const arr = JSON.parse(raw);
+          if(Array.isArray(arr)) pairs = arr;
+        }
+      }catch(e){}
+    }
+
+    // UI refs
+    const mode = document.getElementById("mode");
+    const prevLeft = document.getElementById("prevLeft");
+    const prevRight = document.getElementById("prevRight");
+
+    const leftImgBox = document.getElementById("leftImgBox");
+    const rightImgBox = document.getElementById("rightImgBox");
+    const leftTxtBox = document.getElementById("leftTxtBox");
+    const rightTxtBox = document.getElementById("rightTxtBox");
+
+    const leftImgFile = document.getElementById("leftImgFile");
+    const rightImgFile = document.getElementById("rightImgFile");
+    const leftImgPath = document.getElementById("leftImgPath");
+    const rightImgPath = document.getElementById("rightImgPath");
+    const leftText = document.getElementById("leftText");
+    const rightText = document.getElementById("rightText");
+
+    const mArea = document.getElementById("mArea");
+    const mClasse = document.getElementById("mClasse");
+    const mDisc = document.getElementById("mDisc");
+    const mLiv = document.getElementById("mLiv");
+    const mArg = document.getElementById("mArg");
+    const mArg2 = document.getElementById("mArg2");
+
+    const pid = document.getElementById("pid");
+    const mOrdine = document.getElementById("mOrdine");
+
+
+    const btnAdd = document.getElementById("btnAdd");
+    const btnSwap = document.getElementById("btnSwap");
+    const btnClear = document.getElementById("btnClear");
+
+    const list = document.getElementById("list");
+    const count = document.getElementById("count");
+
+    // Filtri lista
+const fSearch = document.getElementById("fSearch");
+const fDisc = document.getElementById("fDisc");
+const fArg = document.getElementById("fArg");
+const fArg2 = document.getElementById("fArg2");
+const fSort = document.getElementById("fSort");
+const btnResetFilters = document.getElementById("btnResetFilters");
+mDisc.addEventListener("change", filterArgByDisc);
+
+const filters = {
+  q: "",
+  disc: "",
+  arg: "",
+  arg2: "",
+  sort: "newest"
+};
+
+function fillFilterSelect(sel, values, placeholder){
+  const cur = sel.value;
+  sel.innerHTML = "";
+  const o0 = document.createElement("option");
+  o0.value = "";
+  o0.textContent = placeholder;
+  sel.appendChild(o0);
+  for(const v of sortSmart(uniq(values))){
+    const o = document.createElement("option");
+    o.value = v;
+    o.textContent = v;
+    sel.appendChild(o);
+  }
+  if(cur && Array.from(sel.options).some(o=>o.value===cur)) sel.value = cur;
+}
+
+
+    const btnImport = document.getElementById("btnImport");
+    const btnExport = document.getElementById("btnExport");
+    const fileIn = document.getElementById("fileIn");
+
+    function escHtml(s){
+      return (s ?? "").toString()
+        .replaceAll("&","&amp;").replaceAll("<","&lt;")
+        .replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
+    }
+
+    
+    function uniq(arr){ return Array.from(new Set(arr.filter(v => (v ?? "").toString().trim() !== ""))); }
+    function sortSmart(arr){ return arr.slice().sort((a,b)=> (a+"").localeCompare(b+"","it",{numeric:true,sensitivity:"base"})); }
+
+    function fillSelect(sel, values, placeholder, includeOther=true){
+      const cur = sel.value;
+      sel.innerHTML = "";
+      const opt0 = document.createElement("option");
+      opt0.value = "";
+      opt0.textContent = placeholder || "—";
+      sel.appendChild(opt0);
+
+      for(const v of sortSmart(uniq(values))){
+        const o = document.createElement("option");
+        o.value = v;
+        o.textContent = v;
+        sel.appendChild(o);
+      }
+
+      if(includeOther){
+        const other = document.createElement("option");
+        other.value = "__other__";
+        other.textContent = "✏️ Altro…";
+        sel.appendChild(other);
+      }
+
+      if(cur && Array.from(sel.options).some(o=>o.value===cur)) sel.value = cur;
+    }
+
+    function handleOtherOption(sel){
+      sel.addEventListener("change", ()=>{
+        if(sel.value === "__other__"){
+          const val = prompt("Inserisci un nuovo valore:");
+          if(val && val.trim()){
+            const v = val.trim();
+            const otherOpt = sel.querySelector('option[value="__other__"]');
+            const o = document.createElement("option");
+            o.value = v; o.textContent = v;
+            sel.insertBefore(o, otherOpt);
+            sel.value = v;
+          }else{
+            sel.value = "";
+          }
+        }
+      });
+    }
+
+    function refreshMetaOptionsFromPairs(){
+      const metas = pairs.map(p => p.meta || {});
+      fillSelect(mClasse, metas.map(m=>m.classe), "Classe");
+      fillSelect(mDisc, metas.map(m=>m.disciplina), "Disciplina");
+      fillSelect(mLiv, metas.map(m=>m.livello), "Livello");
+      fillSelect(mArg, metas.map(m=>m.argomento), "Argomento");
+      fillSelect(mArg2, metas.flatMap(m=>[m.argomento, m.argomentoSecondario]), "Argomento secondario", false);
+
+filterArgByDisc();
+
+
+      if(mClasse.options.length <= 2) fillSelect(mClasse, ["1","2","3","4","5"], "Classe");
+      if(mDisc.options.length <= 2) fillSelect(mDisc, ["storia","geografia","italiano","scienze","matematica"], "Disciplina");
+      if(mLiv.options.length <= 2) fillSelect(mLiv, ["facile","medio","difficile"], "Livello");
+      if(mArg2.options.length <= 2) fillSelect(mArg2, [], "Argomento secondario", false);
+
+
+      [mClasse,mDisc,mLiv,mArg].forEach(handleOtherOption);
+
+      mDisc.addEventListener("change", filterArgByDisc);
+
+    }
+
+function filterArgByDisc(){
+  const disc = mDisc.value;
+  const metas = pairs.map(p => p.meta || {});
+
+  let args = metas
+    .filter(m => !disc || m.disciplina === disc)
+    .map(m => m.argomento);
+
+  let args2 = metas
+    .filter(m => !disc || m.disciplina === disc)
+    .flatMap(m => [m.argomento, m.argomentoSecondario]);
+
+  fillSelect(mArg, args, "Argomento");
+  fillSelect(mArg2, args2, "Argomento secondario", false);
+
+  handleOtherOption(mArg);
+}
+
+
+
+
+function setPreview(el, item){
+      el.innerHTML = "";
+      if(!item){ el.innerHTML = '<div class="txt">—</div>'; return; }
+      if(item.type === "img"){
+        const img = document.createElement("img");
+        img.src = item.src;
+        img.alt = "";
+        el.appendChild(img);
+      } else {
+        const d = document.createElement("div");
+        d.className = "txt";
+        d.textContent = item.text || "";
+        el.appendChild(d);
+      }
+    }
+
+    function switchMode(){
+      const m = mode.value;
+
+      // Left controls
+      const leftIsImg = (m === "img-img" || m === "img-txt");
+      leftImgBox.style.display = leftIsImg ? "" : "none";
+      leftTxtBox.style.display = leftIsImg ? "none" : "";
+
+      // Right controls
+      const rightIsImg = (m === "img-img");
+      rightImgBox.style.display = rightIsImg ? "" : "none";
+      rightTxtBox.style.display = rightIsImg ? "none" : "";
+
+      // reset previews
+      setPreview(prevLeft, null);
+      setPreview(prevRight, null);
+    }
+
+    mode.addEventListener("change", switchMode);
+    switchMode();
+
+btnSwap.addEventListener("click", () => {
+
+  // Scambia percorsi immagini
+  const tmpImgPath = leftImgPath.value;
+  leftImgPath.value = rightImgPath.value;
+  rightImgPath.value = tmpImgPath;
+
+  // Scambia testi
+  const tmpText = leftText.value;
+  leftText.value = rightText.value;
+  rightText.value = tmpText;
+
+  // Aggiorna preview
+  if(leftImgPath.value){
+    setPreview(prevLeft, {type:"img", src:leftImgPath.value});
+  } else {
+    setPreview(prevLeft, leftText.value ? {type:"txt", text:leftText.value} : null);
+  }
+
+  if(rightImgPath.value){
+    setPreview(prevRight, {type:"img", src:rightImgPath.value});
+  } else {
+    setPreview(prevRight, rightText.value ? {type:"txt", text:rightText.value} : null);
+  }
+
+});
+
+
+    // Upload preview only (non salva file sul server: ti serve solo vedere cosa stai scegliendo)
+    function previewFile(input, where){
+      const file = input.files && input.files[0];
+      if(!file) return;
+      const url = URL.createObjectURL(file);
+      where.innerHTML = "";
+      const img = document.createElement("img");
+      img.src = url;
+      where.appendChild(img);
+    }
+
+    // ✅ Multi-upload: trascina/seleziona 2 (o 4/6/...) immagini e crea coppie automatiche (img-img)
+    leftImgFile.addEventListener("change", () => {
+
+      const files = Array.from(leftImgFile.files || []);
+      if(!files.length) return;
+
+      // Se NON siamo in img-img → comportamento normale (una sola immagine a sinistra)
+      if(mode.value !== "img-img" || files.length === 1){
+        previewFile(leftImgFile, prevLeft);
+        setPathFromFile(leftImgFile, leftImgPath);
+        return;
+      }
+
+      const base = imgBase ? imgBase.value : "";
+
+      // Se numero dispari, ignora l'ultimo file
+      const usable = (files.length % 2 === 0) ? files : files.slice(0, files.length - 1);
+
+      for(let i = 0; i < usable.length; i += 2){
+
+        const f1 = usable[i];
+        const f2 = usable[i+1];
+
+        const p = {
+          id: autoId(),
+          mode: "img-img",
+          left:  { type:"img", src: joinPath(base, f1.name) },
+          right: { type:"img", src: joinPath(base, f2.name) },
+          meta: {
+            area: mArea.value.trim(),
+            classe: mClasse.value.trim(),
+            disciplina: mDisc.value.trim(),
+            livello: mLiv.value.trim(),
+            argomento: mArg.value.trim(),
+            argomentoSecondario: mArg2.value.trim(),
+            ordine: mOrdine.value ? parseInt(mOrdine.value,10) : undefined
+          }
+        };
+
+        p.__new = true;
+        pairs.unshift(p);
+        setTimeout(()=>{ p.__new = false; renderList(); }, 5000);
+      }
+
+      savePairsToLocal();
+      renderList();
+
+      // pulisci selezione file (così puoi trascinare di nuovo gli stessi file se vuoi)
+      leftImgFile.value = "";
+    });
+
+
+    // Auto-compila il percorso immagine quando scegli un file (usa imgBase + file.name)
+    const imgBase = document.getElementById("imgBase");
+    const btnFillLeft = document.getElementById("btnFillLeft");
+    const btnFillRight = document.getElementById("btnFillRight");
+
+    function joinPath(base, filename){
+      base = (base || "").trim();
+      if(!base) return filename;
+      if(!base.endsWith("/")) base += "/";
+      return base + filename;
+    }
+
+    function setPathFromFile(fileInput, pathInput){
+      const f = fileInput.files && fileInput.files[0];
+      if(!f) return;
+      const base = imgBase ? imgBase.value : "";
+      pathInput.value = joinPath(base, f.name);
+      pathInput.dispatchEvent(new Event("input"));
+    }
+
+    btnFillLeft && btnFillLeft.addEventListener("click", ()=> setPathFromFile(leftImgFile, leftImgPath));
+    btnFillRight && btnFillRight.addEventListener("click", ()=> setPathFromFile(rightImgFile, rightImgPath));
+
+
+    rightImgFile.addEventListener("change", () => { previewFile(rightImgFile, prevRight); setPathFromFile(rightImgFile, rightImgPath); });
+
+    leftText.addEventListener("input", () => setPreview(prevLeft, {type:"txt", text:leftText.value}));
+    rightText.addEventListener("input", () => setPreview(prevRight, {type:"txt", text:rightText.value}));
+
+    leftImgPath.addEventListener("input", () => setPreview(prevLeft, {type:"img", src:leftImgPath.value}));
+    rightImgPath.addEventListener("input", () => setPreview(prevRight, {type:"img", src:rightImgPath.value}));
+
+    let _nextIdNum = 1;
+
+    function computeNextId(){
+      let maxN = 0;
+      for(const p of pairs){
+        const id = (p && p.id) ? String(p.id) : "";
+        const m = id.match(/p(\d+)/i);
+        if(m){
+          const n = parseInt(m[1],10);
+          if(Number.isFinite(n) && n > maxN) maxN = n;
+        }
+      }
+      _nextIdNum = maxN + 1;
+    }
+
+    function autoId(){
+      const id = "p" + String(_nextIdNum).padStart(3,"0");
+      _nextIdNum++;
+      return id;
+    }
+
+    function getItemLeft(){
+      const m = mode.value;
+      if(m === "txt-txt"){
+        return { type:"txt", text: leftText.value.trim() };
+      }
+      return { type:"img", src: leftImgPath.value.trim() };
+    }
+
+    function getItemRight(){
+      const m = mode.value;
+      if(m === "img-img"){
+        return { type:"img", src: rightImgPath.value.trim() };
+      }
+      if(m === "img-txt"){
+        return { type:"txt", text: rightText.value.trim() };
+      }
+      return { type:"txt", text: rightText.value.trim() };
+    }
+
+    function validate(){
+      const L = getItemLeft();
+      const R = getItemRight();
+      if(L.type === "img" && !L.src) return "Manca il percorso immagine SINISTRA.";
+      if(L.type === "txt" && !L.text) return "Manca il testo SINISTRA.";
+      if(R.type === "img" && !R.src) return "Manca il percorso immagine DESTRA.";
+      if(R.type === "txt" && !R.text) return "Manca il testo DESTRA.";
+      return "";
+    }
+
+
+    function shortTxt(s, n=42){
+  s = (s ?? "").toString().trim();
+  return s.length > n ? s.slice(0,n-1) + "…" : s;
+}
+
+function thumbHTML(item){
+  if(!item) return `<div class="thumb"><div class="t">—</div></div>`;
+  if(item.type === "img"){
+    const src = escHtml(item.src || "");
+    return `<div class="thumb"><img src="${src}" alt=""></div>`;
+  }
+  return `<div class="thumb"><div class="t">${escHtml(shortTxt(item.text))}</div></div>`;
+}
+
+
+function refreshListFilters(){
+  const metas = pairs.map(p => p.meta || {});
+  fillFilterSelect(fDisc, metas.map(m=>m.disciplina), "Tutte");
+  // argomento/arg2 dipendono dalla disciplina selezionata
+  refreshArgFiltersByDisc();
+}
+
+function refreshArgFiltersByDisc(){
+  const disc = fDisc.value || "";
+  const metas = pairs.map(p => p.meta || {});
+  const m2 = metas.filter(m => !disc || m.disciplina === disc);
+  fillFilterSelect(fArg, m2.map(m=>m.argomento), "Tutti");
+  fillFilterSelect(fArg2, m2.map(m=>m.argomentoSecondario), "Tutti");
+}
+
+// ✅ Eventi filtri (una sola volta)
+fSearch.addEventListener("input", () => { filters.q = fSearch.value.trim(); renderList(); });
+
+fDisc.addEventListener("change", () => {
+  filters.disc = fDisc.value;
+  refreshArgFiltersByDisc();     // aggiorna arg/arg2 in base alla disciplina scelta
+  fArg.value = ""; fArg2.value = "";
+  filters.arg = ""; filters.arg2 = "";
+  renderList();
+});
+
+fArg.addEventListener("change", () => { filters.arg = fArg.value; renderList(); });
+fArg2.addEventListener("change", () => { filters.arg2 = fArg2.value; renderList(); });
+
+fSort.addEventListener("change", () => { filters.sort = fSort.value; renderList(); });
+
+btnResetFilters.addEventListener("click", () => {
+  fSearch.value = "";
+  fDisc.value = "";
+  fArg.value = "";
+  fArg2.value = "";
+  fSort.value = "newest";
+
+  filters.q = "";
+  filters.disc = "";
+  filters.arg = "";
+  filters.arg2 = "";
+  filters.sort = "newest";
+
+  refreshArgFiltersByDisc();
+  renderList();
+});
+
+
+    function renderList(){
+  refreshMetaOptionsFromPairs();
+  computeNextId();
+
+  // ✅ popola i filtri con i valori presenti nei dati
+  refreshListFilters();
+
+  // ✅ array di lavoro (filtrato/ordinato)
+  let view = pairs.slice();
+
+  // Filtri meta
+  if(filters.disc){
+    view = view.filter(p => (p.meta?.disciplina || "") === filters.disc);
+  }
+  if(filters.arg){
+    view = view.filter(p => (p.meta?.argomento || "") === filters.arg);
+  }
+  if(filters.arg2){
+    view = view.filter(p => (p.meta?.argomentoSecondario || "") === filters.arg2);
+  }
+
+  // Ricerca testo
+  if(filters.q){
+    const q = filters.q.toLowerCase();
+    view = view.filter(p => {
+      const meta = p.meta || {};
+      const hay = [
+        p.id, p.mode,
+        meta.disciplina, meta.argomento, meta.argomentoSecondario,
+        (p.left?.type==="img" ? p.left.src : p.left?.text),
+        (p.right?.type==="img" ? p.right.src : p.right?.text),
+      ].join(" ").toLowerCase();
+      return hay.includes(q);
+    });
+  }
+
+  // Ordinamento
+  const coll = (a,b)=> (a||"").localeCompare(b||"","it",{numeric:true,sensitivity:"base"});
+  if(filters.sort === "id"){
+    view.sort((A,B)=> coll(A.id, B.id));
+  }else if(filters.sort === "disc"){
+    view.sort((A,B)=> coll(A.meta?.disciplina, B.meta?.disciplina) || coll(A.meta?.argomento, B.meta?.argomento) || coll(A.id,B.id));
+  }else if(filters.sort === "arg"){
+    view.sort((A,B)=> coll(A.meta?.argomento, B.meta?.argomento) || coll(A.meta?.disciplina, B.meta?.disciplina) || coll(A.id,B.id));
+  }else{
+    // newest: tieni ordine attuale (tu fai unshift dei nuovi)
+  }
+
+  // ✅ conteggio utile
+  const all = (view.length === pairs.length);
+count.innerHTML = `
+  <div class="countLine">
+    <span class="countTotal">Totale: <b>${pairs.length}</b></span>
+    <span class="countSel ${all ? "all" : ""}">Selezionate: ${view.length}</span>
+  </div>
+`;
+
+
+  // ✅ da qui in poi: render della lista (sotto sostituiamo pairs.map con view.map)
+
+      list.innerHTML = view.map((p) => {
+  const idx = pairs.indexOf(p); // indice reale per edit/dup/del
+
+        const meta = p.meta || {};
+        const pills = [
+          `<span class="pill">${escHtml(p.mode)}</span>`,
+          meta.area ? `<span class="pill">${escHtml(meta.area)}</span>` : "",
+          meta.classe ? `<span class="pill">classe ${escHtml(meta.classe)}</span>` : "",
+          meta.disciplina ? `<span class="pill">${escHtml(meta.disciplina)}</span>` : "",
+          meta.livello ? `<span class="pill">${escHtml(meta.livello)}</span>` : "",
+          meta.argomento ? `<span class="pill">${escHtml(meta.argomento)}</span>` : "",
+          meta.argomentoSecondario ? `<span class="pill">${escHtml(meta.argomentoSecondario)}</span>` : "",
+          meta.ordine ? `<span class="pill">ordine ${escHtml(meta.ordine)}</span>` : ""
+
+        ].filter(Boolean).join(" ");
+
+       const isNew = !!p.__new; // la mettiamo tra poco
+return `
+  <div class="item">
+    <div class="itemMain">
+      <div class="itemThumbs">
+        ${thumbHTML(p.left)}
+        ${thumbHTML(p.right)}
+      </div>
+
+      <div>
+        <div class="itemTitle">
+          <span class="itemId">${escHtml(p.id)}</span>
+          ${isNew ? `<span class="badgeNew">NUOVO</span>` : ``}
+          ${pills}
+        </div>
+
+        <div class="itemMetaLine">
+          <b>SIN</b>: ${escHtml(p.left.type === "img" ? shortTxt(p.left.src, 60) : shortTxt(p.left.text, 60))}<br>
+          <b>DES</b>: ${escHtml(p.right.type === "img" ? shortTxt(p.right.src, 60) : shortTxt(p.right.text, 60))}
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn" type="button" onclick="window.__editPair(${idx})">✏️</button>
+      <button class="btn" type="button" onclick="window.__dupPair(${idx})">⧉</button>
+      <button class="btn" type="button" onclick="window.__delPair(${idx})">🗑️</button>
+    </div>
+  </div>
+`;
+
+      }).join("");
+    }
+
+    window.__delPair = (idx) => {
+      pairs.splice(idx,1);
+      savePairsToLocal();
+      renderList();
+    };
+   window.__dupPair = (idx) => {
+  const copy = JSON.parse(JSON.stringify(pairs[idx]));
+  copy.id = autoId();
+
+  copy.__new = true;          // 👈 badge NUOVO
+  pairs.unshift(copy);        // 👈 lo mette in cima
+
+  savePairsToLocal();
+  renderList();
+
+  setTimeout(() => {
+    copy.__new = false;
+    renderList();
+  }, 5000);
+};
+
+    window.__editPair = (idx) => {
+      const p = pairs[idx];
+      // carica nei campi
+      mode.value = p.mode;
+      switchMode();
+
+      pid.value = p.id || "";
+      mArea.value = (p.meta?.area || "didattici");
+      mClasse.value = p.meta?.classe || "";
+      mDisc.value = p.meta?.disciplina || "";
+      mLiv.value = p.meta?.livello || "";
+      mArg.value = p.meta?.argomento || "";
+      mOrdine.value = p.meta?.ordine || "";
+      mArg2.value = p.meta?.argomentoSecondario || "";
+
+
+
+      if(p.left.type === "img"){
+        leftImgPath.value = p.left.src || "";
+        setPreview(prevLeft, {type:"img", src:leftImgPath.value});
+      } else {
+        leftText.value = p.left.text || "";
+        setPreview(prevLeft, {type:"txt", text:leftText.value});
+      }
+
+      if(p.right.type === "img"){
+        rightImgPath.value = p.right.src || "";
+        setPreview(prevRight, {type:"img", src:rightImgPath.value});
+      } else {
+        rightText.value = p.right.text || "";
+        setPreview(prevRight, {type:"txt", text:rightText.value});
+      }
+
+      // quando premi "Aggiungi", aggiorna invece di aggiungere nuovo
+      btnAdd.textContent = "💾 Salva modifica";
+      btnAdd.classList.add("primary");
+      btnAdd.dataset.editing = String(idx);
+      window.scrollTo({ top: 0, behavior:"smooth" });
+    };
+
+    function clearForm(){
+      pid.value = "";
+      leftImgFile.value = "";
+      rightImgFile.value = "";
+      leftImgPath.value = "";
+      rightImgPath.value = "";
+      leftText.value = "";
+      rightText.value = "";
+      mOrdine.value = "";
+
+      setPreview(prevLeft, null);
+      setPreview(prevRight, null);
+
+      btnAdd.textContent = "➕ Aggiungi coppia";
+      btnAdd.classList.add("primary");
+      delete btnAdd.dataset.editing;
+    }
+
+    btnClear.addEventListener("click", clearForm);
+
+    btnAdd.addEventListener("click", () => {
+      const err = validate();
+      if(err) return alert(err);
+
+      const p = {
+        id: (pid.value.trim() || autoId()),
+        mode: mode.value,
+        left: getItemLeft(),
+        right: getItemRight(),
+       meta: {
+  area: mArea.value.trim(),
+  classe: mClasse.value.trim(),
+  disciplina: mDisc.value.trim(),
+  livello: mLiv.value.trim(),
+  argomento: mArg.value.trim(),
+  argomentoSecondario: mArg2.value.trim(),
+  ordine: mOrdine.value ? parseInt(mOrdine.value,10) : undefined
+}
+
+
+      };
+
+      const editing = btnAdd.dataset.editing;
+      if(editing !== undefined){
+        pairs[parseInt(editing,10)] = p;
+        clearForm();
+        savePairsToLocal();
+        renderList();
+        return;
+      }
+
+     // pairs.push(p);
+      p.__new = true;
+pairs.unshift(p); // invece di push: così lo vedi subito in cima
+setTimeout(()=>{ p.__new = false; renderList(); }, 5000);
+
+      clearForm();
+      savePairsToLocal();
+      renderList();
+    });
+
+    // IMPORT/EXPORT
+    btnImport.addEventListener("click", () => fileIn.click());
+
+    fileIn.addEventListener("change", async () => {
+      const file = fileIn.files && fileIn.files[0];
+      if(!file) return;
+
+      const text = await file.text();
+
+      // Estrae const PAIRS = [...] con una regex semplice
+        // Estrae const PAIRS = [...] con una regex semplice
+      const m = text.match(/(?:const\s+PAIRS|window\.PAIRS)\s*=\s*(\[[\s\S]*?\])\s*;?/);
+if(!m) return alert("File non valido: non trovo 'PAIRS = [...]' (const o window.PAIRS)");
+
+      try{
+        const arr = Function("return " + m[1])();
+        if(!Array.isArray(arr)) throw new Error("PAIRS non è un array");
+        pairs = arr;
+        savePairsToLocal();
+        renderList();
+        alert("Import completato!");
+      }catch(e){
+        alert("Errore import: " + e.message);
+      }
+    });
+
+    btnExport.addEventListener("click", () => {
+      const content =
+`// /pairs/pairs.js
+// Generato da pairs_admin.html
+window.PAIRS = ${JSON.stringify(pairs, null, 2)};
+`;
+
+      const blob = new Blob([content], { type: "text/javascript;charset=utf-8" });
+
+      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveOrOpenBlob(blob, "pairs.js");
+        return;
+      }
+
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "pairs.js";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url), 800);
+    });
+
+    // Avvio
+    loadPairsFromLocal();
+    renderList();
+</script>
+</body>
+</html>

@@ -1,0 +1,1133 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Abbinamenti</title>
+
+  <style>
+    body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background:#f4f6f8; color:#0f172a; overflow-x:hidden; }
+    .wrap{ max-width:1100px; margin:0 auto; padding:18px 14px 60px; }
+    .top{ display:flex; align-items:flex-end; gap:12px; flex-wrap:wrap; }
+    .h1{ font-size:22px; font-weight:800; margin:10px 0 0; }
+    .muted{ color:#6b7280; font-size:14px; margin:4px 0 0; }
+    .bar{ margin-left:auto; display:flex; gap:10px; align-items:center; }
+    .btn{
+      border:1px solid rgba(15,23,42,.12);
+      background:#fff;
+      border-radius:14px;
+      padding:10px 12px;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .btn:hover{ background: rgba(15,23,42,.04); }
+
+    .board{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: 0.9fr 1.3fr;
+      gap:14px;
+      align-items:start;
+    }
+
+    .panel{
+      background:#fff;
+      border:1px solid rgba(15,23,42,.08);
+      border-radius:18px;
+      box-shadow: 0 10px 22px rgba(15,23,42,.05);
+      padding:14px;
+    }
+
+    /* Solo pannello destro ABBINA */
+.board .panel:nth-child(2){
+  background: linear-gradient(180deg,#f0f9ff 0%, #e0f2fe 100%);
+}
+
+    .panelTitle{
+      font-weight:800;
+      margin:2px 0 12px;
+      font-size:14px;
+      color:#6b7280;
+      letter-spacing:.2px;
+    }
+
+    /* LEFT pieces */
+    #leftCol{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:10px;
+    }
+
+    .piece{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      background:#fff;
+      box-shadow: 0 8px 18px rgba(15,23,42,.05);
+      padding:10px;
+      touch-action:none; /* important for pointer drag on mobile */
+      user-select:none;
+    }
+    .piece.dragging{ box-shadow: 0 20px 50px rgba(15,23,42,.18); }
+    .piece.animBack{ transition: left .22s ease, top .22s ease; }
+
+    .pieceContent{ display:flex; align-items:center; justify-content:center; min-height:78px; }
+    .pieceContent img{ width:100%; height:86px; object-fit:contain; display:block; }
+    .pieceText{ font-weight:800; font-size:16px; text-align:center; padding:8px; }
+
+    /* RIGHT rows */
+    #rightCol{ display:flex; flex-direction:column; gap:10px; }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      align-items:stretch;
+    }
+
+    .drop{
+  border:2px dashed rgba(14,165,233,.55); /* colore coerente */
+  border-radius:8px;
+  background: rgba(14,165,233,.08); /* stesso tono dello sfondo */
+}
+
+    .dropHint{ color:#94a3b8; font-weight:700; font-size:13px; }
+
+    .drop.highlight{ background: rgba(15,23,42,.03); }
+    .drop.over{ border-color: rgba(15,23,42,.45); }
+
+    .drop.wrong{
+      border-color: rgba(220,38,38,.55);
+      background: rgba(220,38,38,.05);
+    }
+
+    .drop.filled{
+  border-style: solid;
+  border-color: rgba(15,23,42,.14);
+  background: inherit !important; /* ✅ mantiene il colore della coppia */
+}
+
+
+    .fixed{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      background: rgba(14,165,233,.08);
+      box-shadow: 0 8px 18px rgba(15,23,42,.05);
+      padding:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:110px;
+    }
+
+    /* mobile */
+    @media (max-width: 900px){
+      .board{ grid-template-columns: 1fr; }
+      #leftCol{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+    }
+    @media (max-width: 520px){
+      #leftCol{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .pieceContent img{ height:72px; }
+    }
+
+    body.dragMode{ overscroll-behavior: none; }
+    body.done .drop{ opacity: .98; }
+
+    /* Effetto fine round */
+@keyframes winPop {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+@keyframes glow {
+  0%   { box-shadow: 0 10px 22px rgba(15,23,42,.05); }
+  50%  { box-shadow: 0 26px 70px rgba(15,23,42,.18); }
+  100% { box-shadow: 0 10px 22px rgba(15,23,42,.05); }
+}
+body.done .panel {
+  animation: winPop .45s ease;
+}
+body.done .drop.filled,
+body.done .fixed {
+  animation: glow .8s ease;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+.drop.pulse { animation: pulse .45s ease; }
+
+
+
+
+
+
+/* =========================
+   WOW Medio – Verde Success
+   + overlay ✔
+   ========================= */
+
+@keyframes wowGreen {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      0 10px 22px rgba(15,23,42,.06),
+      0 0 0 rgba(34,197,94,0);
+  }
+  45% {
+    transform: scale(1.06);
+    box-shadow:
+      0 30px 80px rgba(34,197,94,.40),
+      0 0 45px rgba(34,197,94,.65),
+      0 0 90px rgba(34,197,94,.35);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 10px 22px rgba(15,23,42,.06);
+  }
+}
+
+/* animazione glow */
+.wowOn {
+  animation: wowGreen .7s ease;
+  border: 2px solid rgba(34,197,94,.85) !important;
+}
+
+/* stato verde permanente */
+.successFinal {
+  background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%) !important;
+  border: 2px solid rgba(34,197,94,.55) !important;
+  box-shadow: 0 15px 35px rgba(34,197,94,.18);
+}
+
+/* Overlay ✔ (serve position:relative) */
+.drop, .fixed { position: relative; }
+
+@keyframes checkPop {
+  0%   { transform: scale(.6); opacity: 0; }
+  55%  { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.checkMark{
+  position:absolute;
+  top:10px;
+  right:10px;
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background: rgba(34,197,94,.18);
+  border: 2px solid rgba(34,197,94,.70);
+  box-shadow:
+    0 10px 24px rgba(34,197,94,.22),
+    0 0 22px rgba(34,197,94,.25);
+
+  color:#16a34a;
+  font-weight: 900;
+  font-size:18px;
+  line-height:1;
+
+  opacity:0;
+  transform: scale(.6);
+  pointer-events:none;
+}
+
+.checkMark.show{
+  animation: checkPop .35s ease forwards;
+}
+
+/* =========================================================
+   LAYOUT LIM: sinistra (pezzi) / destra (abbina)
+   Destra: 4 card per riga = (drop+fixed) x 2 coppie
+   Card squadrate, padding ridotto, misure uniformi
+   ========================================================= */
+
+/* 1) SINISTRA: griglia pezzi (stessa misura delle card a destra) */
+#leftCol{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr)); /* default comodo */
+  gap:10px;
+}
+
+/* 2) DESTRA: griglia a 4 colonne (vuota+piena | vuota+piena) */
+#rightCol{
+  display:grid !important;
+  grid-template-columns: repeat(4, minmax(0,1fr)) !important;
+  gap:10px !important;
+  background: rgb(255, 255, 255);
+}
+
+
+/* ✅ Quando le coppie sono 12: 3 coppie per riga (drop+fixed) x3 = 6 colonne */
+#rightCol[data-pairs="12"]{
+  grid-template-columns: repeat(6, minmax(0,1fr)) !important;
+}
+
+/* Su schermi stretti mantengo 2 coppie per riga */
+@media (max-width: 900px){
+  #rightCol[data-pairs="12"]{
+    grid-template-columns: repeat(4, minmax(0,1fr)) !important;
+  }
+}
+
+/* La riga non deve più “fare layout”: le sue celle entrano nella griglia */
+.row{ display: contents !important; }
+
+/* 3) Card più squadrate e compatte (sinistra + destra) */
+.piece,
+.drop,
+.fixed{
+  border-radius:8px !important;
+  padding:3px !important;   /* 🔥 metà del padding */
+  box-shadow: 0 4px 10px rgba(15,23,42,.05) !important;
+}
+
+
+/* drop/fixed con stessa altezza */
+.drop,
+.fixed{
+  min-height: 96px !important;   /* alza/abbassa qui per farci stare 12 coppie */
+}
+
+/* drop più “pulito” e compatto */
+.drop{
+  background: rgba(15,23,42,.02) !important;
+}
+
+/* 4) Immagini: altezza uguale ovunque */
+.pieceContent{
+  min-height: 90px !important;
+}
+.pieceContent img{
+  width:100%;
+  height:90px !important;        /* ✅ stessa altezza */
+  object-fit:contain;
+  display:block;
+}
+
+/* 5) Testo più compatto (se usi txt) */
+.pieceText{
+  padding:6px !important;
+  font-size:15px !important;
+}
+
+/* Responsive: se lo schermo è stretto, passo a 2 colonne (1 coppia per riga) */
+@media (max-width: 900px){
+  .board{ grid-template-columns: 1fr; }
+  #rightCol{ grid-template-columns: repeat(4, minmax(0,1fr)) !important; } /* 4 card per riga */
+
+  #leftCol{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
+
+@media (max-width: 520px){
+
+  /* Smartphone normale → 3 per riga */
+  #leftCol{
+    grid-template-columns: repeat(3, minmax(0,1fr));
+  }
+.piece{
+    aspect-ratio: 1 / 1;        /* ✅ quadrate */
+    padding:6px;
+  }
+ .pieceContent{
+    height:100%;
+    min-height:unset !important;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:6px;
+  }
+  
+}
+
+/* Smartphone più largo → 4 per riga */
+@media (min-width: 420px) and (max-width: 520px){
+  #leftCol{
+    grid-template-columns: repeat(4, minmax(0,1fr));
+  }
+}
+
+
+.zoomBox{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.btn.on{
+  background:#0f172a;
+  color:#fff;
+  border-color:#0f172a;
+}
+.wrap{ transform-origin: top center; }
+
+/* ===== Barra pulsanti responsive ===== */
+.bar{
+  flex-wrap: wrap;              /* ✅ va a capo */
+  justify-content: flex-end;    /* resta a destra */
+}
+
+.bar .btn,
+.bar .zoomBox{
+  flex: 0 0 auto;
+}
+
+/* smartphone: pulsanti più compatti + 2 per riga */
+@media (max-width: 520px){
+  .bar{
+    width:100%;
+    margin-left:0;              /* ✅ così non forza a destra e non “spinge” */
+    justify-content:flex-start; /* più naturale su mobile */
+    gap:8px;
+  }
+
+  #status{ width:100%; }        /* status su riga sua */
+
+   /* Tutti i bottoni 2 per riga */
+  .bar .btn{
+    flex: 1 1 calc(50% - 8px);
+    max-width: calc(50% - 8px);   /* ✅ stessa misura precisa */
+    text-align:center;
+    padding:8px 10px;
+    font-size:13px;
+    border-radius:12px;
+  }
+
+  .bar .btn:not(#btnBackSelect):not(#btnRepick){
+    flex: 1 1 calc(50% - 8px);  /* ✅ 2 per riga */
+  }
+
+  
+
+  /* ZoomBox: compatto e su riga sua */
+  .zoomBox{
+    flex: 1 1 100%;
+    justify-content: flex-start;
+  }
+  #zoomLabel{ min-width: 72px; text-align:center; display:inline-block; }
+}
+
+/* Niente drag nativo / niente menu download su immagini */
+.pieceContent img{
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none;
+  pointer-events: none;     /* IMPORTANTISSIMO: il drag prende la .piece, non l'img */
+  user-select: none;
+}
+
+/* feedback drag */
+.piece{ cursor: grab; }
+.piece.dragging{ cursor: grabbing; }
+
+
+/* Drop (rimane normale) */
+.pairA .drop{
+  border-color: rgba(59,130,246,.45) !important;
+}
+.pairB .drop{
+  border-color: rgba(168,85,247,.45) !important;
+}
+.pairC .drop{
+  border-color: rgba(16,185,129,.45) !important;
+}
+
+/* Fixed (più spesso) */
+.pairA .fixed{
+  border:2px solid rgba(59,130,246,.7) !important;
+}
+.pairB .fixed{
+  border:2px solid rgba(168,85,247,.7) !important;
+}
+.pairC .fixed{
+  border:2px solid rgba(16,185,129,.7) !important;
+}
+
+
+/* =========================
+   CARD SEMPRE QUADRATE (tutti i device)
+   ========================= */
+
+.piece,
+.drop,
+.fixed{
+  aspect-ratio: 1 / 1 !important;      /* ✅ QUADRATO */
+  height: auto !important;
+  min-height: 0 !important;            /* ✅ elimina rettangoli */
+  padding: 4px !important;
+  border-radius: 8px !important;
+  border-width: 1px !important;        /* ✅ bordino leggero */
+  box-shadow: none !important;         /* opzionale: pulito */
+}
+
+/* Drop tratteggiato: lascio tratteggio ma coerente */
+.drop{
+  border-style: dashed !important;
+  border-width: 2px !important;        /* tratteggio più leggibile */
+}
+
+/* Contenuto interno deve riempire il quadrato */
+.pieceContent{
+  height: 100% !important;
+  min-height: 0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+
+/* Immagini: non fissare altezza, devono adattarsi al quadrato */
+.pieceContent img{
+  height: 100% !important;
+  max-height: 100% !important;
+  width: 100% !important;
+  object-fit: contain !important;
+}
+
+/* Testo centrato se ci sono card testuali 
+.pieceText{
+  height: 100% !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding: 6px !important;
+  text-align:center !important;
+
+  /* 🔥 nuovo 
+  font-size: clamp(10px, 3.2vw, 16px) !important;
+  line-height: 1.1 !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+*/
+
+.pieceText{
+  height:100% !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:6px !important;
+  text-align:center !important;
+
+  font-size: clamp(9px, 2.8vw, 16px) !important;
+  line-height:1.15 !important;
+
+  white-space: normal !important;        /* permette frasi */
+  word-break: normal !important;         /* NON spezza parole */
+  overflow-wrap: normal !important;      /* NON spezza parole */
+}
+
+
+  
+
+/* =====================================================
+   COPPIE COLORATE (alternanza semplice) — VERSIONE CORRETTA
+   Alterno PER COPPIA (row): coppia 1 blu, 2 gialla, 3 blu...
+   4 card per riga RESTANO perché #rightCol è grid 4 colonne
+   ===================================================== */
+
+:root{
+  --pairBlue: rgba(56,189,248,.16);
+  --pairBlueBorder: rgba(56,189,248,.85);
+
+  --pairYellow: rgba(250,204,21,.20);
+  --pairYellowBorder: rgba(250,204,21,.92);
+}
+
+
+
+/* =====================================================
+   SPAZIO TRA COPPIE (senza rompere 4 colonne)
+   ===================================================== */
+
+/* azzero il column-gap */
+#rightCol{
+  gap: 10px 0px !important;
+}
+
+/* spazio tra coppia 1 e coppia 2 */
+#rightCol .row > :nth-child(2){
+  margin-right: 14px;  /* distanza tra coppie */
+}
+
+/* stesso spazio per tutte le coppie */
+#rightCol .row > :nth-child(4){
+  margin-right: 14px;
+}
+
+/* ✅ alternanza per coppia usando la .row (che ESISTE nel DOM) */
+#rightCol .row:nth-child(odd)  .drop,
+#rightCol .row:nth-child(odd)  .fixed{
+  background: var(--pairBlue) !important;
+  outline: 4px solid var(--pairBlue) !important;   /* “tappeto” che unisce */
+  outline-offset: -6px !important;
+}
+
+#rightCol .row:nth-child(even) .drop,
+#rightCol .row:nth-child(even) .fixed{
+  background: var(--pairYellow) !important;
+  outline: 4px solid var(--pairYellow) !important;
+  outline-offset: -6px !important;
+}
+
+/* tratteggio coerente */
+#rightCol .row:nth-child(odd)  .drop{ border-color: var(--pairBlueBorder) !important; }
+#rightCol .row:nth-child(even) .drop{ border-color: var(--pairYellowBorder) !important; }
+
+/* bordi fixed coerenti */
+#rightCol .row:nth-child(odd)  .fixed{ border:2px solid rgba(56,189,248,.65) !important; }
+#rightCol .row:nth-child(even) .fixed{ border:2px solid rgba(250,204,21,.65) !important; }
+
+/* arrotondamento “card unica” (sinistra/destra della coppia) */
+#rightCol .row > :is(.drop,.fixed):first-child{
+  border-radius: 12px 4px 4px 12px !important;
+}
+#rightCol .row > :is(.drop,.fixed):last-child{
+  border-radius: 4px 12px 12px 4px !important;
+}
+
+/* il drop pieno NON deve tornare bianco */
+.drop.filled{ background: inherit !important; }
+
+/* =====================================================
+   MOBILE FINAL OVERRIDE (deve stare in fondo al file)
+   FULL IMMAGINE + BORDO LEGGERISSIMO
+   ===================================================== */
+@media (max-width: 520px){
+
+  /* niente cornice interna */
+  .fixed, .drop{
+    padding: 0 !important;              /* ✅ l’immagine tocca i bordi */
+  }
+
+  /* bordo leggerissimo solo sul fixed */
+  .fixed{
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: rgba(15,23,42,.12) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;        /* ✅ taglia angoli dell’immagine */
+    background: transparent !important;
+  }
+
+  /* il drop può restare tratteggiato ma senza padding */
+  .drop{
+    border-width: 2px !important;
+    border-style: dashed !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+  }
+
+  /* IMPORTANTISSIMO: il contenuto deve riempire tutto */
+  .fixed .pieceContent,
+  .drop .pieceContent,
+  .fixed > *,
+  .drop > *{
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* l’immagine deve riempire il quadrato (niente “cornice bianca”) */
+  .fixed img,
+  .drop img,
+  .pieceContent img{
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    object-fit: cover !important;       /* ✅ riempie tutto */
+    display: block !important;
+  }
+
+  /* NON far tornare bianco quando è filled */
+  .drop.filled{
+    background: inherit !important;
+  }
+}
+
+
+/* ====== TUNING LAYOUT (12 coppie): sinistra leggermente più piccola, destra più grande ====== */
+.board{ grid-template-columns: 0.9fr 1.3fr; } /* più spazio al pannello destro */
+#leftCol{ gap:8px; } /* leggermente più compatto */
+.piece{ padding:8px; } /* riduce un filo i pezzi a sinistra */
+
+
+
+/* =====================================================
+   SINISTRA più piccola SOLO DESKTOP/LIM (NO mobile)
+   ===================================================== */
+
+/* Desktop/LIM */
+/* =========================================
+   SINISTRA più compatta (solo desktop)
+   ========================================= */
+@media (min-width: 901px){
+
+  #leftCol{
+    grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+    gap:6px !important;
+  }
+
+  .piece{
+    padding:2px !important;
+  }
+
+  .pieceContent{
+    min-height: unset !important;
+  }
+
+}
+
+/* =====================================================
+   MODALITÀ LIM (desktop grande): DESTRA DOMINANTE
+   Non impatta mobile/tablet
+   ===================================================== */
+@media (min-width: 1200px){
+
+  /* più spazio totale (se vuoi “effetto LIM”) */
+  .wrap{
+    max-width: 1500px !important;
+  }
+
+  /* colonna destra dominante */
+  .board{
+    grid-template-columns: 0.7fr 1.3fr !important;
+    gap: 16px !important;
+  }
+
+  /* sinistra più compatta (ma sempre 3 per riga) */
+  #leftCol{
+    grid-template-columns: repeat(3, minmax(0,8fr)) !important;
+    gap: 6px !important;
+  }
+  .piece{
+    padding: 3px !important;          /* riquadri più “piccoli” */
+  }
+
+  /* destra più “presente” */
+  #rightCol{
+    gap: 10px 0px !important;         /* un filo più respiro verticale */
+  }
+
+  /* fixed (immagini fisse) più grandi */
+  .fixed{
+    padding: 6px !important;
+  }
+
+  /* se vuoi davvero “wow” su LIM, sblocca questa:
+  .fixed, .drop{ transform: scale(1.04); transform-origin: center; }
+  */
+}
+
+/* =====================================================
+   FIX MOBILE: i 2 pannelli DEVONO stare in colonna
+   (questo override è in fondo per vincere su regole successive)
+   ===================================================== */
+@media (max-width: 900px){
+  .board{ grid-template-columns: 1fr !important; }
+}
+
+
+/* =====================================================
+   MOBILE – riduci leggermente elementi da spostare
+   ===================================================== */
+/* =====================================================
+   MOBILE – 4 CARD PER RIGA (solo elementi da spostare)
+   ===================================================== */
+@media (max-width: 900px){
+
+  #leftCol{
+    grid-template-columns: repeat(4, minmax(0,1fr)) !important;
+    gap:4px !important;
+  }
+
+  .piece{
+    aspect-ratio: 1 / 1 !important;
+    padding:0px !important;
+    border-radius:8px !important;
+  }
+
+  .pieceContent{
+    height:100% !important;
+    min-height:0 !important;
+  }
+
+  .pieceContent img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:contain !important;
+  }
+
+  .pieceText{
+    font-size: clamp(8px, 2.3vw, 13px) !important;
+  }
+}
+</style>
+</head>
+
+<body>
+  <!-- Menu unico -->
+  <script src="js/nav.js"></script>
+  <script src="js/menu.js"></script>
+
+  <main class="wrap">
+    <div class="top">
+      <div>
+        <div class="h1">Abbinamenti</div>
+        <div class="muted">Trascina gli elementi di sinistra nel riquadro giusto a destra.</div>
+      </div>
+      <div class="bar">
+        <div id="status" class="muted">…</div>
+        <button id="btnShuffle" class="btn" type="button">🔀 Mescola</button>
+        <button id="btnReset" class="btn" type="button">↺ Reset</button>
+
+        <button id="btnRepick" class="btn" type="button">🎴 Cambia Card</button>
+        <button id="btnBackSelect" class="btn" type="button">⬅ Seleziona coppie</button>
+
+        <div class="zoomBox">
+  <button class="btn" id="zAuto" type="button">AUTO</button>
+  <button class="btn" id="zMinus" type="button">➖</button>
+  <span id="zoomLabel" class="muted">AUTO</span>
+  <button class="btn" id="zPlus" type="button">➕</button>
+</div>
+
+
+      </div>
+    </div>
+
+    <section class="board">
+      <div class="panel">
+        <div class="panelTitle">ELEMENTI DA SPOSTARE</div>
+        <div id="leftCol"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panelTitle">ABBINA</div>
+        <div id="rightCol"></div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- AUDIO -->
+<audio id="sfxAttach" src="audio/effetto_sonoro_din.mp3" preload="auto"></audio>
+<audio id="sfxWin"    src="audio/super_mario_vittoria.mp3" preload="auto"></audio>
+
+  <!-- Dati esterni + motore -->
+  <script src="js/pairs.js"></script>
+<script>
+  // ✅ Applica filtri passati da pairs_select.html (querystring) PRIMA di avviare il motore
+  (function applyPairsFiltersFromURL(){
+    const params = new URLSearchParams(location.search);
+
+    const classe = params.get("classe") || "";
+    const disciplina = params.get("disciplina") || "";
+    const livello = params.get("livello") || "";
+    const argomento = params.get("argomento") || "";
+    const numeroRaw = params.get("numero") || "";
+    const numero = numeroRaw ? parseInt(numeroRaw, 10) : 0;
+
+
+const seedRaw = params.get("seed") || "";
+const seed = seedRaw ? parseInt(seedRaw, 10) : Date.now();
+
+// PRNG deterministico (Mulberry32) per "ripescare" cambiando seed
+function mulberry32(a){
+  return function(){
+    let t = a += 0x6D2B79F5;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+const rand = mulberry32(Number.isFinite(seed) ? seed : Date.now());
+
+    const src = Array.isArray(window.PAIRS) ? window.PAIRS : [];
+    const getMeta = (p) => (p && p.meta) ? p.meta : {};
+
+    // 1) filtro meta (classe/disciplina/livello) + TOPICS (argomento/argomentoSecondario)
+    // Supporta:
+    // - ?argomento=Frazioni (compatibilità)
+    // - ?topics=Frazioni&topics=Divisioni
+    // - ?topics=Frazioni,Divisioni
+    const norm = (s) => (s ?? "").toString().trim().toLowerCase();
+    const splitTopics = (s) => norm(s).split(/\s*[,;|]+\s*/).filter(Boolean);
+
+    // topics dalla query
+    let topics = [];
+    const tAll = params.getAll("topics").filter(Boolean);
+    if(tAll.length){
+      for(const t of tAll){
+        topics.push(...splitTopics(t));
+      }
+    }
+    // fallback a argomento=
+    if(!topics.length && argomento){
+      topics = splitTopics(argomento);
+    }
+    // dedup
+    topics = Array.from(new Set(topics));
+
+    const debug = { requested: topics.slice(), primary: [], secondary: [], both: [] };
+
+    let filtered = src.filter(p => {
+      const m = getMeta(p);
+
+      if(classe && (m.classe || "") !== classe) return false;
+      if(disciplina && (m.disciplina || "") !== disciplina) return false;
+      if(livello && (m.livello || "") !== livello) return false;
+
+      if(!topics.length) return true;
+
+      const a1 = norm(m.argomento);
+      const a2list = Array.isArray(m.argomentoSecondario)
+        ? m.argomentoSecondario.map(norm).filter(Boolean)
+        : splitTopics(m.argomentoSecondario);
+
+      const hitPrimary = !!a1 && topics.includes(a1);
+      const hitSecondary = a2list.some(x => topics.includes(x));
+
+      if(hitPrimary && hitSecondary) debug.both.push(p.id || "");
+      else if(hitPrimary) debug.primary.push(p.id || "");
+      else if(hitSecondary) debug.secondary.push(p.id || "");
+
+      return (hitPrimary || hitSecondary);
+    });
+
+    // Debug a video (solo quando c'è un topic richiesto)
+    (function renderTopicDebug(){
+      if(!topics.length) return;
+      let box = document.getElementById("topicDebug");
+      if(!box){
+        box = document.createElement("div");
+        box.id = "topicDebug";
+        box.style.marginTop = "10px";
+        box.style.padding = "10px 12px";
+        box.style.border = "1px dashed rgba(15,23,42,.22)";
+        box.style.borderRadius = "14px";
+        box.style.background = "rgba(15,23,42,.02)";
+        box.style.fontSize = "13px";
+        box.style.color = "#0f172a";
+        const topEl = document.querySelector(".top > div");
+        if(topEl) topEl.appendChild(box);
+      }
+
+    /*  const fmt = (arr) => arr.filter(Boolean).join(", ") || "—";
+      box.innerHTML = `
+        <div style="font-weight:900; margin-bottom:6px;">DEBUG TOPIC</div>
+        <div><b>Richiesto:</b> ${topics.map(t=>t).join(", ")}</div>
+        <div style="margin-top:6px;"><b>Match per ARGOMENTO:</b> ${fmt(debug.primary)}</div>
+        <div><b>Match per ARG. SECONDARIO:</b> ${fmt(debug.secondary)}</div>
+        <div><b>Match per ENTRAMBI:</b> ${fmt(debug.both)}</div>
+        <div style="margin-top:6px; color:#6b7280;">Totale caricati: <b>${filtered.length}</b></div>
+      `;*/
+    })();
+// 2) se richiesto numero, estraggo N coppie (shuffle stabile)
+    if(Number.isFinite(numero) && numero > 0 && filtered.length > numero){
+      // shuffle copia
+      filtered = filtered
+        .map(p => ({p, r: rand()}))
+        .sort((a,b)=>a.r-b.r)
+        .slice(0, numero)
+        .map(x=>x.p);
+    }
+
+    // 3) rimpiazza PAIRS usato dal motore
+    window.PAIRS = filtered;
+
+    // debug/info (utile per status)
+    window.__PAIRS_FILTER_INFO = { classe, disciplina, livello, argomento, topics: (typeof topics!=='undefined'?topics.slice():[]), numero: numero || "" };
+  })();
+</script>
+<script src="js/pairs_engine.js"></script>
+  <script>
+    MatchPairs.boot();
+
+    // ✅ Layout: se ci sono 12 coppie, metti 3 coppie per riga (6 colonne)
+    function applyRightColsByPairs(){
+      const right = document.getElementById("rightCol");
+      if(!right) return;
+      const nDrops = right.querySelectorAll(".drop").length; // 1 drop = 1 coppia
+      right.setAttribute("data-pairs", String(nDrops));
+    }
+    applyRightColsByPairs();
+
+
+    // 🔁 Riprendi altre: ricarica la pagina cambiando seed, mantenendo gli stessi filtri
+    (function(){
+      const btnRepick = document.getElementById("btnRepick");
+      const btnBack = document.getElementById("btnBackSelect");
+
+      function currentParams(){
+        const p = new URLSearchParams(location.search);
+        // tolgo eventuali parametri "di gioco" e imposto un nuovo seed
+        p.set("seed", String(Date.now()));
+        return p;
+      }
+
+      btnRepick && btnRepick.addEventListener("click", ()=>{
+        const p = currentParams();
+        location.href = location.pathname + "?" + p.toString();
+      });
+
+      btnBack && btnBack.addEventListener("click", ()=>{
+        const p = new URLSearchParams(location.search);
+        p.delete("seed");
+        location.href = "pairs_select.html" + (p.toString() ? ("?" + p.toString()) : "");
+      });
+    })();
+  </script>
+
+
+<script>
+  const ZOOM_LEVELS = [0.55,0.65,0.75, 0.85, 0.95, 1.0, 1.1, 1.2, 1.3,1.4];
+  const KEY = "MATCH_PAIRS_ZOOM";
+  const KEY_MODE = "MATCH_PAIRS_ZMODE"; // "auto" | "manual"
+
+  const board = document.querySelector(".wrap"); // ✅ zoom su tutto
+
+  const label = document.getElementById("zoomLabel");
+  const btnPlus = document.getElementById("zPlus");
+  const btnMinus = document.getElementById("zMinus");
+  const btnAuto = document.getElementById("zAuto");
+
+  function clamp(n,a,b){ return Math.max(a, Math.min(b,n)); }
+  function findNearestZoom(target){
+    let best = ZOOM_LEVELS[0], bestD = Infinity;
+    for(const z of ZOOM_LEVELS){
+      const d = Math.abs(z - target);
+      if(d < bestD){ bestD = d; best = z; }
+    }
+    return best;
+  }
+
+  function countPairs(){
+    return document.querySelectorAll("#rightCol .drop").length || 0;
+  }
+
+  function computeAutoZoom(){
+    const pairs = countPairs();
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    let base = 1.0;
+    if (w >= 1600) base = 1.05;
+    if (w >= 1900) base = 1.10;
+
+    let target = base;
+
+    if (pairs <= 6) target = base + 0.10;
+    else if (pairs <= 8) target = base + 0.05;
+    else if (pairs <= 10) target = base;
+    else if (pairs <= 12) target = base - 0.08;
+    else target = base - 0.15;
+
+    if (h < 820) target -= 0.07;
+    if (h < 720) target -= 0.10;
+
+    target = clamp(target, ZOOM_LEVELS[0], ZOOM_LEVELS[ZOOM_LEVELS.length-1]);
+    return findNearestZoom(target);
+  }
+
+  function setMode(mode){
+    localStorage.setItem(KEY_MODE, mode);
+    // UI button
+    if(btnAuto) btnAuto.classList.toggle("on", mode === "auto");
+  }
+
+  function applyZoom(z, mode){
+    if(!board) return;
+    board.style.zoom = z;
+    if(label){
+      label.textContent = (mode === "auto")
+        ? `AUTO ${Math.round(z*100)}%`
+        : `${Math.round(z*100)}%`;
+    }
+  }
+
+  function setAuto(){
+    setMode("auto");
+    const z = computeAutoZoom();
+    applyZoom(z, "auto");
+  }
+
+  function getManual(){
+    const v = parseFloat(localStorage.getItem(KEY) || "1");
+    return findNearestZoom(Number.isFinite(v) ? v : 1.0);
+  }
+
+  function setManual(z){
+    setMode("manual");
+    localStorage.setItem(KEY, String(z));
+    applyZoom(z, "manual");
+  }
+
+  function step(dir){
+    const mode = localStorage.getItem(KEY_MODE) || "auto";
+    const current = (mode === "manual") ? getManual() : computeAutoZoom();
+    const idx = ZOOM_LEVELS.indexOf(findNearestZoom(current));
+    const next = ZOOM_LEVELS[clamp(idx + dir, 0, ZOOM_LEVELS.length-1)];
+    setManual(next); // ➕/➖ = manuale
+  }
+
+  // Eventi
+  btnAuto?.addEventListener("click", setAuto);
+  btnPlus?.addEventListener("click", ()=>step(1));
+  btnMinus?.addEventListener("click", ()=>step(-1));
+
+  window.addEventListener("resize", () => {
+    if((localStorage.getItem(KEY_MODE) || "auto") === "auto"){
+      setAuto();
+    }
+  });
+
+  // dopo reset/mescola ricalcolo auto se serve
+  document.getElementById("btnReset")?.addEventListener("click", () => {
+    if((localStorage.getItem(KEY_MODE) || "auto") === "auto"){
+      setTimeout(setAuto, 60);
+    }
+  });
+  document.getElementById("btnShuffle")?.addEventListener("click", () => {
+    if((localStorage.getItem(KEY_MODE) || "auto") === "auto"){
+      setTimeout(setAuto, 60);
+    }
+  });
+
+  // Avvio: se manuale esiste, lo applico; altrimenti auto
+  (function init(){
+    const mode = localStorage.getItem(KEY_MODE) || "auto";
+    if(mode === "manual"){
+      setMode("manual");
+      applyZoom(getManual(), "manual");
+    } else {
+      setAuto();
+    }
+  })();
+</script>
+
+
+
+
+<script>
+/* Blocca menu "salva immagine" su LIM + dragstart nativo su PC */
+document.addEventListener("contextmenu", (e)=>{
+  if(e.target.closest(".piece")) e.preventDefault();
+}, {passive:false});
+
+document.addEventListener("dragstart", (e)=>{
+  if(e.target.closest(".piece")) e.preventDefault();
+}, {passive:false});
+</script>
+
+
+</body>
+</html>

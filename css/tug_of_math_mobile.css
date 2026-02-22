@@ -314,3 +314,20 @@ body.tugMobile.isPlaying .mOpText{
 body.tugMobile.isPlaying .pitch{
   height:120px;
 }
+
+/* OK accanto allo 0 */
+.mKeypad{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:8px;
+}
+
+/* ultima riga: C - 0 - OK */
+.mKeypad .key{
+  height:48px;
+}
+
+.mKeypad .key.keyOK{
+  grid-column:auto;       /* NON deve occupare tutta la riga */
+  background:#1d8b5a;
+}

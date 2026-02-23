@@ -985,29 +985,6 @@ body.lim{
 
 <script>
 /* ---------------------------------------------------------
-   ASSET BASE (GitHub Pages / sottocartelle)
-   - evita problemi di path: img/... sempre corretto anche se la pagina è in /pairs/ o simili
---------------------------------------------------------- */
-const ASSET_BASE = (() => {
-  try{
-    const host = location.hostname || "";
-    const parts = (location.pathname || "").split("/").filter(Boolean);
-    // GitHub Pages: https://<user>.github.io/<repo>/...
-    if(host.endsWith("github.io") && parts.length >= 1){
-      return "/" + parts[0] + "/";
-    }
-  }catch(e){}
-  // default: root relativo
-  return "./";
-})();
-function asset(rel){
-  rel = String(rel || "").replace(/^\/+/, ""); // niente slash iniziale
-  return ASSET_BASE + rel;
-}
-
-const playerAvatar = (i)=>asset(`img/players/p${i}.png`);
-
-/* ---------------------------------------------------------
    AUDIO (metti i file in /audio/...)
 --------------------------------------------------------- */
 const SFX = {
@@ -1191,10 +1168,10 @@ let state = {
   scores:[0,0,0,0],
   locked:false,
   playerMeta: [
-    {name:"Giocatore 1", avatar:playerAvatar(1)},
-    {name:"Giocatore 2", avatar:playerAvatar(2)},
-    {name:"Giocatore 3", avatar:playerAvatar(3)},
-    {name:"Giocatore 4", avatar:playerAvatar(4)}
+    {name:"Giocatore 1", avatar:"img/players/p1.png"},
+    {name:"Giocatore 2", avatar:"img/players/p2.png"},
+    {name:"Giocatore 3", avatar:"img/players/p3.png"},
+    {name:"Giocatore 4", avatar:"img/players/p4.png"}
   ]
 ,
   filter: { disciplina: "", argomento: "", classe: "" }
@@ -1482,13 +1459,13 @@ let i = 0;
 function tryNext(){
   if(i >= exts.length){
     if(fallback){
-      img.src = asset(fallback);
+      img.src = fallback;
     }else{
       img.style.display = "none";
     }
     return;
   }
-  img.src = asset(`img/home/${activeDisc}_${slug}.${exts[i++]}`);
+  img.src = `img/home/${activeDisc}_${slug}.${exts[i++]}`;
 }
 
 img.onerror = tryNext;
@@ -1731,7 +1708,7 @@ function buildPlayerSetup(){
     row.style.gap = "12px";
 
     row.innerHTML = `
-      <img src="${playerAvatar(i+1)}"
+      <img src="img/players/p${i+1}.png"
            alt="Giocatore ${i+1}"
            style="width:54px;height:54px;border-radius:16px;object-fit:cover;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06)"
            onerror="this.style.display='none'">
@@ -1767,10 +1744,10 @@ function readPlayerSetup(){
   for(let i=0;i<p;i++){
     const nameEl = document.getElementById("pName"+i);
     const name = (nameEl?.value || `Giocatore ${i+1}`).trim() || `Giocatore ${i+1}`;
-    const avatar = playerAvatar(i+1); // fisso
+    const avatar = `img/players/p${i+1}.png`; // fisso
     meta.push({name, avatar});
   }
-  while(meta.length < 4) meta.push({name:`Giocatore ${meta.length+1}`, avatar:playerAvatar(meta.length+1)});
+  while(meta.length < 4) meta.push({name:`Giocatore ${meta.length+1}`, avatar:`img/players/p${meta.length+1}.png`});
   state.playerMeta = meta;
   // persist names
   savePlayerNames(state.playerMeta.map(x=>x?.name || "").slice(0,4));
@@ -1890,10 +1867,10 @@ function resetNamesOnly(){
   // Solo nomi giocatori (setup)
   clearPlayerNames();
   if(!Array.isArray(state.playerMeta) || state.playerMeta.length<4){
-    state.playerMeta = [{name:"",avatar:playerAvatar(1)},{name:"",avatar:playerAvatar(2)},{name:"",avatar:playerAvatar(3)},{name:"",avatar:playerAvatar(4)}];
+    state.playerMeta = [{name:"",avatar:"img/players/p1.png"},{name:"",avatar:"img/players/p2.png"},{name:"",avatar:"img/players/p3.png"},{name:"",avatar:"img/players/p4.png"}];
   }
   for(let i=0;i<4;i++){
-    if(!state.playerMeta[i]) state.playerMeta[i] = {name:"", avatar:playerAvatar(i+1)};
+    if(!state.playerMeta[i]) state.playerMeta[i] = {name:"", avatar:`img/players/p${i+1}.png`};
     state.playerMeta[i].name = "";
   }
   savePlayerNames(["","","",""]);

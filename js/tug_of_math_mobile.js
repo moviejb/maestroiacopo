@@ -479,10 +479,14 @@ const ballShadow = $("ballShadow");
   }
 
   function checkWin(){
-    if(state.pos <= -100){ win("L"); return true; }
-    if(state.pos >= 100){ win("R"); return true; }
-    return false;
-  }
+  // BLU segna a destra
+  if(state.pos >= 100){ win("L"); return true; }
+
+  // ROSSI segnano a sinistra
+  if(state.pos <= -100){ win("R"); return true; }
+
+  return false;
+}
 
   function nextTurnSoon(){
     stopTimers();
@@ -518,8 +522,14 @@ if(Number.isNaN(n)){
 
       setStatus("✅ Corretto!", "good");
       playSfx("correct");
-      if(state.turn === "L"){ state.pointsL++; move(-state.step); }
-      else{ state.pointsR++; move(+state.step); }
+     // CALCIO VERO: attacco verso porta avversaria
+if(state.turn === "L"){
+  state.pointsL++;
+  move(+state.step);   // BLU attacca verso destra
+}else{
+  state.pointsR++;
+  move(-state.step);   // ROSSI attaccano verso sinistra
+}
       updateScore();
       if(!checkWin()) nextTurnSoon();
     }else{
@@ -528,8 +538,9 @@ if(Number.isNaN(n)){
       setStatus(`❌ Sbagliato (${cur.a})  ➜ penalità -${pen}`, "bad");
       playSfx("wrong");
       // sbagliato: BLU spinge verso ROSSI (+pen), ROSSI verso BLU (-pen)
-      if(state.turn === "L") move(+pen);
-      else move(-pen);
+      // errore: palla verso propria porta
+if(state.turn === "L") move(-pen);
+else move(+pen);
       if(!checkWin()) nextTurnSoon();
     }
   }

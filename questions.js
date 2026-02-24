@@ -4,7 +4,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria",
-    "argomentiSecondari": [],
     "domanda": "Dove vivevano spesso gli uomini primitivi?",
     "opzioni": [
       {
@@ -24,7 +23,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria",
-    "argomentiSecondari": [],
     "domanda": "Che cosa usavano per cacciare?",
     "opzioni": [
       {
@@ -44,7 +42,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria",
-    "argomentiSecondari": [],
     "domanda": "Il fuoco serviva anche per scaldarsi?",
     "opzioni": [
       {
@@ -64,7 +61,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria",
-    "argomentiSecondari": [],
     "domanda": "Le pitture rupestri si trovano spesso nelle grotte?",
     "opzioni": [
       {
@@ -84,7 +80,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria",
-    "argomentiSecondari": [],
     "domanda": "Che cosa facevano gli uomini nomadi?",
     "opzioni": [
       {
@@ -104,7 +99,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Una fotografia è una fonte storica?",
     "opzioni": [
       {
@@ -128,7 +122,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Chi è lo storico?",
     "opzioni": [
       {
@@ -148,7 +141,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Che cosa studia la storia?",
     "opzioni": [
       {
@@ -168,7 +160,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Inizia la Terra",
     "opzioni": [
       {
@@ -192,7 +183,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Nascono i dinosauri",
     "opzioni": [
       {
@@ -216,7 +206,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Nell'era ARCAICA...",
     "opzioni": [
       {
@@ -236,7 +225,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Nell'era ARCAICA...",
     "opzioni": [
       {
@@ -256,7 +244,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Nell'era ARCAICA...",
     "opzioni": [
       {
@@ -276,7 +263,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Nell'ERA PRIMARIA...",
     "opzioni": [
       {
@@ -296,7 +282,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Nell'ERA TERZIARIA...",
     "opzioni": [
       {
@@ -316,7 +301,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Compaiono le scimmie antropomorfe",
     "opzioni": [
       {
@@ -340,7 +324,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Era QUATERNARIA...",
     "opzioni": [
       {
@@ -360,7 +343,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Chi sono le SCIMMIE ANTROPOMORFE?",
     "opzioni": [
       {
@@ -384,7 +366,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Cos'è lo SCAVO STRATISTRAFICO?",
     "opzioni": [
       {
@@ -408,7 +389,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Cosa sono i FOSSILI?",
     "opzioni": [
       {
@@ -428,7 +408,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "I fossili servono per studiare i cambiamenti della Terra.",
     "opzioni": [
       {
@@ -448,7 +427,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Cosa fa l'ARCHEOLOGO?",
     "opzioni": [
       {
@@ -472,7 +450,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Cosa fa l'ARCHEOSUB?",
     "opzioni": [
       {
@@ -496,7 +473,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Cosa fa il PALEONTOLOGO?",
     "opzioni": [
       {
@@ -520,7 +496,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Cosa fa il GEOLOGO?",
     "opzioni": [
       {
@@ -540,7 +515,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Cosa fa l'ANTROPOLOGO?",
     "opzioni": [
       {
@@ -564,7 +538,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Che cos'è la STORIA?",
     "opzioni": [
       {
@@ -584,7 +557,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Chi è lo STORICO?",
     "opzioni": [
       {
@@ -604,7 +576,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Cosa sono le fonti?",
     "opzioni": [
       {
@@ -624,7 +595,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "LE FONTI POSSONO ESSERE:",
     "opzioni": [
       {
@@ -644,7 +614,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Una LETTERA è una fonte...",
     "opzioni": [
       {
@@ -668,7 +637,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "CHI\n1 Cerca le fonti\n2 Analizza le fonti\n3 Interpreta le fonti\n4 Ricostruisce gli avvenimenti\n5 Mette gli avvenimenti in ordine",
     "opzioni": [
       {
@@ -692,7 +660,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "A quanti anni corrisponde UN MILLENNIO?",
     "opzioni": [
       {
@@ -716,7 +683,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "A quanti anni corrisponde UN DECENNIO?",
     "opzioni": [
       {
@@ -740,7 +706,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "A quanti anni corrisponde UN SECOLO?",
     "opzioni": [
       {
@@ -760,7 +725,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Che cos'è il REPERTO?",
     "opzioni": [
       {
@@ -780,7 +744,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Quello nella foto è una fonte...",
     "opzioni": [
       {
@@ -804,7 +767,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Il racconto di un nonno, un genitore è una fonte...",
     "opzioni": [
       {
@@ -828,7 +790,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Nella foto vediamo delle fonti....",
     "opzioni": [
       {
@@ -852,7 +813,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Nella foto vedi delle fonti...",
     "opzioni": [
       {
@@ -876,7 +836,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "La linea del tempo serve per ...",
     "opzioni": [
       {
@@ -900,7 +859,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Che cos'è un SITO ARCHEOLOGICO?",
     "opzioni": [
       {
@@ -920,7 +878,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "I reperti più antichi sono sepolti:",
     "opzioni": [
       {
@@ -944,7 +901,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Dove sono conservate molte tracce del passato?",
     "opzioni": [
       {
@@ -968,7 +924,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Cosa vedi nella foto?",
     "opzioni": [
       {
@@ -992,7 +947,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Cosa sono i FOSSILI?",
     "opzioni": [
       {
@@ -1012,7 +966,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "I fossili sono resti di esseri viventi animali o vegetali.",
     "opzioni": [
       {
@@ -1032,7 +985,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "I fossili sono reperti recenti.",
     "opzioni": [
       {
@@ -1052,7 +1004,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "I fossili servono per studiare i cambiamenti della Terra.",
     "opzioni": [
       {
@@ -1072,7 +1023,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Si fossilizzano solo gli animali.",
     "opzioni": [
       {
@@ -1092,7 +1042,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Nei fossili si sono conservate solo le parti dure degli animali.",
     "opzioni": [
       {
@@ -1112,7 +1061,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Durante il processo di FOSSILIZZAZIONE...",
     "opzioni": [
       {
@@ -1136,7 +1084,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Nell’agosto del 1972 in Calabria furono recuperate due statue di bronzo in mare, a circa otto metri di profondità.  Come si chiamano?",
     "opzioni": [
       {
@@ -1160,7 +1107,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "La parola GEOLOGO deriva dal greco gê (terra) e logos (studio). Cosa studia uno GEOLOGO?",
     "opzioni": [
       {
@@ -1180,7 +1126,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Quale strumento usa lo storico per ordinare cronologicamente gli eventi?",
     "opzioni": [
       {
@@ -1200,7 +1145,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Le fonti possono essere di vario tipo: materiali, orali, scritte e...",
     "opzioni": [
       {
@@ -1224,7 +1168,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Quale di queste immagini è una FONTE VISIVA o ICONOGRAFICA?",
     "opzioni": [
       {
@@ -1252,7 +1195,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "La storia della Terra",
-    "argomentiSecondari": [],
     "domanda": "Il mondo viene creato da...",
     "opzioni": [
       {
@@ -1276,7 +1218,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "La storia della Terra",
-    "argomentiSecondari": [],
     "domanda": "Secondo gli scienziati circa 15 miliardi di anni ci fu una fortissima esplosione chiamata...",
     "opzioni": [
       {
@@ -1296,7 +1237,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria",
-    "argomentiSecondari": [],
     "domanda": "Dove vivevano spesso gli uomini primitivi?",
     "opzioni": [
       {
@@ -1316,7 +1256,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria",
-    "argomentiSecondari": [],
     "domanda": "Che cosa usavano per cacciare?",
     "opzioni": [
       {
@@ -1336,7 +1275,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria",
-    "argomentiSecondari": [],
     "domanda": "Le pitture rupestri si trovano spesso nelle grotte?",
     "opzioni": [
       {
@@ -1360,7 +1298,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "In quale ERA nascono i dinosauri?",
     "opzioni": [
       {
@@ -1388,7 +1325,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "La storia della Terra",
-    "argomentiSecondari": [],
     "domanda": "Gli scienziati sostengono che la Terra fosse formata da un unico grande continente: come si chiamava?",
     "opzioni": [
       {
@@ -1412,7 +1348,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "La storia della Terra",
-    "argomentiSecondari": [],
     "domanda": "Come veniva chiamato il mare attorno alla terra?",
     "opzioni": [
       {
@@ -1436,7 +1371,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "La storia della Terra",
-    "argomentiSecondari": [],
     "domanda": "Tutta la terra, con le eruzioni dei vulcani e i terremoti, iniziò a separarsi. Come si chiama questo evento?",
     "opzioni": [
       {
@@ -1460,7 +1394,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "La storia della Terra",
-    "argomentiSecondari": [],
     "domanda": "Che cos'è un CONTINENTE?",
     "opzioni": [
       {
@@ -1484,7 +1417,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "La storia della Terra",
-    "argomentiSecondari": [],
     "domanda": "Che cos'è il  BIG BANG?",
     "opzioni": [
       {
@@ -1504,7 +1436,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "A quale era geologica appartiene questa immagine?",
     "opzioni": [
       {
@@ -1532,7 +1463,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Nell'immagine vediamo ....",
     "opzioni": [
       {
@@ -1556,7 +1486,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Quali sono gli organismi  costituiti da molte cellule e perciò chiamati pluricellulari?",
     "opzioni": [
       {
@@ -1576,7 +1505,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "I batteri, i primi esseri viventi, sono UNICELLULARI cioè...",
     "opzioni": [
       {
@@ -1600,7 +1528,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Nell'ERA PRIMARIA si svilupparono nei mari i primi animali formati da più cellule e i primi organismi INVERTEBRATI, cioè privi di \nscheletro. Quali erano?",
     "opzioni": [
       {
@@ -1624,7 +1551,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "chi sono gli  invertebrati?",
     "opzioni": [
       {
@@ -1648,7 +1574,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Nacquero prima gli animali INVERTEBRATI O gli animali VERTEBRATI?",
     "opzioni": [
       {
@@ -1668,7 +1593,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Nell'ERA PRIMARIA apparvero i primi pesci, alcuni di essi impararono a vivere sia nell’acqua che sulla terraferma: fuorono i primi...",
     "opzioni": [
       {
@@ -1692,7 +1616,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Nell'era primaria, quando il clima si fece più arido, il corpo di certi anfibi si coprì di squame e iniziarono a respirare con i polmoni, evolvendosi in...",
     "opzioni": [
       {
@@ -1712,7 +1635,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Quali furono i primi organismi a lasciare l’acqua per andare sulla terra?",
     "opzioni": [
       {
@@ -1732,7 +1654,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "I primi organismi a lasciare l’acqua furono le piante. La Terra si coprì di vegetazione con piante di ...",
     "opzioni": [
       {
@@ -1756,7 +1677,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Dopo lo sviluppo delle piante sulla terra, apparvero i primi...",
     "opzioni": [
       {
@@ -1776,7 +1696,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Durante l’era secondaria si verificarono numerosi cambiamenti.",
     "opzioni": [
       {
@@ -1796,7 +1715,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "In quale ERA sulla Terra comparvero nuove piante e rettili come coccodrilli, tartarughe e dinosauri?",
     "opzioni": [
       {
@@ -1824,7 +1742,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Che tipo di animali erano i dinosauri?",
     "opzioni": [
       {
@@ -1844,7 +1761,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Vi erano dinosauri erbivori e carnivori. Quali di questi avevano sviluppato un collo lungo?",
     "opzioni": [
       {
@@ -1868,7 +1784,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "I dinosauri ERBIVORI erano QUADRUPEDI (con quattro zampe)?",
     "opzioni": [
       {
@@ -1888,7 +1803,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Perchè i  dinosauri CARNIVORI erano BIPEDI (avevano due zampe)? - leggi bene le risposte",
     "opzioni": [
       {
@@ -1912,7 +1826,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Come si chiamavano i dinosauri alati?",
     "opzioni": [
       {
@@ -1936,7 +1849,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Come si chiamavano i dinosauri che vivevano nel mare?",
     "opzioni": [
       {
@@ -1960,7 +1872,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Chi o che cosa era SCIPIONYX DETTO CIRO?",
     "opzioni": [
       {
@@ -1984,7 +1895,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Perchè i Dinosauri si sono ESTINTI?",
     "opzioni": [
       {
@@ -2008,7 +1918,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Tutti i dinosauri deponevano le uova in avvallamenti del terreno per proteggerle dai predatori.",
     "opzioni": [
       {
@@ -2032,7 +1941,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Una fotografia è una fonte storica?",
     "opzioni": [
       {
@@ -2052,7 +1960,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Chi sono le SCIMMIE ANTROPOMORFE?",
     "opzioni": [
       {
@@ -2080,7 +1987,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "L'ERA GEOLOGICA corrisponde ad un periodo di TEMPO...",
     "opzioni": [
       {
@@ -2104,7 +2010,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Quale strumento usa lo storico per ordinare gli eventi?",
     "opzioni": [
       {
@@ -2124,7 +2029,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Chi è lo storico?",
     "opzioni": [
       {
@@ -2144,7 +2048,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Cosa sono i FOSSILI?",
     "opzioni": [
       {
@@ -2164,7 +2067,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "La storia della Terra",
-    "argomentiSecondari": [],
     "domanda": "La TERRA era formata da un unico grande continente: come si chiamava?",
     "opzioni": [
       {
@@ -2188,7 +2090,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "La storia della Terra",
-    "argomentiSecondari": [],
     "domanda": "Circa 15 miliardi di anni fa, ci fu una fortissima esplosione chiamata...",
     "opzioni": [
       {
@@ -2208,7 +2109,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "La storia della Terra",
-    "argomentiSecondari": [],
     "domanda": "Con le eruzioni dei vulcani e i terremoti, la TERRA iniziò a separarsi. Come si chiama questo evento?",
     "opzioni": [
       {
@@ -2232,7 +2132,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
     "domanda": "Nell'era ARCAICA...",
     "opzioni": [
       {
@@ -2252,7 +2151,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "La storia della Terra",
-    "argomentiSecondari": [],
     "domanda": "Il Sole è nato prima dell’Universo.",
     "opzioni": [
       {
@@ -2272,7 +2170,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "La storia della Terra",
-    "argomentiSecondari": [],
     "domanda": "La Terra viene creata con il Big Bang",
     "opzioni": [
       {
@@ -2296,7 +2193,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "La storia della Terra",
-    "argomentiSecondari": [],
     "domanda": "All’interno della Terra vi era il MAGMA che risaliva in superficie attraverso fratture della crosta terrestre dando origine a cosa?",
     "opzioni": [
       {
@@ -2316,7 +2212,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "La storia della Terra",
-    "argomentiSecondari": [],
     "domanda": "I vapori delle eruzioni vulcaniche salendo verso il cielo, cosa formarono?",
     "opzioni": [
       {
@@ -2340,7 +2235,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "La storia della Terra",
-    "argomentiSecondari": [],
     "domanda": "E' una grande estensione di terraferma.",
     "opzioni": [
       {
@@ -2360,7 +2254,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Il racconto di un nonno o un genitore è una fonte...",
     "opzioni": [
       {
@@ -2384,7 +2277,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "Che cos'è un SITO ARCHEOLOGICO?",
     "opzioni": [
       {
@@ -2404,9 +2296,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria - Australopiteco",
-    "argomentiSecondari": [
-      "Preistoria"
-    ],
     "domanda": "L’Australopiteco viveva soprattutto...",
     "opzioni": [
       {
@@ -2434,9 +2323,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria - Australopiteco",
-    "argomentiSecondari": [
-      "Preistoria"
-    ],
     "domanda": "L’Australopiteco è vissuto...",
     "opzioni": [
       {
@@ -2464,9 +2350,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria - Australopiteco",
-    "argomentiSecondari": [
-      "Preistoria"
-    ],
     "domanda": "3.\tDove viveva l’Australopiteco?",
     "opzioni": [
       {
@@ -2494,9 +2377,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria - Australopiteco",
-    "argomentiSecondari": [
-      "Preistoria"
-    ],
     "domanda": "Cosa mangiava l’Australopiteco?",
     "opzioni": [
       {
@@ -2524,9 +2404,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria - Australopiteco",
-    "argomentiSecondari": [
-      "Preistoria"
-    ],
     "domanda": "L’Australopiteco viveva in piccoli gruppi",
     "opzioni": [
       {
@@ -2550,9 +2427,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria - Australopiteco",
-    "argomentiSecondari": [
-      "Preistoria"
-    ],
     "domanda": "L’Australopiteco aveva il cranio molto grande",
     "opzioni": [
       {
@@ -2576,9 +2450,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria - Australopiteco",
-    "argomentiSecondari": [
-      "Preistoria"
-    ],
     "domanda": "L’Australopiteco era nomade e si spostava...",
     "opzioni": [
       {
@@ -2598,9 +2469,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria - Australopiteco",
-    "argomentiSecondari": [
-      "Preistoria"
-    ],
     "domanda": "L’Australopiteco i nutriva di bacche, erbe e animali morti.",
     "opzioni": [
       {
@@ -2620,9 +2488,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria - Australopiteco",
-    "argomentiSecondari": [
-      "Preistoria"
-    ],
     "domanda": "Dove si rifugiava l’Australopiteco?",
     "opzioni": [
       {
@@ -2642,7 +2507,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria - Australopiteco",
-    "argomentiSecondari": [],
     "domanda": "Dove viveva INIZIALMENTE l'Australopiteco ?",
     "opzioni": [
       {
@@ -2662,7 +2526,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria - Australopiteco",
-    "argomentiSecondari": [],
     "domanda": "Di cosa era ricoperto il corpo dell'Australopiteco?",
     "opzioni": [
       {
@@ -2682,7 +2545,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria - Australopiteco",
-    "argomentiSecondari": [],
     "domanda": "L'Australopiteco aveva il cranio più piccolo del nostro.",
     "opzioni": [
       {
@@ -2702,7 +2564,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria - Australopiteco",
-    "argomentiSecondari": [],
     "domanda": "L'Australopiteco aveva il cranio più piccolo del nostro.",
     "opzioni": [
       {
@@ -2726,7 +2587,6 @@ const QUESTIONS = [
     "disciplina": "storia",
     "livello": "facile",
     "argomento": "Preistoria - Australopiteco",
-    "argomentiSecondari": [],
     "domanda": "Dove viveva l’Australopiteco?",
     "opzioni": [
       {
@@ -2739,36 +2599,6 @@ const QUESTIONS = [
       },
       {
         "text": "Nel mare",
-        "img": ""
-      }
-    ],
-    "corretta": 1,
-    "media": {
-      "tipo": "image",
-      "src": "img/storia/australopithecus.jpeg"
-    },
-    "explain": ""
-  },
-  {
-    "classe": "3",
-    "disciplina": "storia",
-    "livello": "facile",
-    "argomento": "Preistoria - Australopiteco",
-    "argomentiSecondari": [
-      "Preistoria"
-    ],
-    "domanda": "L’Australopiteco viveva soprattutto...",
-    "opzioni": [
-      {
-        "text": "in Europa",
-        "img": ""
-      },
-      {
-        "text": "in Africa orientale",
-        "img": ""
-      },
-      {
-        "text": "in America",
         "img": ""
       }
     ],

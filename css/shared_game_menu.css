@@ -1,0 +1,132 @@
+/* css/shared_game_menu.css — menu unico giochi */
+:root{
+  --menu-bg: rgba(255,255,255,.85);
+  --menu-stroke: rgba(10,16,32,.12);
+  --menu-shadow: rgba(0,0,0,.16);
+  --menu-text: rgba(10,16,32,.92);
+  --menu-muted: rgba(10,16,32,.68);
+}
+
+.gameTopbar{
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--menu-bg);
+  border-bottom: 1px solid var(--menu-stroke);
+  backdrop-filter: blur(10px);
+}
+
+.gameTopbar .brand{
+  display:flex; align-items:center; gap:10px;
+  min-width: 160px;
+}
+
+.gameTopbar .logoBall{
+  width:26px; height:26px; border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #b9d3ff 40%, #1b3b7d 70%, #0a1634);
+  box-shadow: 0 10px 30px rgba(47,123,255,.18);
+}
+
+.gameTopbar .title{
+  font-weight: 1100;
+  letter-spacing: .3px;
+  color: var(--menu-text);
+  white-space: nowrap;
+}
+
+.gameTopbar .controls{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  padding-bottom: 2px;
+}
+
+.gameTopbar .controls::-webkit-scrollbar{ height: 8px; }
+.gameTopbar .controls::-webkit-scrollbar-thumb{
+  background: rgba(10,16,32,.18);
+  border-radius: 999px;
+}
+
+.gameTopbar .ctrl{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  height: 40px;
+  padding: 6px 10px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.90);
+  border: 1px solid rgba(10,16,32,.12);
+  box-shadow: 0 10px 24px var(--menu-shadow);
+  white-space: nowrap;
+  color: var(--menu-text);
+}
+
+.gameTopbar .ctrl .lbl{
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--menu-muted);
+}
+
+.gameTopbar select,
+.gameTopbar input[type="text"],
+.gameTopbar input[type="number"]{
+  color: var(--menu-text);
+  background: rgba(255,255,255,.96);
+  border: 1px solid rgba(10,16,32,.16);
+  border-radius: 10px;
+  padding: 6px 10px;
+  outline: none;
+}
+.gameTopbar select{ height: 30px; }
+
+.gameTopbar input[type="range"]{ width: 92px; accent-color: rgba(10,16,32,.55); }
+
+.gameTopbar .btn,
+.gameTopbar .miniBtn{
+  cursor: pointer;
+  font-weight: 900;
+  color: var(--menu-text);
+  background: rgba(255,255,255,.90);
+  border: 1px solid rgba(10,16,32,.14);
+  box-shadow: 0 10px 24px var(--menu-shadow);
+}
+
+.gameTopbar .btn{
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 14px;
+}
+.gameTopbar .btn.ghost{ background: rgba(255,255,255,.78); }
+.gameTopbar .btn.ok{ background: rgba(29,139,90,.18); border-color: rgba(29,139,90,.35); }
+
+.gameTopbar .miniBtn{
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+
+@media (min-width: 1200px){
+  .gameTopbar{ padding: 10px 16px; }
+  .gameTopbar .ctrl{ height: 36px; padding: 6px 10px; }
+  .gameTopbar .ctrl .lbl{ font-size: 11px; }
+  .gameTopbar select{ height: 28px; padding: 4px 8px; }
+  .gameTopbar input[type="range"]{ width: 82px; }
+  .gameTopbar .btn{ height: 36px; font-size: 12px; }
+  .gameTopbar .miniBtn{ height: 28px; }
+}
+
+@media (max-width: 980px){
+  .gameTopbar .ctrl .lbl{ display:none; }
+}
+
+/* === PATCH: menu centrato quando non c'è titolo === */
+.gameTopbar{ justify-content:center; }
+.gameTopbar .controls{ justify-content:center; margin:0 auto; width:auto; max-width: 1400px; }

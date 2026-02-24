@@ -796,22 +796,20 @@ select{
 }
 
 
-/* ===== ZOOM (come altre pagine) ===== */
+/* ===== ZOOM (menu unico) ===== */
 :root{ --zoom: 1; }
 
-body{ overflow-x: hidden; }
+html, body{ overflow-x: hidden; }
 
-/* area scalabile (solo gioco) */
+/* area scalabile (solo gioco) — zoom CENTRATO */
 #zoomArea{
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%) scale(var(--zoom));
+  transform: scale(var(--zoom));
   transform-origin: top center;
   width: 100%;
   transition: transform .2s ease;
 }
 
-/* evita scroll orizzontale dovuto a arrotondamenti */
+/* evita scroll orizzontale dovuto ad arrotondamenti */
 html, body{ overflow-x: hidden; }
 
 /* se i miniBtn in topbar sono troppo grandi */
@@ -839,14 +837,16 @@ html, body{ overflow-x: hidden; }
 
 .topbar .controls{
   display:flex;
-  flex-wrap: nowrap;        /* 🔴 niente a capo */
+  flex-wrap: nowrap;
   align-items:center;
-  justify-content:center;   /* blocco centrato */
+  justify-content:center;
   gap:10px;
-  max-width: 1400px;
-  width:100%;
-  overflow-x:auto;          /* se non entra, scroll orizzontale */
-  scrollbar-width: thin;
+
+  max-width: 1100px;   /* 🔥 PIÙ STRETTO */
+  width: auto;         /* 🔥 NON 100% */
+
+  margin: 0 auto;      /* centra il blocco */
+  overflow-x:auto;
 }
 
 /* le pill tutte alla stessa altezza */
@@ -877,12 +877,6 @@ html, body{ overflow-x: hidden; }
 }
 
 /* FIX: percentuale zoom tagliata */
-#zoomSel{
-  height: 34px;          /* un pelo più alto */
-  line-height: 34px;     /* centra testo */
-  padding: 0 14px;       /* più respiro */
-  min-width: 86px;       /* evita taglio su 80% / 100% */
-}
 
 /* se la pill dello zoom è troppo bassa, riallinea */
 .ctrl:has(#zoomSel){
@@ -1063,4 +1057,106 @@ html, body{ overflow-x: hidden; }
 
 .musicCtrl input[type="range"]{
   width:110px;
+}
+
+/* ===============================
+   MENU LIM STILE ICONA
+   =============================== */
+
+@media (min-width: 1200px){
+
+  .topbar .ctrl{
+    height: 36px;
+    padding: 6px 10px;
+    font-size: 12px;
+    gap:6px;
+  }
+
+  /* icone più grandi e centrate */
+  .musicCtrl,
+  .zoomCtrl{
+    font-size: 16px;
+    font-weight: 900;
+  }
+
+  .musicCtrl input[type="range"]{
+    width: 70px;
+  }
+
+ 
+  .miniBtn{
+    height: 28px;
+    padding: 4px 8px;
+    font-size: 14px;
+  }
+
+  .btnPlay{
+    height: 36px;
+    padding: 0 14px;
+    font-size: 13px;
+  }
+
+  .topbar .btn{
+    height: 36px;
+    padding: 0 14px;
+  }
+
+}
+
+
+
+/* ===== MENU ICONE COMPATTO ===== */
+
+.menuIcon{
+  width:18px;
+  height:18px;
+  stroke:currentColor;
+  stroke-width:2;
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* spazio tra icona e controllo */
+.ctrl .menuIcon{
+  margin-right:6px;
+}
+
+/* zoom più stretto */
+/* FIX definitivo zoom */
+#zoomSel{
+  height: 32px;
+  min-width: 82px;     /* spazio sufficiente per 120% */
+  width: auto;         /* lascia adattare */
+  padding: 0 12px;     /* aria interna */
+  font-size: 12px;     /* leggibile */
+  line-height: normal;
+}
+
+/* slider musica più corto */
+.musicCtrl input[type="range"]{
+  width:75px;
+}
+
+/* menu più compatto su LIM */
+@media (min-width:1200px){
+  .topbar .ctrl{
+    height:36px;
+    padding:6px 10px;
+    font-size:11px;
+  }
+
+  .topbar .ctrl select{
+    height:28px;
+    padding:4px 6px;
+  }
+
+  .topbar .btn{
+    height:36px;
+    padding:0 14px;
+  }
+
+  .topbar .controls{
+    gap:6px;
+  }
 }

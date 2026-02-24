@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Duello in Buca – Sfida Matematica</title>
+  <link rel="stylesheet" href="css/hole_duel.css" />
+ <link rel="stylesheet" href="css/shared_game_menu.css" />
+
+</head>
+<body class="duel">
+    <div id="menuMount"></div>
+  <main class="wrap" id="zoomWrap">
+    <section class="pitchCard">
+      <div class="pitchHdr">
+        <div class="teamTag blue"><span class="dot"></span> BLU</div>
+        <div class="centerTag">BUCA</div>
+        <div class="teamTag red">ROSSI <span class="dot"></span></div>
+      </div>
+
+      <div class="pitch" id="pitch">
+        <div class="goalGlow left"></div>
+        <div class="goalGlow right"></div>
+
+        <div class="hole" id="hole" aria-label="Buca al centro">
+          <div class="holeRim"></div>
+        </div>
+
+        <div class="ball blue" id="ballL" aria-label="Palla blu"></div>
+        <div class="ball red" id="ballR" aria-label="Palla rossa"></div>
+
+        <div class="laneMark"></div>
+      </div>
+
+      <div class="scoreRow">
+        <div class="scoreBox blue">
+          <div class="k">Avanzamento</div>
+          <div class="v" id="progL">0%</div>
+        </div>
+        <div class="scoreBox">
+          <div class="k">Regola</div>
+          <div class="v small">Giusto: avanti • Sbagliato/Tempo: 1 passo all’altro</div>
+        </div>
+        <div class="scoreBox red">
+          <div class="k">Avanzamento</div>
+          <div class="v" id="progR">0%</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="playGrid">
+      <div class="panel blue" id="panelL">
+        <div class="panelTop">
+          <div class="name">BLU</div>
+          <div class="timer" id="timerL">—</div>
+        </div>
+        <div class="op" id="qL">—</div>
+        <div class="row">
+          <input id="inL" class="answer" inputmode="numeric" autocomplete="off" placeholder="Risposta" />
+          <button id="okL" class="btn ok" type="button">OK</button>
+        </div>
+        
+        <div class="keypad" data-side="L" aria-label="Tastierino BLU">
+          <button class="kbtn" data-k="7" type="button">7</button>
+          <button class="kbtn" data-k="8" type="button">8</button>
+          <button class="kbtn" data-k="9" type="button">9</button>
+          <button class="kbtn kfn" data-k="bk" type="button">⌫</button>
+
+          <button class="kbtn" data-k="4" type="button">4</button>
+          <button class="kbtn" data-k="5" type="button">5</button>
+          <button class="kbtn" data-k="6" type="button">6</button>
+          <button class="kbtn kfn" data-k="clr" type="button">C</button>
+
+          <button class="kbtn" data-k="1" type="button">1</button>
+          <button class="kbtn" data-k="2" type="button">2</button>
+          <button class="kbtn" data-k="3" type="button">3</button>
+          <button class="kbtn kfn" data-k="neg" type="button">±</button>
+
+          <button class="kbtn kwide" data-k="0" type="button">0</button>
+          <button class="kbtn kwide ok" data-k="ok" type="button">OK</button>
+        </div>
+<div class="msg" id="msgL"></div>
+      </div>
+
+      <div class="panel red" id="panelR">
+        <div class="panelTop">
+          <div class="name">ROSSI</div>
+          <div class="timer" id="timerR">—</div>
+        </div>
+        <div class="op" id="qR">—</div>
+        <div class="row">
+          <input id="inR" class="answer" inputmode="numeric" autocomplete="off" placeholder="Risposta" />
+          <button id="okR" class="btn ok" type="button">OK</button>
+        </div>
+        
+        <div class="keypad" data-side="R" aria-label="Tastierino ROSSI">
+          <button class="kbtn" data-k="7" type="button">7</button>
+          <button class="kbtn" data-k="8" type="button">8</button>
+          <button class="kbtn" data-k="9" type="button">9</button>
+          <button class="kbtn kfn" data-k="bk" type="button">⌫</button>
+
+          <button class="kbtn" data-k="4" type="button">4</button>
+          <button class="kbtn" data-k="5" type="button">5</button>
+          <button class="kbtn" data-k="6" type="button">6</button>
+          <button class="kbtn kfn" data-k="clr" type="button">C</button>
+
+          <button class="kbtn" data-k="1" type="button">1</button>
+          <button class="kbtn" data-k="2" type="button">2</button>
+          <button class="kbtn" data-k="3" type="button">3</button>
+          <button class="kbtn kfn" data-k="neg" type="button">±</button>
+
+          <button class="kbtn kwide" data-k="0" type="button">0</button>
+          <button class="kbtn kwide ok" data-k="ok" type="button">OK</button>
+        </div>
+<div class="msg" id="msgR"></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="winFX" id="winFX" aria-hidden="true">
+    <div class="winCard">
+      <div class="winTitle" id="winTitle">VITTORIA!</div>
+      <div class="winSub" id="winSub">—</div>
+      <div class="winBtns">
+        <button id="btnReplay" class="btn" type="button">RIGIOCA</button>
+        <button id="btnToHome2" class="btn ghost" type="button">HOME</button>
+      </div>
+    </div>
+  </div>
+
+   <script>
+    window.__GAME_TITLE__ = "Duello in Buca";
+  </script>
+  <script src="shared/game_menu.js"></script>
+  <script src="js/hole_duel_patched.js"></script>
+
+  <script src="js/nav.js"></script>
+<script src="js/menu.js"></script>
+</body>
+</html>

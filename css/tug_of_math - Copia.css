@@ -419,9 +419,16 @@ select{
 .setupBanner.hide{ display:none; }
 
 /* Bottone GIOCA */
+/* ===== BOTTONE GIOCA PERFETTO ===== */
 .btnPlay{
-  background: linear-gradient(90deg, #1d4fd6, #2f7bff);
-  border-color: #ffffff2a;
+  display:inline-flex;       /* 👈 fondamentale */
+  align-items:center;        /* centra verticalmente */
+  justify-content:center;    /* centra orizzontalmente */
+  height: 40px;
+  padding: 0 18px;
+  line-height: 1;            /* evita micro-offset */
+  font-weight: 1000;
+  background-color: #0400f7;
 }
 
 
@@ -646,3 +653,519 @@ select{
 
 .rope.dangerL{ box-shadow: inset 80px 0 120px rgba(47,123,255,.18); }
 .rope.dangerR{ box-shadow: inset -80px 0 120px rgba(255,59,59,.18); }
+
+
+/* ====== CALCIO CARTOON (vista dall'alto) ====== */
+
+/* contenitore campo */
+.pitch{
+  position: relative;
+  height: 170px;
+  border-radius: 18px;
+  border: 1px solid var(--stroke);
+  overflow: hidden;
+  background:
+    /* strisce campo */
+    repeating-linear-gradient(90deg,
+      rgba(46, 160, 82, .55) 0 28px,
+      rgba(34, 132, 66, .55) 28px 56px
+    ),
+    radial-gradient(900px 260px at 50% 50%, rgba(255,255,255,.10), rgba(0,0,0,.25) 70%),
+    linear-gradient(180deg, rgba(10,16,38,.6), rgba(10,16,38,.9));
+  box-shadow: inset 0 12px 30px rgba(0,0,0,.35);
+}
+
+/* linea centrale */
+.pitchMid{
+  position:absolute;
+  top:0; bottom:0;
+  left:50%;
+  width:3px;
+  background: rgba(255,255,255,.35);
+  box-shadow: 0 0 14px rgba(255,255,255,.16);
+}
+
+/* porte */
+.goal{
+  position:absolute;
+  top: 50%;
+  width: 38px;
+  height: 92px;
+  transform: translateY(-50%);
+  border-radius: 14px;
+  border: 2px solid rgba(255,255,255,.55);
+  background: rgba(255,255,255,.08);
+  box-shadow: 0 18px 26px rgba(0,0,0,.35);
+  overflow:hidden;
+}
+
+.goalL{ left: 5px; }
+.goalR{ right: 5px; }
+
+/* rete (cartoon) */
+.goal .net{
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.18) 0 10px, rgba(0,0,0,0) 10px 20px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.18) 0 10px, rgba(0,0,0,0) 10px 20px);
+  opacity:.9;
+}
+
+/* pallone cartoon (al posto del marker) */
+.ball{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width: 54px;
+  height: 54px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.65);
+  background:
+    radial-gradient(18px 18px at 30% 28%, rgba(255,255,255,.65), rgba(255,255,255,0) 60%),
+    radial-gradient(24px 24px at 65% 70%, rgba(0,0,0,.18), rgba(0,0,0,0) 70%),
+    /* pattern “pannelli” cartoon */
+    conic-gradient(from 10deg,
+      rgba(0,0,0,.65) 0 12deg,
+      rgba(255,255,255,.95) 12deg 32deg,
+      rgba(0,0,0,.65) 32deg 44deg,
+      rgba(255,255,255,.95) 44deg 74deg,
+      rgba(0,0,0,.65) 74deg 86deg,
+      rgba(255,255,255,.95) 86deg 120deg,
+      rgba(0,0,0,.65) 120deg 132deg,
+      rgba(255,255,255,.95) 132deg 360deg
+    );
+  box-shadow:
+    0 18px 28px rgba(0,0,0,.55),
+    inset 0 3px 10px rgba(255,255,255,.18);
+  transition: transform .32s cubic-bezier(.2,.9,.2,1);
+  z-index: 3;
+}
+
+/* ombra sotto pallone */
+.ballShadow{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width: 56px;
+  height: 16px;
+  transform: translate(-50%, calc(-50% + 26px));
+  border-radius: 999px;
+  background: radial-gradient(closest-side, rgba(0,0,0,.55), rgba(0,0,0,0));
+  filter: blur(1px);
+  opacity: .55;
+  z-index: 2;
+  transition: transform .32s cubic-bezier(.2,.9,.2,1);
+}
+
+/* “pulse” quando si muove (wow) */
+.ball.pulse{
+  animation: ballPulse .35s ease;
+}
+@keyframes ballPulse{
+  0%{ filter: brightness(1); }
+  50%{ filter: brightness(1.25) saturate(1.15); }
+  100%{ filter: brightness(1); }
+}
+
+/* mini vibrazione rete quando sei vicino */
+.goal.danger{
+  box-shadow: 0 0 0 2px rgba(255,255,255,.18), 0 18px 32px rgba(0,0,0,.45);
+}
+.goal.danger .net{
+  animation: netWobble .22s ease-in-out infinite alternate;
+}
+@keyframes netWobble{
+  from{ transform: translateX(-2px); }
+  to{ transform: translateX(2px); }
+}
+
+.ball{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width: 56px;
+  height: 56px;
+  transform: translate(-50%, -50%);
+  background: url("../img/mix/ball.png") center / contain no-repeat;
+  border:none;
+  box-shadow: 0 18px 28px rgba(0,0,0,.55);
+  transition: transform .32s cubic-bezier(.2,.9,.2,1);
+  z-index:3;
+}
+
+
+/* ===== ZOOM (come altre pagine) ===== */
+:root{ --zoom: 1; }
+
+body{ overflow-x: hidden; }
+
+/* area scalabile (solo gioco) */
+#zoomArea{
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%) scale(var(--zoom));
+  transform-origin: top center;
+  width: 100%;
+  transition: transform .2s ease;
+}
+
+/* evita scroll orizzontale dovuto a arrotondamenti */
+html, body{ overflow-x: hidden; }
+
+/* se i miniBtn in topbar sono troppo grandi */
+.topbar .miniBtn{
+  padding: 8px 10px;
+  border-radius: 12px;
+  font-weight: 1000;
+}
+.topbar #zoomSel{
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--stroke);
+  background:#0b1328;
+  color: var(--txt);
+  font-weight: 900;
+}
+
+/* ===== TOP MENU UNA SOLA RIGA ===== */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:center;   /* centra tutto il blocco */
+  padding: 14px 24px;
+}
+
+.topbar .controls{
+  display:flex;
+  flex-wrap: nowrap;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  max-width: 1100px;   /* 🔥 PIÙ STRETTO */
+  width: auto;         /* 🔥 NON 100% */
+
+  margin: 0 auto;      /* centra il blocco */
+  overflow-x:auto;
+}
+
+/* le pill tutte alla stessa altezza */
+.topbar .ctrl{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  height: 44px;             /* uniforme */
+  padding: 8px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* select uniformi */
+.topbar .ctrl select{
+  height: 32px;
+}
+
+/* slider non allunga la riga */
+.topbar .ctrl input[type="range"]{
+  width: 130px;
+}
+.topbar .btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:44px;
+}
+
+/* FIX: percentuale zoom tagliata */
+#zoomSel{
+  height: 34px;          /* un pelo più alto */
+  line-height: 34px;     /* centra testo */
+  padding: 0 14px;       /* più respiro */
+  min-width: 86px;       /* evita taglio su 80% / 100% */
+}
+
+/* se la pill dello zoom è troppo bassa, riallinea */
+.ctrl:has(#zoomSel){
+  height: 46px;
+  align-items: center;
+}
+
+/* ===== RIEPILOGO PARTITA (LIM/DESKTOP largo + colonne larghe) ===== */
+.sumModal{
+  position: fixed;           /* overlay vero, non dentro la colonna */
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  background: radial-gradient(900px 520px at 50% 45%, rgba(255,255,255,.10), rgba(0,0,0,.72) 70%);
+  backdrop-filter: blur(2px);
+}
+.sumModal.show{ display:flex; }
+
+/* CARD esterna: QUI è la larghezza del box */
+.sumCard{
+  width: min(1300px, calc(100vw - 80px)); /* più larga per LIM */
+  max-height: 92vh;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid #ffffff2a;
+  background: linear-gradient(180deg, #111c35ee, #0b1328ee);
+  box-shadow: 0 22px 70px #00000088;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10000;
+}
+
+.sumTitle{
+  font-weight: 1000;
+  letter-spacing: .4px;
+  font-size: 25px;
+}
+
+/* contenuto scrollabile */
+.sumBody{
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid #ffffff1f;
+  background: #00000022;
+  word-break: break-word;
+}
+.sumBody::-webkit-scrollbar{ width: 10px; height: 10px; }
+.sumBody::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.18); border-radius: 999px; }
+
+/* 2 colonne BLU/ROSSO - larghe davvero */
+.sumCols{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* evita colonne strozzate */
+  gap: 18px;
+  margin-top: 10px;
+}
+
+/* smartphone: verticale */
+@media (max-width: 720px){
+  .sumCard{
+    width: calc(100vw - 24px);
+    max-height: 92vh;
+    padding: 14px;
+  }
+  .sumCols{ grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* card interna colonna */
+.sumCol{
+  border: 1px solid #ffffff1f;
+  background: #00000022;
+  border-radius: 16px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+/* header colonna */
+.sumColHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+  font-weight:1000;
+}
+.sumColHead .sumSide{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.sumSideDot{
+  width:12px; height:12px; border-radius:50%;
+  box-shadow: 0 0 12px rgba(255,255,255,.12);
+}
+.sumSideDot.blue{ background: var(--blue); box-shadow: 0 0 14px rgba(47,123,255,.55); }
+.sumSideDot.red{ background: var(--red); box-shadow: 0 0 14px rgba(255,59,59,.55); }
+
+.sumColCount{
+  font-size:12px;
+  font-weight:1000;
+  color: var(--muted);
+  white-space:nowrap;
+}
+
+/* lista operazioni per colonna */
+.sumColList{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  max-height: 62vh;
+  overflow: auto;
+  padding-right: 6px;
+}
+.sumColList::-webkit-scrollbar{ width: 10px; height: 10px; }
+.sumColList::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.18); border-radius: 999px; }
+
+/* riga operazione */
+.sumOpRow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 12px;
+  border-radius: 14px;
+  border:1px dashed #ffffff14;
+  background: #00000018;
+}
+
+/* testo operazione */
+.sumOpText{
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 1000;
+  line-height: 1.25;
+}
+.sumOpText code{
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 20px;
+  background: transparent;
+  color: var(--txt);
+  white-space: normal;
+}
+
+/* badge errore */
+.sumErrBadge{
+  flex: 0 0 auto;
+  font-size: 20px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #ffffff22;
+  background: #00000022;
+  white-space: nowrap;
+  color: var(--bad);
+  font-weight: 1000;
+}
+
+/* azioni */
+.sumActions{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding-top: 2px;
+}
+
+/* blocco compatto musica + volume */
+.musicCtrl{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.musicCtrl input[type="range"]{
+  width:110px;
+}
+
+/* ===============================
+   MENU LIM STILE ICONA
+   =============================== */
+
+@media (min-width: 1200px){
+
+  .topbar .ctrl{
+    height: 36px;
+    padding: 6px 10px;
+    font-size: 12px;
+    gap:6px;
+  }
+
+  /* icone più grandi e centrate */
+  .musicCtrl,
+  .zoomCtrl{
+    font-size: 16px;
+    font-weight: 900;
+  }
+
+  .musicCtrl input[type="range"]{
+    width: 70px;
+  }
+
+  #zoomSel{
+    height: 28px;
+    min-width: 65px;
+    padding: 0 6px;
+    font-size: 12px;
+  }
+
+  .miniBtn{
+    height: 28px;
+    padding: 4px 8px;
+    font-size: 14px;
+  }
+
+  .btnPlay{
+    height: 36px;
+    padding: 0 14px;
+    font-size: 13px;
+  }
+
+  .topbar .btn{
+    height: 36px;
+    padding: 0 14px;
+  }
+
+}
+
+/* =========================================
+   MENU LIM COMPATTO – SOLO STRINGERE
+   ========================================= */
+
+@media (min-width: 1200px){
+
+  /* riduce padding delle pill */
+  .topbar .ctrl{
+    height: 36px;
+    padding: 6px 10px;
+    font-size: 11px;
+    gap:6px;
+  }
+
+  /* select più piccoli */
+  .topbar .ctrl select{
+    height: 28px;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  /* slider musica più corto */
+  .musicCtrl input[type="range"]{
+    width: 80px;
+  }
+
+  /* zoom compatto */
+  #zoomSel{
+    height: 28px;
+    min-width: 70px;
+    padding: 0 8px;
+    font-size: 12px;
+  }
+
+  .topbar .miniBtn{
+    height: 28px;
+    padding: 4px 8px;
+  }
+
+  /* bottone GIOCA + Reset leggermente più compatti */
+  .topbar .btn{
+    height: 36px;
+    padding: 0 14px;
+    font-size: 12px;
+  }
+
+  /* meno spazio tra elementi */
+  .topbar .controls{
+    gap: 6px;
+  }
+
+}

@@ -331,6 +331,7 @@
   <button class="dditem" type="button" data-href="pairs_select.html">Abbinamenti</button>
   <button class="dditem" type="button" data-href="memory.html">Memory</button>
   <button class="dditem" type="button" data-href="tug_of_math.html">Super Sfida Matematica</button>
+  <button class="dditem" type="button" data-href="hole_duel.html">Corsa al centro della matematica</button>
 </div>
     </div>
 
@@ -355,6 +356,7 @@
       <button class="dditem" type="button" data-href="pairs_select.html">↳ Abbinamenti</button>
       <button class="dditem" type="button" data-href="memory.html">↳ Memory</button>
       <button class="dditem" type="button" data-href="tug_of_math.html">↳ Super Sfida Matematica</button>
+      <button class="dditem" type="button" data-href="hole_duel.html">↳ Corsa al centro della matematica</button>
     </div>
     <button class="navbtn" type="button" data-act="gruppo">GIOCHI DI GRUPPO</button>
     <button class="navbtn lock" type="button" data-act="admin">🔒 ADMIN</button>

@@ -1,0 +1,369 @@
+/* Duello in Buca – CSS (responsive, LIM-friendly) */
+:root{
+  --bg1:#071022;
+  --bg2:#050b17;
+  --card: rgba(255,255,255,.06);
+  --stroke: rgba(255,255,255,.12);
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.66);
+  --blue:#2f7bff;
+  --red:#ff3b3b;
+  --ok:#1d8b5a;
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body.duel{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(1000px 500px at 50% 0%, rgba(47,123,255,.14), transparent 60%),
+    radial-gradient(900px 480px at 50% 100%, rgba(255,59,59,.12), transparent 55%),
+    linear-gradient(180deg, var(--bg1), var(--bg2));
+}
+
+/* Topbar */
+.topbar{
+  position: sticky;
+  top:0;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:10px 14px;
+  border-bottom:1px solid rgba(255,255,255,.10);
+  background: rgba(6,10,18,.72);
+  backdrop-filter: blur(8px);
+}
+.brand{ display:flex; align-items:center; gap:10px; }
+.logoBall{
+  width:26px; height:26px; border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #b9d3ff 40%, #1b3b7d 70%, #0a1634);
+  box-shadow: 0 10px 30px rgba(47,123,255,.22);
+}
+.title{ font-weight:900; letter-spacing:.3px; }
+
+.controls{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap: nowrap;
+  overflow-x:auto;
+  scrollbar-width: thin;
+  padding-bottom: 2px;
+}
+.controls::-webkit-scrollbar{ height:8px; }
+.controls::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.15); border-radius:20px; }
+
+.ctrl{
+  display:flex; align-items:center; gap:8px;
+  height:40px;
+  padding:6px 10px;
+  border-radius:14px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 14px 40px rgba(0,0,0,.22);
+  white-space: nowrap;
+}
+.lbl{ font-size:12px; color: rgba(255,255,255,.80); font-weight:800; }
+
+select, input[type="text"], input[type="number"]{
+  color: var(--text);
+  background: rgba(0,0,0,.22);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 10px;
+  padding: 6px 10px;
+  outline:none;
+}
+select{ height:30px; }
+.miniBtn{
+  height:30px;
+  padding:0 10px;
+  border-radius: 10px;
+  border:1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.08);
+  color: var(--text);
+  cursor:pointer;
+}
+.btn{
+  height:40px;
+  padding:0 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.10);
+  color: var(--text);
+  cursor:pointer;
+  font-weight:900;
+}
+.btn.ghost{ background: rgba(255,255,255,.06); }
+.btn.ok{ background: rgba(29,139,90,.35); border-color: rgba(29,139,90,.55); }
+.btn:hover, .miniBtn:hover{ filter: brightness(1.08); }
+.musicCtrl input[type="range"]{ width: 92px; }
+
+/* Layout */
+.wrap{
+  width: min(1300px, calc(100vw - 24px));
+  margin: 14px auto 22px;
+  display:flex;
+  flex-direction:column;
+  gap: 14px;
+}
+.pitchCard, .panel{
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  border-radius: 22px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+}
+
+.pitchCard{ padding: 14px; }
+.pitchHdr{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:10px;
+  gap: 10px;
+}
+.teamTag{
+  display:flex; align-items:center; gap:8px;
+  font-weight:1000;
+  letter-spacing:.4px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.20);
+}
+.teamTag .dot{
+  width:10px; height:10px; border-radius:50%;
+  background: rgba(255,255,255,.45);
+}
+.teamTag.blue .dot{ background: var(--blue); box-shadow: 0 0 14px rgba(47,123,255,.75); }
+.teamTag.red .dot{ background: var(--red); box-shadow: 0 0 14px rgba(255,59,59,.75); }
+.centerTag{
+  font-weight:1000;
+  color: rgba(255,255,255,.86);
+  letter-spacing:.6px;
+  opacity:.95;
+}
+
+.pitch{
+  position: relative;
+  height: 210px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.10);
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(0,0,0,.20), transparent 45%),
+    linear-gradient(90deg, rgba(47,123,255,.10), transparent 34%, transparent 66%, rgba(255,59,59,.10)),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 18px, rgba(255,255,255,.02) 18px 36px),
+    linear-gradient(180deg, rgba(19,74,45,.95), rgba(11,44,28,.98));
+}
+.laneMark{
+  position:absolute; inset:0;
+  background:
+    linear-gradient(90deg, transparent 49.6%, rgba(255,255,255,.22) 49.6% 50.4%, transparent 50.4%),
+    radial-gradient(circle at 50% 50%, transparent 0 58px, rgba(255,255,255,.20) 58px 60px, transparent 60px);
+  pointer-events:none;
+}
+.goalGlow{
+  position:absolute; top:0; bottom:0; width: 18%;
+  filter: blur(18px);
+  opacity:.55;
+}
+.goalGlow.left{ left:-6%; background: radial-gradient(circle at 30% 50%, rgba(47,123,255,.55), transparent 65%); }
+.goalGlow.right{ right:-6%; background: radial-gradient(circle at 70% 50%, rgba(255,59,59,.55), transparent 65%); }
+
+.hole{
+  position:absolute;
+  left:50%; top:50%;
+  transform: translate(-50%,-50%);
+  width: 74px; height: 74px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 45% 35%, rgba(0,0,0,.85), rgba(0,0,0,1) 62%, rgba(0,0,0,.9));
+  box-shadow:
+    inset 0 18px 30px rgba(0,0,0,.85),
+    0 18px 60px rgba(0,0,0,.55);
+}
+.holeRim{
+  position:absolute; inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.18);
+  box-shadow: 0 0 0 6px rgba(0,0,0,.22);
+}
+
+.ball{
+  position:absolute;
+  top:50%;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  transform: translate(-50%,-50%);
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,.70) 35%, rgba(255,255,255,.20) 60%, rgba(0,0,0,.15));
+  border: 1px solid rgba(255,255,255,.20);
+  box-shadow: 0 14px 40px rgba(0,0,0,.45);
+}
+.ball.blue{ outline: 3px solid rgba(47,123,255,.55); box-shadow: 0 14px 40px rgba(0,0,0,.45), 0 0 22px rgba(47,123,255,.35); }
+.ball.red{ outline: 3px solid rgba(255,59,59,.55); box-shadow: 0 14px 40px rgba(0,0,0,.45), 0 0 22px rgba(255,59,59,.35); }
+
+.scoreRow{
+  display:grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+.scoreBox{
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(0,0,0,.20);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.scoreBox .k{ font-size:12px; color: rgba(255,255,255,.70); font-weight:900; }
+.scoreBox .v{ font-size:18px; font-weight:1000; }
+.scoreBox .v.small{ font-size:12px; font-weight:800; color: rgba(255,255,255,.72); line-height: 1.25; }
+.scoreBox.blue{ border-color: rgba(47,123,255,.30); }
+.scoreBox.red{ border-color: rgba(255,59,59,.30); }
+
+.playGrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.panel{ padding: 14px; }
+.panel.blue{ border-color: rgba(47,123,255,.30); }
+.panel.red{ border-color: rgba(255,59,59,.30); }
+
+.panelTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom: 10px;
+}
+.name{ font-weight: 1000; letter-spacing:.4px; }
+.timer{
+  font-weight: 1000;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.22);
+  border: 1px solid rgba(255,255,255,.12);
+  min-width: 60px;
+  text-align:center;
+  color: rgba(255,255,255,.75);
+}
+.op{
+  font-size: 40px;
+  font-weight: 1100;
+  letter-spacing: .5px;
+  text-align:center;
+  padding: 12px 10px;
+  border-radius: 18px;
+  background: rgba(0,0,0,.20);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.row{
+  margin-top: 10px;
+  display:flex;
+  gap: 10px;
+}
+.answer{
+  flex:1;
+  height: 44px;
+  font-size: 18px;
+  font-weight: 900;
+  border-radius: 14px;
+  padding: 0 14px;
+}
+.msg{
+  min-height: 24px;
+  margin-top: 10px;
+  font-weight: 900;
+  color: rgba(255,255,255,.70);
+}
+.msg.good{ color: rgba(112,255,176,.95); }
+.msg.bad{ color: rgba(255,110,110,.95); }
+
+/* Win overlay */
+.winFX{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:50;
+  background: radial-gradient(700px 380px at 50% 45%, rgba(255,255,255,.10), rgba(0,0,0,.65) 70%);
+  backdrop-filter: blur(2px);
+}
+.winFX.show{ display:flex; }
+.winCard{
+  width: min(920px, calc(100vw - 42px));
+  max-height: 88vh;
+  overflow:auto;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: linear-gradient(180deg, rgba(17,28,53,.93), rgba(11,19,40,.93));
+  box-shadow: 0 22px 70px rgba(0,0,0,.55);
+  padding: 18px;
+  text-align:center;
+  animation: pop .55s ease both;
+}
+@keyframes pop{
+  from{ transform: translateY(10px) scale(.96); opacity: 0; }
+  to{ transform: translateY(0) scale(1); opacity: 1; }
+}
+.winTitle{ font-size: 42px; font-weight: 1200; }
+.winSub{ margin-top: 8px; color: rgba(255,255,255,.80); font-weight: 900; }
+.winBtns{ margin-top: 14px; display:flex; justify-content:center; gap: 10px; flex-wrap: wrap; }
+
+/* Responsive */
+@media (max-width: 980px){
+  .playGrid{ grid-template-columns: 1fr; }
+  .pitch{ height: 170px; }
+  .op{ font-size: 34px; }
+  .scoreRow{ grid-template-columns: 1fr; }
+  .controls{ gap:8px; }
+  .lbl{ display:none; } /* su mobile: icone/senza testo (compatto) */
+  .musicCtrl input[type="range"]{ width: 74px; }
+}
+
+/* ===== Tastierini LIM (uno per squadra) ===== */
+.keypad{
+  margin-top: 10px;
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.kbtn{
+  height: 54px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.18);
+  color: rgba(255,255,255,.92);
+  font-weight: 1000;
+  font-size: 20px;
+  cursor:pointer;
+  box-shadow: 0 16px 40px rgba(0,0,0,.25);
+}
+.kbtn:hover{ filter: brightness(1.08); }
+.kbtn:active{ transform: translateY(1px); }
+
+.kbtn.kfn{
+  background: rgba(255,255,255,.08);
+  font-size: 18px;
+}
+
+.keypad .kwide{
+  grid-column: span 2;
+}
+
+.keypad .ok{
+  background: rgba(29,139,90,.30);
+  border-color: rgba(29,139,90,.55);
+}
+
+/* più compatto su schermi piccoli */
+@media (max-width: 980px){
+  .keypad{ gap: 8px; }
+  .kbtn{
+    height: 48px;
+    border-radius: 14px;
+    font-size: 18px;
+  }
+}

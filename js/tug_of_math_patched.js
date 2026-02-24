@@ -519,8 +519,8 @@ function move(delta){
 
   // zona pericolo vicino alle porte
   if(goalL && goalR){
-    goalL.classList.toggle("danger", state.pos <= -60);
-    goalR.classList.toggle("danger", state.pos >= 60);
+    goalL && goalL.classList.toggle("danger", state.pos <= -60);
+    goalR && goalR.classList.toggle("danger", state.pos >= 60);
   }
 
   updateEnergy();
@@ -629,7 +629,7 @@ function move(delta){
     updateScore();
     updateEnergy();
     marker.style.transform = `translate(-50%, -50%)`;
-    setupBanner.classList.add("hide");
+    setupBanner && setupBanner.classList.add("hide");
     btnStart.style.display = "none";
     state.dirtySettings = false;
 
@@ -661,7 +661,7 @@ function move(delta){
     marker.style.transform = `translate(-50%, -50%)`;
     updateEnergy();
 
-    setupBanner.classList.remove("hide");
+    setupBanner && setupBanner.classList.remove("hide");
     btnStart.style.display = "none";
     state.dirtySettings = false;
   }

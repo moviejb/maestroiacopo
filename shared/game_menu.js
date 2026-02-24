@@ -12,7 +12,7 @@
 (function(){
   "use strict";
 
-  const Z = [0.7,0.8,0.9,1.0,1.1,1.2];
+  const Z = [0.6,0.7,0.8,0.9,1.0,1.1,1.2];
 
   function emit(name, detail){
     window.dispatchEvent(new CustomEvent(name, { detail }));
@@ -59,8 +59,8 @@
             <span class="lbl">Passo</span>
             <select id="stepSel">
               <option value="6">6</option>
-              <option value="8" selected>8</option>
-              <option value="10">10</option>
+              <option value="8">8</option>
+              <option value="10" selected>10</option>
               <option value="12">12</option>
             </select>
           </label>
@@ -70,8 +70,8 @@
             <input id="timerOn" type="checkbox" aria-label="Timer on/off"/>
             <select id="timerSec" aria-label="Secondi">
               <option value="6">6s</option>
-              <option value="8" selected>8s</option>
-              <option value="10">10s</option>
+              <option value="8">8s</option>
+              <option value="10" selected>10s</option>
               <option value="12">12s</option>
             </select>
           </label>
@@ -86,10 +86,11 @@
             <span class="lbl">Zoom</span>
             <button id="btnZoomOut" class="miniBtn" type="button" aria-label="Zoom meno">−</button>
             <select id="zoomSel" aria-label="Zoom">
+             option value="0.6">60%</option>
               <option value="0.7">70%</option>
-              <option value="0.8">80%</option>
+              <option value="0.8" selected>80%</option>
               <option value="0.9">90%</option>
-              <option value="1.0" selected>100%</option>
+              <option value="1.0">100%</option>
               <option value="1.1">110%</option>
               <option value="1.2">120%</option>
             </select>

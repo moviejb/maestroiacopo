@@ -327,11 +327,11 @@
         GIOCHI DIDATTICI <span class="caret">▾</span>
       </button>
       <div class="ddpanel" role="menu" aria-label="Giochi didattici">
-  <button class="dditem" type="button" data-href="index_quiz.html">Quiz</button>
-  <button class="dditem" type="button" data-href="pairs_select.html">Abbinamenti</button>
-  <button class="dditem" type="button" data-href="memory.html">Memory</button>
-  <button class="dditem" type="button" data-href="tug_of_math.html">Super Sfida Matematica</button>
-  <button class="dditem" type="button" data-href="hole_duel.html">Corsa al centro della matematica</button>
+  <button class="dditem" type="button" data-href="index_quiz.html">▸ Quiz</button>
+  <button class="dditem" type="button" data-href="pairs_select.html">▸ Abbinamenti</button>
+  <button class="dditem" type="button" data-href="memory.html">▸ Memory</button>
+  <button class="dditem" type="button" data-href="tug_of_math.html">▸ Super Sfida Matematica</button>
+  <button class="dditem" type="button" data-href="hole_duel.html">▸ Corsa al centro della matematica</button>
 </div>
     </div>
 

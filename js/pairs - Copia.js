@@ -2,778 +2,6 @@
 // Generato da pairs_admin.html
 window.PAIRS = [
   {
-    "id": "p152",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/39_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/39_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
-    },
-    "__new": false
-  },
-  {
-    "id": "p151",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/38_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/38_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
-    },
-    "__new": false
-  },
-  {
-    "id": "p150",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/37_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/37_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
-    },
-    "__new": false
-  },
-  {
-    "id": "p149",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/36_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/36_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
-    },
-    "__new": false
-  },
-  {
-    "id": "p148",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/35_B.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/35_A.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
-    },
-    "__new": false
-  },
-  {
-    "id": "p147",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/34_B.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/34_A.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
-    }
-  },
-  {
-    "id": "p146",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/33_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/33_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    },
-    "__new": false
-  },
-  {
-    "id": "p145",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/32_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/32_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    },
-    "__new": false
-  },
-  {
-    "id": "p144",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/31_B.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/31_A.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    },
-    "__new": false
-  },
-  {
-    "id": "p143",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/30_B.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/30_A.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    },
-    "__new": false
-  },
-  {
-    "id": "p142",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/29_B.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/29_A.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    },
-    "__new": false
-  },
-  {
-    "id": "p141",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/28_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/28_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    },
-    "__new": false
-  },
-  {
-    "id": "p140",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/27_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/27_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    },
-    "__new": false
-  },
-  {
-    "id": "p139",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/26_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/26_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p138",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/25_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/25_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p136",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/24_a.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/24_b.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p135",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/23_a.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/23_b.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p134",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/22_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/22_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p133",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/21_a.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/21_b.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p132",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/20_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/20_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p131",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/19_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/19_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
-    }
-  },
-  {
-    "id": "p130",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/18_a.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/18_b.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
-    }
-  },
-  {
-    "id": "p129",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/17_ba.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/17_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
-    }
-  },
-  {
-    "id": "p128",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/16_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/16_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
-    }
-  },
-  {
-    "id": "p127",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/15_a.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/15_b.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
-    }
-  },
-  {
-    "id": "p126",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/14_a.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/14_b.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
-    }
-  },
-  {
-    "id": "p125",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/13_a.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/13_b.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
-    }
-  },
-  {
-    "id": "p124",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/12_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/12_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p123",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/11_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/11_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p122",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/10_a.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/10_b.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p121",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/09_b.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/09_a.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p120",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/08_a.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/08_b.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p119",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/07_a.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/07_b.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p118",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/05_a.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/05_b.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p117",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/04_a.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/04_A2.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p116",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/03_a.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/03_b.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p115",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/02_a.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/02_b.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
-    "id": "p114",
-    "mode": "img-img",
-    "left": {
-      "type": "img",
-      "src": "img/memory/geografia/01_a.png"
-    },
-    "right": {
-      "type": "img",
-      "src": "img/memory/geografia/01_b.png"
-    },
-    "meta": {
-      "area": "didattici",
-      "classe": "3",
-      "disciplina": "Geografia",
-      "livello": "facile",
-      "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
-    }
-  },
-  {
     "id": "p113",
     "mode": "img-img",
     "left": {
@@ -1156,7 +384,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_7 (21).png"
+      "src": "img/memory/matematica/tabelline/TAB_10 (4).png"
     },
     "meta": {
       "area": "didattici",
@@ -1165,7 +393,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p094",
@@ -1176,7 +405,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_3 (2).png"
+      "src": "img/memory/matematica/tabelline/TAB_10 (2).png"
     },
     "meta": {
       "area": "didattici",
@@ -1185,7 +414,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p093",
@@ -1238,7 +468,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_8 (20).png"
+      "src": "img/memory/matematica/tabelline/tab_9 (18).png"
     },
     "meta": {
       "area": "didattici",
@@ -1247,7 +477,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p090",
@@ -1279,7 +510,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_6 (20).png"
+      "src": "img/memory/matematica/tabelline/tab_9 (14).png"
     },
     "meta": {
       "area": "didattici",
@@ -1288,7 +519,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p088",
@@ -1299,7 +531,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_5 (20).png"
+      "src": "img/memory/matematica/tabelline/tab_9 (12).png"
     },
     "meta": {
       "area": "didattici",
@@ -1320,7 +552,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_4 (20).png"
+      "src": "img/memory/matematica/tabelline/tab_9 (10).png"
     },
     "meta": {
       "area": "didattici",
@@ -1329,7 +561,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p086",
@@ -1340,7 +573,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_3 (20).png"
+      "src": "img/memory/matematica/tabelline/tab_9 (8).png"
     },
     "meta": {
       "area": "didattici",
@@ -1349,7 +582,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p085",
@@ -1402,7 +636,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_3 (2).png"
+      "src": "img/memory/matematica/tabelline/tab_9 (2).png"
     },
     "meta": {
       "area": "didattici",
@@ -1411,7 +645,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p082",
@@ -1485,7 +720,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_7 (17).png"
+      "src": "img/memory/matematica/tabelline/tab_8 (16).png"
     },
     "meta": {
       "area": "didattici",
@@ -1494,7 +729,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p078",
@@ -1505,7 +741,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_6 (18).png"
+      "src": "img/memory/matematica/tabelline/tab_8 (14).png"
     },
     "meta": {
       "area": "didattici",
@@ -1514,7 +750,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p077",
@@ -1525,7 +762,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_4 (22).png"
+      "src": "img/memory/matematica/tabelline/tab_8 (12).png"
     },
     "meta": {
       "area": "didattici",
@@ -1534,7 +771,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p076",
@@ -1545,7 +783,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_4 (18).png"
+      "src": "img/memory/matematica/tabelline/tab_8 (10).png"
     },
     "meta": {
       "area": "didattici",
@@ -1554,7 +792,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p075",
@@ -1565,7 +804,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_3 (18).png"
+      "src": "img/memory/matematica/tabelline/tab_8 (8).png"
     },
     "meta": {
       "area": "didattici",
@@ -1574,7 +813,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p074",
@@ -1627,7 +867,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_3 (2).png"
+      "src": "img/memory/matematica/tabelline/tab_8 (2).png"
     },
     "meta": {
       "area": "didattici",
@@ -1636,7 +876,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p071",
@@ -1668,7 +909,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_9 (16).png"
+      "src": "img/memory/matematica/tabelline/tab_7 (19).png"
     },
     "meta": {
       "area": "didattici",
@@ -1677,7 +918,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p069",
@@ -1730,7 +972,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_6 (16).png"
+      "src": "img/memory/matematica/tabelline/tab_7 (13).png"
     },
     "meta": {
       "area": "didattici",
@@ -1739,7 +981,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p066",
@@ -1750,7 +993,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_5 (16).png"
+      "src": "img/memory/matematica/tabelline/tab_7 (11).png"
     },
     "meta": {
       "area": "didattici",
@@ -1759,7 +1002,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p065",
@@ -1770,7 +1014,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_4 (16).png"
+      "src": "img/memory/matematica/tabelline/tab_7 (9).png"
     },
     "meta": {
       "area": "didattici",
@@ -1779,7 +1023,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p064",
@@ -1853,7 +1098,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_3 (2).png"
+      "src": "img/memory/matematica/tabelline/tab_7 (2).png"
     },
     "meta": {
       "area": "didattici",
@@ -1862,7 +1107,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p060",
@@ -1978,7 +1224,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_3 (22).png"
+      "src": "img/memory/matematica/tabelline/tab_6 (12).png"
     },
     "meta": {
       "area": "didattici",
@@ -1987,7 +1233,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p054",
@@ -1998,7 +1245,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_3 (18).png"
+      "src": "img/memory/matematica/tabelline/tab_6 (10).png"
     },
     "meta": {
       "area": "didattici",
@@ -2007,7 +1254,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p053",
@@ -2018,7 +1266,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_3 (14).png"
+      "src": "img/memory/matematica/tabelline/tab_6 (8).png"
     },
     "meta": {
       "area": "didattici",
@@ -2027,7 +1275,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p052",
@@ -2080,7 +1329,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_3 (2).png"
+      "src": "img/memory/matematica/tabelline/tab_6 (2).png"
     },
     "meta": {
       "area": "didattici",
@@ -2089,7 +1338,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p049",
@@ -2142,7 +1392,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_4 (22).png"
+      "src": "img/memory/matematica/tabelline/tab_5 (18).png"
     },
     "meta": {
       "area": "didattici",
@@ -2151,7 +1401,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p046",
@@ -2183,7 +1434,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_3 (22).png"
+      "src": "img/memory/matematica/tabelline/tab_5 (14).png"
     },
     "meta": {
       "area": "didattici",
@@ -2192,7 +1443,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p044",
@@ -2224,7 +1476,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_4 (12).png"
+      "src": "img/memory/matematica/tabelline/tab_5 (10).png"
     },
     "meta": {
       "area": "didattici",
@@ -2233,7 +1485,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p042",
@@ -2244,7 +1497,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_3 (12).png"
+      "src": "img/memory/matematica/tabelline/tab_5 (8).png"
     },
     "meta": {
       "area": "didattici",
@@ -2253,7 +1506,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p041",
@@ -2306,7 +1560,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_3 (2).png"
+      "src": "img/memory/matematica/tabelline/tab_5 (2).png"
     },
     "meta": {
       "area": "didattici",
@@ -2315,7 +1569,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p038",
@@ -2410,7 +1665,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_3 (18).png"
+      "src": "img/memory/matematica/tabelline/tab_4 (14).png"
     },
     "meta": {
       "area": "didattici",
@@ -2419,7 +1674,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": true
   },
   {
     "id": "p033",
@@ -2472,7 +1728,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_3 (10).png"
+      "src": "img/memory/matematica/tabelline/tab_4 (8).png"
     },
     "meta": {
       "area": "didattici",
@@ -2481,7 +1737,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": true
   },
   {
     "id": "p030",
@@ -2534,7 +1791,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_3 (2).png"
+      "src": "img/memory/matematica/tabelline/tab_4 (2).png"
     },
     "meta": {
       "area": "didattici",
@@ -2543,7 +1800,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": true
   },
   {
     "id": "p027",
@@ -2563,7 +1821,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p026",
@@ -2616,7 +1875,7 @@ window.PAIRS = [
     },
     "right": {
       "type": "img",
-      "src": "img/memory/matematica/tabelline/tab_7 (7a).jpeg"
+      "src": "img/memory/matematica/tabelline/tab_3 (16).png"
     },
     "meta": {
       "area": "didattici",
@@ -2625,7 +1884,8 @@ window.PAIRS = [
       "livello": "facile",
       "argomento": "Tabelline",
       "argomentoSecondario": "Frazioni e Tabelline"
-    }
+    },
+    "__new": false
   },
   {
     "id": "p023",

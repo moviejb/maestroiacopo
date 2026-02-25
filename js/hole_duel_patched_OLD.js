@@ -131,104 +131,15 @@
     }
 
     if(diff==="easy"){
-      // FACILE: operazioni da fare a mente (numeri a 1 cifra o max 2 cifre, sempre semplici)
-      if(op==="+"){
-        // somme piccole (risultato non troppo alto)
-        a = randInt(0,20);
-        b = randInt(0,20);
-        if(a+b>30){
-          // riprova una volta, poi limita b
-          b = Math.max(0, 30 - a);
-        }
-      }else if(op==="-"){
-        // sottrazioni con risultato positivo e piccolo
-        a = randInt(0,30);
-        b = randInt(0,20);
-        if(b>a) [a,b]=[b,a];
-        if(a-b>20){
-          b = a - randInt(0,20);
-        }
-      }else if(op==="×"){
-        // tabelline (1 cifra)
-        a = randInt(2,9);
-        b = randInt(2,9);
-      }else if(op==="÷"){
-        // divisioni esatte dentro le tabelline (dividendo max 81)
-        b = randInt(2,9);
-        const res = randInt(2,9);
-        a = b * res;
-        return { q: `${a} ÷ ${b}`, a: res };
-      }else{
-        a = randInt(0,20);
-        b = randInt(0,20);
-      }
+      a = randInt(5,40);
+      b = randInt(2,20);
     }else if(diff==="mid"){
-  // MEDIO: 2 cifre ma ancora "mentale" (pochi riporti/prestiti, tabelline/strategie)
-  if(op==="+"){
-    // preferisci somme senza riporto nelle unità
-    const aT = randInt(1,9), aU = randInt(0,9);
-    const bT = randInt(1,9);
-    const bU = randInt(0, 9 - aU);
-    a = aT*10 + aU;
-    b = bT*10 + bU;
-    // limita somme troppo alte
-    if(a+b>160) b = Math.max(10, 160 - a);
-  }else if(op==="-"){
-    // preferisci sottrazioni senza prestito (unità del minuendo >= unità del sottraendo)
-    const aT = randInt(2,9), aU = randInt(0,9);
-    const bT = randInt(1,aT);
-    const bU = randInt(0,aU);
-    a = aT*10 + aU;
-    b = bT*10 + bU;
-    if(b>a) [a,b]=[b,a];
-  }else if(op==="×"){
-    // moltiplicazioni facili: numeri "strategici" x 1 cifra
-    const easyA = [12,15,20,25,30,40,50,60,70,80,90];
-    a = easyA[Math.floor(Math.random()*easyA.length)];
-    b = randInt(2,9);
-  }else if(op==="÷"){
-    // divisioni esatte (tabelline), risultato piccolo
-    b = randInt(2,12);
-    const res = randInt(2,12);
-    a = b * res; // fino a 144
-    return { q: `${a} ÷ ${b}`, a: res };
-  }else{
-    a = randInt(10,99);
-    b = randInt(10,99);
-  }
-}else{
-  // DIFFICILE: calcoli più impegnativi (riporti/prestiti ammessi, numeri più grandi ma gestibili)
-  if(op==="+"){
-    a = randInt(30,199);
-    b = randInt(30,199);
-    if(a+b>350) b = Math.max(20, 350 - a);
-  }else if(op==="-"){
-    a = randInt(60,300);
-    b = randInt(10,220);
-    if(b>a) [a,b]=[b,a];
-  }else if(op==="×"){
-    // 2 cifre × 1 cifra (di solito) oppure piccole 2 cifre × 2 cifre
-    a = randInt(12,99);
-    if(Math.random()<0.75){
-      b = randInt(2,12);
+      a = randInt(20,120);
+      b = randInt(5,50);
     }else{
-      b = randInt(12,25);
+      a = randInt(50,300);
+      b = randInt(5,100);
     }
-    // evita prodotti enormi
-    if(a*b>999){
-      b = randInt(2,12);
-    }
-  }else if(op==="÷"){
-    // divisioni esatte con numeri un po' più grandi
-    b = randInt(2,15);
-    const res = randInt(2,20);
-    a = b * res; // fino a 300
-    return { q: `${a} ÷ ${b}`, a: res };
-  }else{
-    a = randInt(50,250);
-    b = randInt(10,120);
-  }
-}
 
     if(op==="-" && b>a) [a,b]=[b,a];
 

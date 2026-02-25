@@ -86,9 +86,9 @@
             <span class="lbl">Zoom</span>
             <button id="btnZoomOut" class="miniBtn" type="button" aria-label="Zoom meno">−</button>
             <select id="zoomSel" aria-label="Zoom">
-             option value="0.6">60%</option>
-              <option value="0.7">70%</option>
-              <option value="0.8" selected>80%</option>
+             <option value="0.6">60%</option>
+              <option value="0.7" selected>70%</option>
+              <option value="0.8">80%</option>
               <option value="0.9">90%</option>
               <option value="1.0">100%</option>
               <option value="1.1">110%</option>

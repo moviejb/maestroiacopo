@@ -840,7 +840,25 @@ body.done .fixed {
 
 }
 
+/* =========================
+   Selettore numero coppie
+========================= */
+.pairSizeBox{
+  display:flex;
+  gap:6px;
+  align-items:center;
+}
 
+.sizeBtn{
+  min-width:42px;
+  padding:8px 10px;
+}
+
+.sizeBtn.active{
+  background:#0f172a;
+  color:#fff;
+  border-color:#0f172a;
+}
 </style>
 </head>
 
@@ -858,10 +876,17 @@ body.done .fixed {
       <div class="bar">
         <div id="status" class="muted">…</div>
         <button id="btnShuffle" class="btn" type="button">🔀 Mescola</button>
-        <button id="btnReset" class="btn" type="button">↺ Reset</button>
+        <button id="btnReset" class="btn" type="button" style="display: none;">↺ Reset</button>
 
         <button id="btnRepick" class="btn" type="button">🎴 Cambia Card</button>
-        <button id="btnBackSelect" class="btn" type="button">⬅ Seleziona coppie</button>
+
+        <div id="pairSizeBox" class="pairSizeBox">
+  <button class="btn sizeBtn" data-size="4">4</button>
+  <button class="btn sizeBtn" data-size="6">6</button>
+  <button class="btn sizeBtn" data-size="8">8</button>
+  <button class="btn sizeBtn" data-size="12">12</button>
+        </div>
+        <button id="btnBackSelect" class="btn" type="button">⬅ Cambia Argomento</button>
 
         <div class="zoomBox">
   <button class="btn" id="zAuto" type="button">AUTO</button>
@@ -1092,10 +1117,40 @@ const rand = mulberry32(Number.isFinite(seed) ? seed : Date.now());
         location.href = "pairs_select.html" + (p.toString() ? ("?" + p.toString()) : "");
       });
     })();
-  </script>
+  
+/* =====================================================
+   CAMBIO NUMERO COPPIE DINAMICO
+   ===================================================== */
+(function(){
+
+  const params = new URLSearchParams(location.search);
+  const currentNumero = params.get("numero") || "";
+
+  const buttons = document.querySelectorAll(".sizeBtn");
+
+  // Evidenzia attivo
+  buttons.forEach(btn=>{
+    if(btn.dataset.size === currentNumero){
+      btn.classList.add("active");
+    }
+
+    btn.addEventListener("click", ()=>{
+      const newSize = btn.dataset.size;
+
+      if(newSize === currentNumero) return;
+
+      const p = new URLSearchParams(location.search);
+      p.set("numero", newSize);
+      p.set("seed", Date.now()); // rimescola
+
+      location.href = location.pathname + "?" + p.toString();
+    });
+  });
+
+})();
 
 
-<script>
+
   const ZOOM_LEVELS = [0.55,0.65,0.75, 0.85, 0.95, 1.0, 1.1, 1.2, 1.3,1.4];
   const KEY = "MATCH_PAIRS_ZOOM";
   const KEY_MODE = "MATCH_PAIRS_ZMODE"; // "auto" | "manual"

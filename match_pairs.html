@@ -771,6 +771,76 @@ body.done .fixed {
     font-size: clamp(8px, 2.3vw, 13px) !important;
   }
 }
+
+@media (max-width: 900px){
+
+  #leftCol{
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap:6px !important;
+  }
+
+  .piece{
+    padding:2px !important;
+    border-radius:8px !important;
+  }
+
+  .fixed{
+    padding:0 !important;
+  }
+
+}
+
+@media (max-width: 900px){
+  #leftCol .piece{ padding:2px !important; }
+  #leftCol .pieceContent{ padding:0 !important; }
+  #leftCol .pieceContent img{ width:100% !important; height:100% !important; object-fit:cover !important; }
+}
+
+/* =====================================================
+   MOBILE – DROP e FIXED IDENTICHE DIMENSIONI
+   ===================================================== */
+@media (max-width: 900px){
+
+  #rightCol .drop,
+  #rightCol .fixed{
+    aspect-ratio: 1 / 1 !important;
+    width: 100% !important;
+    padding: 0 !important;
+    border-radius: 10px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  /* stessa struttura interna */
+  #rightCol .drop > *,
+  #rightCol .fixed > *{
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* immagini devono riempire tutto */
+  #rightCol .fixed img,
+  #rightCol .drop img{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+
+  /* manteniamo solo differenza grafica del bordo */
+  #rightCol .drop{
+    border: 2px dashed rgba(15,23,42,.4) !important;
+  }
+
+  #rightCol .fixed{
+    border: 2px solid rgba(15,23,42,.2) !important;
+  }
+
+}
+
+
 </style>
 </head>
 
@@ -951,6 +1021,43 @@ const rand = mulberry32(Number.isFinite(seed) ? seed : Date.now());
 <script src="js/pairs_engine.js"></script>
   <script>
     MatchPairs.boot();
+
+    
+    /* =====================================================
+   MOBILE: solo 3 pezzi visibili alla volta
+   (MAI nascondere quelli già assegnati a destra)
+   ===================================================== */
+(function(){
+  if(window.innerWidth > 900) return;
+
+  const left = document.getElementById("leftCol");
+  const right = document.getElementById("rightCol");
+  if(!left || !right) return;
+
+  const visibleCount = 3;
+
+  function updateVisible(){
+    const pool = Array.from(left.querySelectorAll(".piece")); // ✅ SOLO quelli ancora nel box sinistro
+    pool.forEach((p, i) => {
+      p.style.display = (i < visibleCount) ? "" : "none";
+    });
+  }
+
+  // Aggiorna subito e dopo boot
+  updateVisible();
+  setTimeout(updateVisible, 50);
+
+  // Ogni volta che cambia qualcosa a destra (drop riuscito), aggiorna la “fila”
+  const obs = new MutationObserver(() => updateVisible());
+  obs.observe(right, { childList:true, subtree:true });
+
+  // E anche quando cambia il box sinistro (es. reset/mescola)
+  const obs2 = new MutationObserver(() => updateVisible());
+  obs2.observe(left, { childList:true, subtree:true });
+
+})();
+
+
 
     // ✅ Layout: se ci sono 12 coppie, metti 3 coppie per riga (6 colonne)
     function applyRightColsByPairs(){

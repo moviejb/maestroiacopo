@@ -377,6 +377,18 @@ if (!drop) {
       // corretto
      lockIntoDrop(el, drop);
 
+     // ✅ MATCH: rendi DROP e FIXED "uguali" (copio la card FIXED dentro il DROP)
+try{
+  const row = drop.closest(".row");
+  const fixedContent = row?.querySelector(".fixed .pieceContent");
+  if(fixedContent){
+    drop.innerHTML = "";                 // rimuove anche il pezzo trascinato
+    drop.appendChild(fixedContent.cloneNode(true)); // copia la stessa immagine/testo del fixed
+  }
+  row?.classList.add("matched");         // per stile finale via CSS
+}catch(e){}
+
+
 // ✅ audio attach
 if (STATE.ctx.sfxAttach) {
   try { STATE.ctx.sfxAttach.currentTime = 0; STATE.ctx.sfxAttach.play(); } catch(e){}

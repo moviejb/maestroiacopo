@@ -43,7 +43,14 @@ body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; 
   border:1px solid rgba(15,23,42,.08);
   border-radius:18px;
   box-shadow: 0 10px 22px rgba(15,23,42,.05);
-  padding:14px;
+  padding:1px;
+}
+/* =====================================================
+   Rimuove bordo bianco laterale solo su ABBINA
+   ===================================================== */
+.board .panel:nth-child(2){
+  padding-left: 6px;
+  padding-right: 6px;
 }
 .board .panel:nth-child(2){
   background: linear-gradient(180deg,#f0f9ff 0%, #e0f2fe 100%);
@@ -108,7 +115,7 @@ body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; 
 #rightCol{
   display:grid;
   grid-template-columns: repeat(4, minmax(0,1fr));
-  gap:10px;
+  gap:8px;
   background:#fff;
 }
 #rightCol[data-pairs="12"]{
@@ -168,6 +175,23 @@ body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; 
 .pairB.fixed{ border-color: rgba(168,85,247,.45); }
 .pairC.fixed{ border-color: rgba(16,185,129,.45); }
 
+/* =====================================================
+   TAPPO UNICO SOTTO LE COPPIE (visibile sempre)
+   ===================================================== */
+
+#rightCol .pairA,
+#rightCol .pairB,
+#rightCol .pairC{
+  border-radius:14px;
+  padding:4px 0;   /* ✅ niente spazio laterale */
+}
+
+#rightCol .pairA{ background: rgba(59,130,246,.10); }
+#rightCol .pairB{ background: rgba(168,85,247,.10); }
+#rightCol .pairC{ background: rgba(16,185,129,.10); }
+
+
+
 /* ===== Done / WOW effects (kept) ===== */
 body.dragMode{ overscroll-behavior: none; }
 body.done .drop{ opacity:.98; }
@@ -223,11 +247,12 @@ body.done .drop.filled, body.done .fixed{ animation: glow .8s ease; }
   /* ✅ ogni coppia è un mini-grid indipendente */
   .row{
     display:grid;
-    grid-template-columns: 0.75fr 1.25fr;   /* prima del match */
+    grid-template-columns: 0.58fr 1.42fr;
     gap:8px;
 
-    width: calc(50% - 5px);                /* 2 coppie per riga */
-    flex: 0 0 calc(50% - 5px);
+    box-sizing: border-box;              /* ✅ padding incluso nella larghezza */
+    flex: 0 0 calc(50% - 10px);          /* ✅ 2 coppie per riga anche col tappeto */
+    width: auto;                         /* ✅ evita doppioni/overflow */
   }
 
   /* card sempre quadrate */
@@ -240,7 +265,10 @@ body.done .drop.filled, body.done .fixed{ animation: glow .8s ease; }
   }
 
   /* ✅ DOPO MATCH: diventano UGUALI (1fr/1fr) */
-  .row.matched{ grid-template-columns: 1fr 1fr; }
+  .row.matched{
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;                 /* ✅ meno spazio tra le 2 card matchate */
+}
 
   /* ✅ DOPO MATCH: stesso stile */
   .row.matched > .drop,

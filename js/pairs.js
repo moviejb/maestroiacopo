@@ -118,7 +118,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -138,7 +138,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     },
     "__new": false
   },
@@ -159,7 +159,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     },
     "__new": false
   },
@@ -180,7 +180,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     },
     "__new": false
   },
@@ -201,7 +201,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     },
     "__new": false
   },
@@ -222,7 +222,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     },
     "__new": false
   },
@@ -243,7 +243,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     },
     "__new": false
   },
@@ -264,7 +264,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     },
     "__new": false
   },
@@ -285,7 +285,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -305,7 +305,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -325,7 +325,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -345,7 +345,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -365,7 +365,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -385,7 +385,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -405,7 +405,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -425,7 +425,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -445,7 +445,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -465,7 +465,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -485,7 +485,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -505,7 +505,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -525,7 +525,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -545,7 +545,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Spazio e Orientarsi",
-      "argomentoSecondario": "Gli ambienti della Terra"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -565,7 +565,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -585,7 +585,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -605,7 +605,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -625,7 +625,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -645,7 +645,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -665,7 +665,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -685,7 +685,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -705,7 +705,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -725,7 +725,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -745,7 +745,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {
@@ -765,7 +765,7 @@ window.PAIRS = [
       "disciplina": "Geografia",
       "livello": "facile",
       "argomento": "Gli ambienti della Terra",
-      "argomentoSecondario": "Spazio e Orientarsi"
+      "argomentoSecondario": "Spazio/Orientarsi e Gli ambienti della Terra"
     }
   },
   {

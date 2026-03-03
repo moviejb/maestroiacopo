@@ -240,26 +240,6 @@ const QUESTIONS = [
     "domanda": "Nell'era ARCAICA...",
     "opzioni": [
       {
-        "text": "scompaiono i dinosauri",
-        "img": ""
-      },
-      {
-        "text": "Nascono i primi esseri viventi: batteri e alghe",
-        "img": ""
-      }
-    ],
-    "corretta": 1,
-    "explain": ""
-  },
-  {
-    "classe": "3",
-    "disciplina": "storia",
-    "livello": "facile",
-    "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
-    "domanda": "Nell'era ARCAICA...",
-    "opzioni": [
-      {
         "text": "Nascono esseri viventi PLURICELLULARI",
         "img": ""
       },
@@ -577,26 +557,6 @@ const QUESTIONS = [
       }
     ],
     "corretta": 1,
-    "explain": ""
-  },
-  {
-    "classe": "3",
-    "disciplina": "storia",
-    "livello": "facile",
-    "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
-    "domanda": "Chi è lo STORICO?",
-    "opzioni": [
-      {
-        "text": "è lo studioso del passato",
-        "img": ""
-      },
-      {
-        "text": "è lo studioso della geografia",
-        "img": ""
-      }
-    ],
-    "corretta": 0,
     "explain": ""
   },
   {
@@ -993,26 +953,6 @@ const QUESTIONS = [
     "livello": "facile",
     "argomento": "Che cos'è la storia",
     "argomentiSecondari": [],
-    "domanda": "Cosa sono i FOSSILI?",
-    "opzioni": [
-      {
-        "text": "scarti di spazzatura del passato",
-        "img": ""
-      },
-      {
-        "text": "resti di animali o di vegetali vis suti milioni di anni fa",
-        "img": ""
-      }
-    ],
-    "corretta": 1,
-    "explain": ""
-  },
-  {
-    "classe": "3",
-    "disciplina": "storia",
-    "livello": "facile",
-    "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
     "domanda": "I fossili sono resti di esseri viventi animali o vegetali.",
     "opzioni": [
       {
@@ -1045,26 +985,6 @@ const QUESTIONS = [
       }
     ],
     "corretta": 1,
-    "explain": ""
-  },
-  {
-    "classe": "3",
-    "disciplina": "storia",
-    "livello": "facile",
-    "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
-    "domanda": "I fossili servono per studiare i cambiamenti della Terra.",
-    "opzioni": [
-      {
-        "text": "VERO",
-        "img": ""
-      },
-      {
-        "text": "FALSO",
-        "img": ""
-      }
-    ],
-    "corretta": 0,
     "explain": ""
   },
   {
@@ -1289,46 +1209,6 @@ const QUESTIONS = [
       }
     ],
     "corretta": 1,
-    "explain": ""
-  },
-  {
-    "classe": "3",
-    "disciplina": "storia",
-    "livello": "facile",
-    "argomento": "Preistoria",
-    "argomentiSecondari": [],
-    "domanda": "Dove vivevano spesso gli uomini primitivi?",
-    "opzioni": [
-      {
-        "text": "Nelle caverne",
-        "img": ""
-      },
-      {
-        "text": "Nei palazzi",
-        "img": ""
-      }
-    ],
-    "corretta": 0,
-    "explain": ""
-  },
-  {
-    "classe": "3",
-    "disciplina": "storia",
-    "livello": "facile",
-    "argomento": "Preistoria",
-    "argomentiSecondari": [],
-    "domanda": "Che cosa usavano per cacciare?",
-    "opzioni": [
-      {
-        "text": "Lance e pietre",
-        "img": ""
-      },
-      {
-        "text": "Arco e frecce",
-        "img": ""
-      }
-    ],
-    "corretta": 0,
     "explain": ""
   },
   {
@@ -2123,46 +2003,6 @@ const QUESTIONS = [
     "classe": "3",
     "disciplina": "storia",
     "livello": "facile",
-    "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
-    "domanda": "Chi è lo storico?",
-    "opzioni": [
-      {
-        "text": "Lo scienziato che studia il passato",
-        "img": ""
-      },
-      {
-        "text": "Lo scienziato che  inventa storie",
-        "img": ""
-      }
-    ],
-    "corretta": 0,
-    "explain": ""
-  },
-  {
-    "classe": "3",
-    "disciplina": "storia",
-    "livello": "facile",
-    "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
-    "domanda": "Cosa sono i FOSSILI?",
-    "opzioni": [
-      {
-        "text": "scarti di spazzatura del passato",
-        "img": ""
-      },
-      {
-        "text": "resti di animali o di vegetali vissuti milioni di anni fa",
-        "img": ""
-      }
-    ],
-    "corretta": 1,
-    "explain": ""
-  },
-  {
-    "classe": "3",
-    "disciplina": "storia",
-    "livello": "facile",
     "argomento": "La storia della Terra",
     "argomentiSecondari": [],
     "domanda": "La TERRA era formata da un unico grande continente: come si chiamava?",
@@ -2225,26 +2065,6 @@ const QUESTIONS = [
       "tipo": "image",
       "src": "img/storia/pangea 2.png"
     },
-    "explain": ""
-  },
-  {
-    "classe": "3",
-    "disciplina": "storia",
-    "livello": "facile",
-    "argomento": "Le ere geologiche",
-    "argomentiSecondari": [],
-    "domanda": "Nell'era ARCAICA...",
-    "opzioni": [
-      {
-        "text": "scompaiono i dinosauri",
-        "img": "img/storia/75.jpg"
-      },
-      {
-        "text": "Nascono i primi esseri viventi: batteri e alghe",
-        "img": "img/storia/68.jpg"
-      }
-    ],
-    "corretta": 1,
     "explain": ""
   },
   {
@@ -2377,26 +2197,6 @@ const QUESTIONS = [
       "tipo": "image",
       "src": "img/storia/fonti_orali.png"
     },
-    "explain": ""
-  },
-  {
-    "classe": "3",
-    "disciplina": "storia",
-    "livello": "facile",
-    "argomento": "Che cos'è la storia",
-    "argomentiSecondari": [],
-    "domanda": "Che cos'è un SITO ARCHEOLOGICO?",
-    "opzioni": [
-      {
-        "text": "un luogo dove si nascondono gli archeologi",
-        "img": ""
-      },
-      {
-        "text": "un luogo dove vengono  trovati i reperti",
-        "img": ""
-      }
-    ],
-    "corretta": 1,
     "explain": ""
   },
   {
@@ -2753,29 +2553,345 @@ const QUESTIONS = [
     "classe": "3",
     "disciplina": "storia",
     "livello": "facile",
-    "argomento": "Preistoria - Australopiteco",
+    "argomento": "Preistoria",
     "argomentiSecondari": [
-      "Preistoria"
+      "Preistoria - Australopiteco"
     ],
-    "domanda": "L’Australopiteco viveva soprattutto...",
+    "domanda": "La Preistoria viene divisa in 2 grandi ERE.",
     "opzioni": [
       {
-        "text": "in Europa",
+        "text": "VERO",
         "img": ""
       },
       {
-        "text": "in Africa orientale",
+        "text": "FALSO",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": "La Preistoria viene divisa in Paleolitico e Neolitico."
+  },
+  {
+    "classe": "3",
+    "disciplina": "storia",
+    "livello": "facile",
+    "argomento": "Preistoria",
+    "argomentiSecondari": [
+      "Preistoria - Australopiteco"
+    ],
+    "domanda": "Come viene chiamata l'età del PALEOLITICO?",
+    "opzioni": [
+      {
+        "text": "“Età della pietra nuova o levigata”",
         "img": ""
       },
       {
-        "text": "in America",
+        "text": "“Età  della pietra antica o scheggiata”",
+        "img": ""
+      }
+    ],
+    "corretta": 1,
+    "explain": "“L'Età della pietra nuova o levigata” è il NEOLITICO"
+  },
+  {
+    "classe": "3",
+    "disciplina": "storia",
+    "livello": "facile",
+    "argomento": "Preistoria",
+    "argomentiSecondari": [
+      "Preistoria - Australopiteco"
+    ],
+    "domanda": "Come viene chiamata l'età del NEOLITICO?",
+    "opzioni": [
+      {
+        "text": "“Età  della pietra antica o scheggiata”",
+        "img": ""
+      },
+      {
+        "text": "“Età della pietra nuova o levigata”",
+        "img": ""
+      }
+    ],
+    "corretta": 1,
+    "explain": "“L'Età  della pietra antica o scheggiata” è il PALEOLITICO"
+  },
+  {
+    "classe": "3",
+    "disciplina": "storia",
+    "livello": "facile",
+    "argomento": "Preistoria",
+    "argomentiSecondari": [
+      "Preistoria - Australopiteco"
+    ],
+    "domanda": "Quando inizia il periodo che gli studiosi chiamano Preistoria?",
+    "opzioni": [
+      {
+        "text": "Con la comparsa dell’uomo sulla Terra",
+        "img": ""
+      },
+      {
+        "text": "Con la comparsa dei Dinosauri sulla Terra",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "storia",
+    "livello": "facile",
+    "argomento": "Preistoria",
+    "argomentiSecondari": [
+      "Preistoria - Australopiteco"
+    ],
+    "domanda": "La differenzia tra Paleolitico dal Neolitico è...",
+    "opzioni": [
+      {
+        "text": "il modo in cui l’uomo  lavorava la pietra per produrre utensili",
+        "img": ""
+      },
+      {
+        "text": "il modo in cui l’uomo  lavorava il metallo",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "storia",
+    "livello": "facile",
+    "argomento": "Preistoria",
+    "argomentiSecondari": [
+      "Preistoria - Australopiteco"
+    ],
+    "domanda": "Quando inizia la STORIA?",
+    "opzioni": [
+      {
+        "text": "con la scoperta del fuoco",
+        "img": ""
+      },
+      {
+        "text": "con l'invenzione della SCRITTURA",
+        "img": ""
+      }
+    ],
+    "corretta": 1,
+    "explain": "Dalla PREISTORIA passiamo alla STORIA La Storia 5 000 anni fa con l’invenzione della scrittura."
+  },
+  {
+    "classe": "3",
+    "disciplina": "storia",
+    "livello": "facile",
+    "argomento": "Preistoria",
+    "argomentiSecondari": [
+      "Preistoria - Australopiteco"
+    ],
+    "domanda": "Il lungo periodo della Preistoria si divide in...",
+    "opzioni": [
+      {
+        "text": "Merolitico e Paleolitico",
+        "img": ""
+      },
+      {
+        "text": "Paleolitico e Neolitico",
+        "img": ""
+      }
+    ],
+    "corretta": 1,
+    "explain": "Il Paleolitico, o “Età della pietra antica o scheggiata”, e il Neolitico, o “Età della pietra nuova o levigata”"
+  },
+  {
+    "classe": "3",
+    "disciplina": "storia",
+    "livello": "facile",
+    "argomento": "Preistoria",
+    "argomentiSecondari": [
+      "Preistoria - Australopiteco"
+    ],
+    "domanda": "L’Australopiteco era...",
+    "opzioni": [
+      {
+        "text": "Onnivoro",
+        "img": ""
+      },
+      {
+        "text": "Solo Carnivoro",
+        "img": ""
+      },
+      {
+        "text": "Solo Erbivoro",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": "ONNIVORO: mangiava qualsiasi cosa."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Spazio e Orientamento",
+    "argomentiSecondari": [],
+    "domanda": "Che cos’è la Geografia?",
+    "opzioni": [
+      {
+        "text": "è la scienza che studia, descrive e  rappresenta i paesaggi della Terra",
+        "img": ""
+      },
+      {
+        "text": "è la scienza che studia gli avvenimenti del passato",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": "La scienza che studia gli avvenimenti del passato è la STORIA"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Spazio e Orientamento",
+    "argomentiSecondari": [],
+    "domanda": "GEOGRAFIA: viene dal greco “Geo”, che vuol dire “Terra”, e “graphia”, “descrizione”, e significa...",
+    "opzioni": [
+      {
+        "text": "descrizione  della Terra",
+        "img": ""
+      },
+      {
+        "text": "descrizione del passato",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Ripasso",
+    "argomentiSecondari": [
+      "Spazio e Orientamento"
+    ],
+    "domanda": "Cosa fa il CARTOGRAFO?",
+    "opzioni": [
+      {
+        "text": "disegna mappe e carte  geografiche",
+        "img": ""
+      },
+      {
+        "text": "studia le caratteristiche del  clima",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/memory/geografia/34_B.png"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Spazio e Orientamento",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Cosa fa il METEOROLOGO?",
+    "opzioni": [
+      {
+        "text": "studia le caratteristiche del  clima",
+        "img": ""
+      },
+      {
+        "text": "studia la popolazione di un territorio",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/memory/geografia/35_B.png"
+    },
+    "explain": "studia la popolazione di un territorio l'ANTROPOLOGO"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Spazio e Orientamento",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Cosa fa il GEOLOGO?",
+    "opzioni": [
+      {
+        "text": "studia il terreno e le rocce",
+        "img": ""
+      },
+      {
+        "text": "esamina la flora",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/memory/storia/14_b.png"
+    },
+    "explain": "Il BIOLOGO esamina la FLORA, ossia le piante."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Spazio e Orientamento",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Cosa fa il BIOLOGO?",
+    "opzioni": [
+      {
+        "text": "esamina la FLORA",
+        "img": ""
+      },
+      {
+        "text": "esamina la FAUNA",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Spazio e Orientamento",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Cosa fa lo ZOOLOGO?",
+    "opzioni": [
+      {
+        "text": "Esamina la FAUNA dei vari ambienti",
+        "img": ""
+      },
+      {
+        "text": "Esamina la FLORA dei vari ambienti",
         "img": ""
       }
     ],
     "corretta": 1,
     "media": {
       "tipo": "image",
-      "src": "img/storia/australopithecus.jpeg"
+      "src": "img/memory/geografia/36_a.png"
     },
     "explain": ""
   }

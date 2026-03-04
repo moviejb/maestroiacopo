@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Italiano 3 - Unisci i punti</title>
+  <link rel="stylesheet" href="css/italiano_common.css" />
+  <link rel="stylesheet" href="css/unisci_punti.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="title" id="title">ITALIANO 3ª • UNISCI I PUNTI</div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn" id="resetBtn">RESET</button>
+        <button class="btn" id="nextBtn">PROSSIMO</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="msg" id="msg">Tocca i numeri in ordine: 1 → 2 → 3…</div>
+
+      <div class="dotsStage" id="stage">
+        <img id="revealImg" class="revealImg" alt="" />
+        <canvas id="canvas"></canvas>
+        <div id="pointsLayer" class="pointsLayer"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/nav.js"></script>
+<script src="js/menu.js"></script>
+  <script src="js/italiano_cl3_dots.js"></script>
+  <script src="js/unisci_punti.js"></script>
+</body>
+</html>

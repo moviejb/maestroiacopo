@@ -596,14 +596,16 @@ body.theme-cloud{
   .ctrl select{ height: 34px; }
 }
 
-/* ===== MOBILE: trenino più largo ===== */
 
+
+/* ===== MOBILE: trenino più largo e CENTRATO ===== */
 @media (max-width: 680px){
-
   .trackOuter{
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
+    width: 95vw;
+    margin: 0;                 /* evita auto/padding strani */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
   }
-
 }

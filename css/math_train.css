@@ -379,12 +379,40 @@ body.theme-cloud{
   font-size: 12px;
 }
 
-/* Small screens */
+/* Small screens 2 VAGONI SU MOBILE*/
 @media (max-width: 680px){
   .brandTitle{ font-size: 16px; }
   .car{ min-width: 170px; max-width: 170px; }
   .bigNum{ font-size: 40px; }
 }
+
+
+/* Small screens 3 VAGONI SU MOBILE
+@media (max-width: 680px){
+
+  .brandTitle{ font-size: 16px; }
+
+ 
+  .car{
+    min-width: 30vw;
+    max-width: 30vw;
+  }
+
+  .track{
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .bigNum{
+    font-size: 30px;
+  }
+
+  .badge{
+    font-size: 11px;
+    padding: 6px 8px;
+  }
+
+}*/
 
 /* ====== CONTAINER GIOCO PIÙ STRETTO (come gli altri) ====== */
 :root{
@@ -566,4 +594,16 @@ body.theme-cloud{
 
   /* rendi select un po' più bassi su mobile */
   .ctrl select{ height: 34px; }
+}
+
+/* ===== MOBILE: trenino più largo ===== */
+
+@media (max-width: 680px){
+
+  .trackOuter{
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
 }

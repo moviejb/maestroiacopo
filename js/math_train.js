@@ -482,6 +482,10 @@ function compute(current, op){
     setTimeout(() => track.scrollTo({left:0, behavior:"smooth"}), 50);
   }
 
+  // APRI IL MENU DI DEFAULT SU MOBILE (prima visualizzazione)
+if (window.matchMedia && window.matchMedia("(max-width: 680px)").matches) {
+  document.body.classList.add("menuOpen");
+}
   function resetGame(){
     stopSound(sndWin);
 
@@ -497,7 +501,12 @@ function compute(current, op){
   }
 
   // ====== EVENTS ======
-  btnStart.addEventListener("click", startGame);
+  btnStart.addEventListener("click", () => {
+  startGame();
+
+  /* su mobile chiude il menu */
+  document.body.classList.remove("menuOpen");
+});
   btnReset.addEventListener("click", resetGame);
 
   themeSel.addEventListener("change", () => {
@@ -512,4 +521,26 @@ function compute(current, op){
   applyTheme(themeSel.value);
   applyZoom(Number(zoomRange.value));
   resetGame();
+
+
+
+  // ===== MOBILE MENU TOGGLE =====
+const btnMobileMenu = document.getElementById("btnMobileMenu");
+if(btnMobileMenu){
+  btnMobileMenu.addEventListener("click", () => {
+    document.body.classList.toggle("menuOpen");
+  });
+}
+
+
+// chiude il menu mobile quando tocchi l'area di gioco
+const gameArea = document.querySelector(".gameWrap");
+
+if(gameArea){
+  gameArea.addEventListener("click", () => {
+    document.body.classList.remove("menuOpen");
+  });
+}
+
+
 })();

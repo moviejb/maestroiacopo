@@ -535,3 +535,35 @@ body.theme-cloud{
 
   pointer-events:none;
 }
+
+/* ===== MENU A SCOMPARSA (solo mobile) ===== */
+.menuToggle{ display:none; }
+
+@media (max-width: 680px){
+  .menuToggle{ display:inline-flex; align-items:center; justify-content:center; padding:0 12px; }
+
+  /* layout topbar più pulito */
+  .controls{
+    align-items: center;
+  }
+
+  /* nascondo tutto tranne: ⚙️ + GIOCA/RESET/HOME */
+  .controls .ctrl,
+  .controls .zoomCtrl{
+    display:none;
+  }
+
+  /* quando è aperto */
+  body.menuOpen .controls .ctrl,
+  body.menuOpen .controls .zoomCtrl{
+    display:flex;
+  }
+
+  /* quando è aperto: metto i controlli su 2 righe ordinate */
+  body.menuOpen .controls{
+    gap: 8px;
+  }
+
+  /* rendi select un po' più bassi su mobile */
+  .ctrl select{ height: 34px; }
+}

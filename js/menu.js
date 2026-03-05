@@ -333,6 +333,7 @@
   <button class="dditem" type="button" data-href="tug_of_math.html">▸ MATEMATICA - Sfida di velocità</button>
   <button class="dditem" type="button" data-href="hole_duel.html">▸ MATEMATICA - Chi arriva prima?</button>
   <button class="dditem" type="button" data-href="mat_pre_succ.html">▸ MATEMATICA - Precedente/Successivo</button>
+  <button class="dditem" type="button" data-href="math_train.html">▸ MATEMATICA - Trenino delle operazioni</button>
 </div>
     </div>
 
@@ -359,6 +360,7 @@
        <button class="dditem" type="button" data-href="tug_of_math.html">↳ MATEMATICA - Sfida di velocità</button>
   <button class="dditem" type="button" data-href="hole_duel.html">↳ MATEMATICA - Chi arriva prima?</button>
   <button class="dditem" type="button" data-href="mat_pre_succ.html">↳ MATEMATICA - Precedente/Successivo</button>
+  <button class="dditem" type="button" data-href="math_train.html">↳ MATEMATICA - Trenino delle operazioni</button>
     </div>
     <button class="navbtn" type="button" data-act="gruppo">GIOCHI DI GRUPPO</button>
     <button class="navbtn lock" type="button" data-act="admin">🔒 ADMIN</button>

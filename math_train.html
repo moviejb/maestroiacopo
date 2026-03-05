@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Trenino delle Operazioni</title>
+
+  <link rel="stylesheet" href="css/math_train.css" />
+</head>
+
+<body class="theme-train">
+ 
+
+    <!-- TOP BAR / MENU INTERNO -->
+ <header class="topbar">
+  <div class="pageContainer">
+
+    <div class="brand">
+      <div class="brandTitle">TRENINO DELLE OPERAZIONI</div>
+      <div class="brandSub">Scegli una card segreta " ? ", scopri l’operazione, calcola e prosegui!</div>
+    </div>
+
+    <div class="controls">
+        <label class="ctrl">
+          Operazioni
+          <select id="opsMode">
+            <option value="mixed" selected>MISTE</option>
+            <option value="add">ADDIZIONI</option>
+            <option value="sub">SOTTRAZIONI</option>
+            <option value="mul">MOLTIPLICAZIONI</option>
+            <option value="div">DIVISIONI</option>
+          </select>
+        </label>
+
+        <label class="ctrl">
+          Vagoni (N)
+          <select id="nSteps">
+            <option value="4">4</option>
+            <option value="6" selected>6</option>
+            <option value="8">8</option>
+            <option value="10">10</option>
+            <option value="12">12</option>
+          </select>
+        </label>
+
+        <label class="ctrl">
+          Livello
+          <select id="difficulty">
+            <option value="primary" selected>FACILE (no negativi)</option>
+            <option value="hard">DIFFICILE (anche negativi)</option>
+          </select>
+        </label>
+
+        <label class="ctrl">
+          Tema
+          <select id="themeSel">
+            <option value="train" selected>Verde</option>
+            <option value="pirate">Blu</option>
+            <option value="cloud">Celeste</option>
+          </select>
+        </label>
+
+        <label class="ctrl zoomCtrl">
+          Zoom
+          <input id="zoomRange" type="range" min="60" max="140" step="5" value="100" />
+          <span id="zoomVal">100%</span>
+        </label>
+
+        <button id="btnStart" class="btn primary" title="Avvia / Ricomincia">GIOCA</button>
+        <button id="btnReset" class="btn" title="Reset">RESET</button>
+      </div>
+
+  </div>
+</header>
+
+<main class="app">
+  <div class="pageContainer">
+
+    <div class="gameWrap">
+      <div class="statusRow">
+        <div id="status" class="statusPill">Pronto! Premi GIOCA.</div>
+        <div id="progress" class="statusPill ghost">0 / 0</div>
+      </div>
+
+      <div class="trackOuter">
+        <div id="track" class="track" aria-label="Trenino delle operazioni"></div>
+      </div>
+    </div>
+
+    <footer class="hint">
+      Suggerimento: scorri orizzontalmente per vedere tutto il percorso. Il vagone attivo “brilla”.
+    </footer>
+
+  </div>
+</main>
+
+
+  <audio id="sndOk"  src="audio/effetto_sonoro_din.mp3" preload="auto"></audio>
+<audio id="sndErr" src="audio/taglio.mp3" preload="auto"></audio>
+
+<!-- MUSICA/BRANO DI VITTORIA (il tuo mp3): può anche durare 10-20s -->
+<audio id="sndWin" src="audio/super_mario_vittoria.mp3" preload="auto"></audio>
+
+<script src="js/nav.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/math_train.js"></script>
+</body>
+</html>

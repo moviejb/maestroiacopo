@@ -500,7 +500,7 @@ window.addEventListener("game:music", (e)=>{
 // I bottoni del menu unico emettono anche eventi, così non dipendiamo da ID "legacy".
 window.addEventListener("game:reset", resetGame);
 window.addEventListener("game:play", resetGame);
-window.addEventListener("game:home", ()=>{ window.location.href = "giochi_didattici.html"; });
+window.addEventListener("game:home", ()=>{ window.location.href = "matematica.html"; });
 
 // (in più) se vuoi mantenere anche i click diretti quando presenti:
 if(btnReset) btnReset.addEventListener("click", resetGame);

@@ -330,3 +330,17 @@ body{
   .zoomSel{ font-size:14px; padding:5px 8px; }
   .topBtn{ width:36px; height:36px; }
 }
+
+.gameBtn:disabled{
+
+  opacity:0.25;           /* molto più trasparente */
+
+  filter: grayscale(80%); /* toglie colore */
+
+  box-shadow:none;
+
+  transform:none;
+
+  cursor:not-allowed;
+
+}

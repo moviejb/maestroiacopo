@@ -1,0 +1,469 @@
+:root{
+  --uiScale: 1;
+  --cardRadius: 18px;
+  --shadow: 0 18px 45px rgba(0,0,0,.18);
+  --shadow2: 0 10px 26px rgba(0,0,0,.14);
+  --glass: rgba(255,255,255,.14);
+  --glass2: rgba(255,255,255,.10);
+  --line: rgba(255,255,255,.18);
+
+  --txt: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.70);
+  --ok: rgba(40, 220, 140, .95);
+  --bad: rgba(255, 90, 120, .95);
+  --warn: rgba(255, 205, 90, .95);
+ 
+}
+
+*{ box-sizing: border-box; }
+html,body{ height: 100%; }
+body{
+  margin:0;
+  color: var(--txt);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* THEMES (background only) */
+body.theme-train{
+  background: radial-gradient(1200px 700px at 20% 10%, rgba(255,255,255,.14), transparent 55%),
+              radial-gradient(1000px 700px at 85% 20%, rgba(255,255,255,.10), transparent 55%),
+              linear-gradient(180deg, #0b2742 0%, #08311a 60%, #062012 100%);
+}
+body.theme-pirate{
+  background: radial-gradient(1200px 700px at 20% 10%, rgba(255,255,255,.12), transparent 55%),
+              radial-gradient(1000px 700px at 85% 30%, rgba(255,255,255,.10), transparent 55%),
+              linear-gradient(180deg, #0c2038 0%, #072235 45%, #071a22 100%);
+}
+body.theme-cloud{
+  background: radial-gradient(1200px 700px at 20% 20%, rgba(255,255,255,.22), transparent 60%),
+              radial-gradient(900px 600px at 80% 20%, rgba(255,255,255,.18), transparent 60%),
+              linear-gradient(180deg, #1b4e88 0%, #2c7dbb 55%, #2f9dbf 100%);
+}
+
+.app{
+  transform: scale(var(--uiScale));
+  transform-origin: top center;
+}
+
+
+.topbar{
+  padding: 14px 0 10px;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+
+  backdrop-filter: blur(10px);
+  background: linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.12));
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+
+/* contenitore centrato come il gioco */
+.topbarInner{
+  max-width: var(--gameMaxW);
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+.brand{
+  display:flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.brandTitle{
+  font-weight: 900;
+  letter-spacing: .06em;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+.brandSub{
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.controls{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: end;
+}
+
+.ctrl{
+  display:flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+  user-select: none;
+}
+
+.ctrl select{
+  height: 38px;
+  padding: 0 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.22);
+  color: var(--txt);
+  outline: none;
+  box-shadow: var(--shadow2);
+}
+
+.zoomCtrl{
+  min-width: 160px;
+}
+.zoomCtrl input[type="range"]{
+  width: 160px;
+  accent-color: rgba(255,255,255,.9);
+}
+#zoomVal{
+  margin-top: -2px;
+  color: var(--txt);
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+
+.btn{
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.22);
+  color: var(--txt);
+  font-weight: 900;
+  letter-spacing: .04em;
+  cursor: pointer;
+  box-shadow: var(--shadow2);
+}
+.btn:active{ transform: translateY(1px); }
+.btn.primary{
+  background: rgba(38, 220, 2, 0.896);
+  border-color: rgba(255,255,255,.24);
+}
+.btn[disabled]{
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.gameWrap{
+  padding: 14px;
+}
+
+.statusRow{
+  display:flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.statusPill{
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.22);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  box-shadow: var(--shadow2);
+}
+.statusPill.ghost{
+  opacity: .85;
+}
+
+.trackOuter{
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.20);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.track{
+  display:flex;
+  gap: 12px;
+  padding: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.track::-webkit-scrollbar{ height: 10px; }
+.track::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.18); border-radius: 999px; }
+.track::-webkit-scrollbar-track{ background: rgba(0,0,0,.18); border-radius: 999px; }
+
+/* Train elements */
+.car{
+  min-width: 190px;
+  max-width: 190px;
+  scroll-snap-align: start;
+  border-radius: var(--cardRadius);
+  border: 1px solid rgba(255,255,255,.14);
+  background: linear-gradient(180deg, var(--glass), var(--glass2));
+  box-shadow: var(--shadow2);
+  position: relative;
+  overflow: hidden;
+}
+
+.carHeader{
+  padding: 10px 12px 0;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.carBody{
+  padding: 10px 12px 12px;
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bigNum{
+  font-size: 44px;
+  font-weight: 1000;
+  line-height: 1;
+  letter-spacing: .02em;
+  text-shadow: 0 10px 26px rgba(0,0,0,.25);
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  font-weight: 900;
+  letter-spacing: .04em;
+  padding: 8px 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.18);
+}
+
+.loco .badge::before{ content: "🚂"; }
+.done .badge::before{ content: "✅"; }
+.choice .badge::before{ content: "❓"; }
+.activeGlow{
+  outline: 2px solid rgba(255,255,255,.22);
+  box-shadow: 0 0 0 2px rgba(255,255,255,.08), 0 0 24px rgba(255,255,255,.20);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%{ box-shadow: 0 0 0 2px rgba(255,255,255,.07), 0 0 18px rgba(255,255,255,.14); }
+  50%{ box-shadow: 0 0 0 2px rgba(255,255,255,.11), 0 0 30px rgba(255,255,255,.22); }
+  100%{ box-shadow: 0 0 0 2px rgba(255,255,255,.07), 0 0 18px rgba(255,255,255,.14); }
+}
+
+.choiceBtns{
+  display:flex;
+  gap: 10px;
+}
+.choiceBtn{
+  flex: 1;
+  height: 44px;
+  border-radius: 14px;
+  border: none;
+  color: #222;
+  font-weight: 1000;
+  letter-spacing: .05em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform .15s, box-shadow .15s;
+}
+
+/* primo bottone (giallo) */
+.choiceBtn:nth-child(1){
+  background: linear-gradient(180deg,#ffe46a,#ffc400);
+  box-shadow: 0 6px 14px rgba(0,0,0,.25);
+}
+
+/* secondo bottone (arancione) */
+.choiceBtn:nth-child(2){
+  background: linear-gradient(180deg,#ffb357,#ff7a00);
+  box-shadow: 0 6px 14px rgba(0,0,0,.25);
+}
+
+.choiceBtn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,.35);
+}
+
+/* quando l'operazione viene rivelata */
+.choiceBtn.revealed{
+  color:#111;
+  font-size:18px;
+}
+
+/* quando non cliccabile */
+.choiceBtn[disabled]{
+  opacity:.65;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.answerRow{
+  display:flex;
+  gap: 10px;
+  align-items: center;
+}
+.answerRow input{
+  width: 100%;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.22);
+  color: var(--txt);
+  font-weight: 900;
+  font-size: 18px;
+  padding: 0 12px;
+  outline: none;
+}
+.answerRow .checkBtn{
+  height: 44px;
+  min-width: 52px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.22);
+  color: var(--txt);
+  font-weight: 1000;
+  cursor: pointer;
+}
+.feedback{
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .02em;
+}
+.feedback.ok{ color: var(--ok); }
+.feedback.bad{ color: var(--bad); }
+.feedback.warn{ color: var(--warn); }
+
+.hint{
+  padding: 10px 14px 16px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Small screens */
+@media (max-width: 680px){
+  .brandTitle{ font-size: 16px; }
+  .car{ min-width: 170px; max-width: 170px; }
+  .bigNum{ font-size: 40px; }
+}
+
+/* ====== CONTAINER GIOCO PIÙ STRETTO (come gli altri) ====== */
+:root{
+  --gameMaxW: 1100px; /* cambia qui se lo vuoi più stretto (es. 980px) */
+}
+
+/* contenitore centrale usato da tutto il gioco */
+.pageContainer{
+  max-width: var(--gameMaxW);
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+.gameWrap{
+  max-width: var(--gameMaxW);
+  margin: 0 auto;           /* centra */
+  padding: 14px 12px;       /* un filo più “pulito” ai lati */
+}
+
+/* anche le righe sopra e sotto restano allineate al contenitore */
+.statusRow{
+  max-width: var(--gameMaxW);
+  margin: 0 auto 10px auto;
+}
+
+/* il box del trenino resta dentro al contenitore */
+.trackOuter{
+  max-width: var(--gameMaxW);
+  margin: 0 auto;
+}
+
+/* footer/hint centrato come il gioco */
+.hint{
+  max-width: var(--gameMaxW);
+  margin: 0 auto;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* ====== DIFFERENZA VISIVA: NUMERI GRANDI vs SCELTE ====== */
+
+/* vagoni NUMERO (locomotiva e risultati) */
+.car.loco,
+.car.done{
+  background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.10));
+  border-color: rgba(255,255,255,.28);
+}
+
+/* vagoni SCELTA (più “scuri” / diversi) */
+.car.choice{
+  background: linear-gradient(180deg, rgba(0,0,0,.26), rgba(255,255,255,.08));
+  border-color: rgba(255,255,255,.14);
+}
+
+/* quando un vagone scelta è RISOLTO */
+.car.choice.solved{
+  border-color: rgba(40, 220, 140, .70);
+  box-shadow: 0 0 0 2px rgba(40, 220, 140, .20), 0 12px 28px rgba(0,0,0,.18);
+}
+
+/* glow “wow” appena indovinato */
+.car.choice.solvedGlow{
+  border-color: rgba(40, 220, 140, .95);
+  box-shadow:
+    0 0 0 2px rgba(40, 220, 140, .28),
+    0 0 26px rgba(40, 220, 140, .30),
+    0 18px 40px rgba(0,0,0,.20);
+  animation: solvedPop .55s ease-out;
+}
+
+@keyframes solvedPop{
+  0%{ transform: translateY(0) scale(1); }
+  40%{ transform: translateY(-2px) scale(1.02); }
+  100%{ transform: translateY(0) scale(1); }
+}
+
+/* anche il badge dei vagoni risolti cambia leggermente */
+.car.choice.solved .badge{
+  border-color: rgba(40, 220, 140, .40);
+  background: rgba(40, 220, 140, .10);
+}
+
+/* card non scelta dopo la selezione */
+.choiceBtn.locked{
+  opacity:.35;
+  filter: grayscale(.6);
+  transform:none;
+  cursor:not-allowed;
+}
+
+/* ====== VITTORIA: ULTIMO RISULTATO "FESTA" ====== */
+.car.done.finalWin{
+  border-color: rgba(255,255,255,.40);
+  background: linear-gradient(135deg,
+    rgba(255, 80, 150, .35),
+    rgba(255, 200, 80, .35),
+    rgba(80, 220, 140, .30),
+    rgba(90, 170, 255, .35)
+  );
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,.10),
+    0 0 34px rgba(255,255,255,.22),
+    0 18px 45px rgba(0,0,0,.20);
+  animation: winGlow 1.3s ease-in-out infinite;
+}
+
+.car.done.finalWin .bigNum{
+  text-shadow: 0 12px 30px rgba(0,0,0,.25);
+}
+
+.car.done.finalWin .badge{
+  background: rgba(0,0,0,.12);
+  border-color: rgba(255,255,255,.26);
+}
+
+@keyframes winGlow{
+  0%   { filter: saturate(1.05); transform: translateY(0); }
+  50%  { filter: saturate(1.35); transform: translateY(-2px); }
+  100% { filter: saturate(1.05); transform: translateY(0); }
+}

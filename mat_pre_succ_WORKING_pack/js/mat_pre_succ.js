@@ -30,54 +30,11 @@ function parseNum(val){
   return Number.isFinite(n) ? n : null;
 }
 
-// ===== SUONI MORBIDI =====
-let audioCtx = null;
-
-function getAudioCtx(){
-  if(!audioCtx){
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  return audioCtx;
-}
-
-function tone(freq, time, volume=0.05){
-  const ctx = getAudioCtx();
-  if(ctx.state === "suspended") ctx.resume();
-
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
-
-  osc.type = "sine";
-  osc.frequency.value = freq;
-
-  gain.gain.value = volume;
-
-  osc.connect(gain);
-  gain.connect(ctx.destination);
-
-  osc.start();
-  setTimeout(()=>osc.stop(), time);
-}
-
-function sfxOk(){
-  tone(880,120);
-  setTimeout(()=>tone(1040,140),130);
-}
-
-function sfxBad(){
-  tone(320,140);
-  setTimeout(()=>tone(260,180),150);
-}
-
-function sfxNew(){
-  tone(600,80,0.035);
-}
-
-
 // ===== UI feedback =====
 function clearFeedback(){
-  [prevIn, nextIn].forEach(el=> el.classList.remove("ok","bad"));
-  centerNumEl.classList.remove("pop","win","shake");
+  [prevIn, nextIn].forEach(el=>{
+    el.classList.remove("ok","bad");
+  });
 }
 
 function setFeedback(okPrev, okNext){
@@ -87,12 +44,11 @@ function setFeedback(okPrev, okNext){
   nextIn.classList.toggle("bad", !okNext);
 }
 
-function animateCenter(kind){
-  // kind: "pop" | "win" | "shake"
-  centerNumEl.classList.remove("pop","win","shake");
-  // force reflow to restart animation
+function popCenter(){
+  centerNumEl.classList.remove("pop");
+  // force reflow
   void centerNumEl.offsetWidth;
-  centerNumEl.classList.add(kind);
+  centerNumEl.classList.add("pop");
 }
 
 // ===== Game logic =====
@@ -110,8 +66,6 @@ function generateCenter(){
     centerNumEl.textContent = "—";
     clearFeedback();
     return;
-
-
   }
 
   const kMin = Math.ceil((low - min) / step);
@@ -121,16 +75,14 @@ function generateCenter(){
   center = min + k * step;
 
   centerNumEl.textContent = center;
-  sfxNew();
-  animateCenter("pop");
+  popCenter();
+  clearFeedback();
 
   prevIn.value = "";
   nextIn.value = "";
-  clearFeedback(); // rimuove colori input e animazioni precedenti
-
   prevIn.focus();
+
   setMsg("", "Scrivi il numero precedente e quello successivo.");
-  newBtn.disabled = true;
 }
 
 function check(){
@@ -147,7 +99,6 @@ function check(){
     setMsg("bad", "Compila entrambe le caselle.");
     prevIn.classList.add("bad");
     nextIn.classList.add("bad");
-    animateCenter("shake");
     return;
   }
 
@@ -156,17 +107,11 @@ function check(){
 
   setFeedback(okPrev, okNext);
 
- if(okPrev && okNext){
-  setMsg("ok", "OTTIMO! ✅");
-  animateCenter("win");
-  sfxOk();            // ✅ suono GIUSTO
-}else{
-  //setMsg("bad", `NO ❌  •  Precedente: ${prevAns}  •  Successivo: ${nextAns}`);
-  setMsg("bad", `NO ❌`);
-  animateCenter("shake");
-  sfxBad();           // ❌ suono SBAGLIATO
-}
-     newBtn.disabled = false;
+  if(okPrev && okNext){
+    setMsg("ok", "BRAVISSIMO! ✅");
+  }else{
+    setMsg("bad", `NO ❌  •  Precedente: ${prevAns}  •  Successivo: ${nextAns}`);
+  }
 }
 
 function resetSame(){
@@ -194,47 +139,5 @@ resetBtn.addEventListener("click", resetSame);
   sel.addEventListener("change", generateCenter);
 });
 
+// start
 generateCenter();
-
-
-
-// ===== ZOOM (topbar) =====
-const zoomSel = document.getElementById("zoomSel");
-const zoomVal = document.getElementById("zoomVal");
-const zoomInBtn = document.getElementById("zoomInBtn");
-const zoomOutBtn = document.getElementById("zoomOutBtn");
-
-const ZOOM_KEY = "mat_pre_succ_zoom";
-
-function applyZoom(z){
-  z = Math.max(0.6, Math.min(1.6, z));
-  document.body.style.setProperty("--zoom", String(z));
-  zoomSel.value = String(z);
-  zoomVal.textContent = Math.round(z * 100) + "%";
-  localStorage.setItem(ZOOM_KEY, String(z));
-}
-
-function getNextZoom(current, dir){
-  const steps = Array.from(zoomSel.options).map(o => Number(o.value));
-  const i = steps.indexOf(current);
-  if(i === -1) return current;
-  const ni = Math.max(0, Math.min(steps.length - 1, i + dir));
-  return steps[ni];
-}
-
-// init zoom
-(function(){
-  const saved = Number(localStorage.getItem(ZOOM_KEY));
-  const start = Number.isFinite(saved) ? saved : Number(zoomSel.value);
-  applyZoom(start);
-})();
-
-zoomSel.addEventListener("change", () => applyZoom(Number(zoomSel.value)));
-zoomInBtn.addEventListener("click", () => {
-  const cur = Number(zoomSel.value);
-  applyZoom(getNextZoom(cur, +1));
-});
-zoomOutBtn.addEventListener("click", () => {
-  const cur = Number(zoomSel.value);
-  applyZoom(getNextZoom(cur, -1));
-});

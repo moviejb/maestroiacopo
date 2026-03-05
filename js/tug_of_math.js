@@ -709,12 +709,12 @@ function move(delta){
 btnReplay.addEventListener("click", replayGame);
 
 btnHome.addEventListener("click", ()=>{
-  window.location.href = "giochi_didattici.html";
+  window.location.href = "matematica.html";
 });
 
 // Top HOME (menu unico)
 window.addEventListener("game:home", ()=>{
-  window.location.href = "giochi_didattici.html";
+  window.location.href = "matematica.html";
 });
     timerOn.addEventListener("change", ()=>{ timerSec.disabled = !timerOn.checked; });
 

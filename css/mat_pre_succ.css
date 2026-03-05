@@ -1,3 +1,39 @@
+
+/* SFONDO */
+body{
+  background:
+    radial-gradient(circle at 30% 20%, #3f6ad8 0%, transparent 40%),
+    radial-gradient(circle at 80% 10%, #5c7cff 0%, transparent 35%),
+    linear-gradient(180deg,#1c2e6a,#0f1f4a);
+
+  background-attachment: fixed;
+}
+body::after{
+  content:"+  −  ×  ÷  +  −  ×  ÷";
+  position:fixed;
+  inset:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:220px;
+  font-weight:900;
+
+  color:rgba(255,255,255,0.04);
+
+  letter-spacing:120px;
+
+  pointer-events:none;
+  z-index:0;
+}
+
+
+
+.wrap{
+  position:relative;
+  z-index:2;
+}
 .grid{
   display:grid;
   grid-template-columns: 1fr 1.2fr 1fr;
@@ -7,10 +43,31 @@
 }
 
 .box, .center{
-  background: rgba(22,38,74,.75);
+ background: linear-gradient(180deg,#2d3f75,#1a2a55);
   border: 1px solid rgba(255,255,255,.10);
   border-radius: 18px;
   padding:14px;
+}
+
+/* effetto tessera gioco */
+.box, .center{
+  border-radius:22px;
+  padding:18px;
+
+  box-shadow:
+    inset 0 3px 6px rgba(255,255,255,.18),
+    0 10px 22px rgba(0,0,0,.28);
+
+  transition: transform .18s ease,
+              box-shadow .18s ease;
+}
+
+/* leggero movimento quando passi sopra */
+.box:hover, .center:hover{
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 3px 6px rgba(255,255,255,.18),
+    0 14px 26px rgba(0,0,0,.35);
 }
 
 .lbl{
@@ -64,27 +121,47 @@
 
 .numIn{
   width:100%;
-  font-size: 54px;
-  font-weight: 900;
+  font-size:60px;
+  font-weight:900;
   text-align:center;
-  padding: 12px 10px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.12);
+
+  padding:14px 12px;
+
+  border-radius:18px;
+
+  border:2px solid rgba(255,255,255,.18);
+
   background: rgba(0,0,0,.18);
+
   color: var(--text);
+
   outline:none;
+
+  box-shadow:
+    inset 0 3px 6px rgba(0,0,0,.25),
+    0 4px 10px rgba(0,0,0,.18);
 }
 
 /* Feedback risposta */
+/* ===== FEEDBACK MOLTO PIÙ VISIBILE (rosso/verde) ===== */
+
 .numIn.ok{
-  border-color: rgba(90,220,140,.95);
-  box-shadow: 0 0 0 4px rgba(90,220,140,.18), 0 0 16px rgba(90,220,140,.14);
-}
-.numIn.bad{
-  border-color: rgba(255,110,110,.98);
-  box-shadow: 0 0 0 4px rgba(255,110,110,.16), 0 0 16px rgba(255,110,110,.10);
+  border: 5px solid #00ff6a !important;
+  box-shadow:
+    0 0 0 5px rgba(0,255,120,.35),
+    0 0 26px rgba(0,255,120,.55),
+    inset 0 3px 6px rgba(0,0,0,.25);
+  filter: brightness(1.1);
 }
 
+.numIn.bad{
+  border: 5px solid #ff2b2b !important;
+  box-shadow:
+    0 0 0 5px rgba(255,60,60,.35),
+    0 0 26px rgba(255,60,60,.55),
+    inset 0 3px 6px rgba(0,0,0,.25);
+  filter: brightness(1.05);
+}
 .controls{
   display:flex;
   gap:10px;
@@ -343,4 +420,75 @@ body{
 
   cursor:not-allowed;
 
+}
+
+/* ---------- COLORI DIDATTICI DEI 3 BOX ---------- */
+
+/* PRECEDENTE (sinistra) */
+.grid .box:first-child{
+  background: linear-gradient(180deg,#2f6cff,#1e4fd1);
+  border: 2px solid #6fa8ff;
+  box-shadow:
+    inset 0 3px 6px rgba(255,255,255,.15),
+    0 8px 18px rgba(0,0,0,.25);
+}
+
+.grid .box:first-child .lbl{
+  color:#dbe9ff;
+}
+
+.grid .box:first-child .numIn{
+  background: rgba(0,0,0,.15);
+  border: 2px solid #7fb3ff;
+}
+
+
+/* NUMERO CENTRALE */
+.center{
+  background: linear-gradient(180deg,#ffb347,#ff8c00);
+  border: 2px solid #ffd36b;
+  box-shadow:
+    inset 0 4px 8px rgba(255,255,255,.18),
+    0 10px 24px rgba(0,0,0,.28);
+}
+
+.center .lbl{
+  color:#fff3c9;
+}
+
+.centerNum{
+  color:#fff;
+  text-shadow:
+    0 6px 14px rgba(0,0,0,.35),
+    0 0 14px rgba(255,200,80,.35);
+}
+
+
+/* SUCCESSIVO (destra) */
+.grid .box:last-child{
+  background: linear-gradient(180deg,#41d46a,#1ea64a);
+  border: 2px solid #8df5a9;
+  box-shadow:
+    inset 0 3px 6px rgba(255,255,255,.15),
+    0 8px 18px rgba(0,0,0,.25);
+}
+
+.grid .box:last-child .lbl{
+  color:#d7ffe3;
+}
+
+.grid .box:last-child .numIn{
+  background: rgba(0,0,0,.15);
+  border: 2px solid #8df5a9;
+}
+
+/* rimbalzo risposta corretta */
+@keyframes bounceOk{
+  0%   { transform: scale(.92); }
+  50%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.numIn.ok{
+  animation: bounceOk .35s ease;
 }

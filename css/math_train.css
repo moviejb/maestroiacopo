@@ -1,3 +1,33 @@
+/* SFONDO */
+body{
+  background:
+    radial-gradient(circle at 30% 20%, #7aa6ff 0%, transparent 45%),
+    radial-gradient(circle at 80% 10%, #9cc2ff 0%, transparent 40%),
+    linear-gradient(180deg,#4f7df3,#2f5fe0);
+
+  background-attachment: fixed;
+}
+body::after{
+  content:"+  −  ×  ÷  +  −  ×  ÷";
+  position:fixed;
+  inset:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:220px;
+  font-weight:900;
+
+  color:rgba(255,255,255,0.04);
+
+  letter-spacing:120px;
+
+  pointer-events:none;
+  z-index:0;
+}
+
+
 :root{
   --uiScale: 1;
   --cardRadius: 18px;
@@ -26,9 +56,10 @@ body{
 
 /* THEMES (background only) */
 body.theme-train{
-  background: radial-gradient(1200px 700px at 20% 10%, rgba(255,255,255,.14), transparent 55%),
-              radial-gradient(1000px 700px at 85% 20%, rgba(255,255,255,.10), transparent 55%),
-              linear-gradient(180deg, #0b2742 0%, #08311a 60%, #062012 100%);
+  background:
+    radial-gradient(1200px 700px at 20% 10%, rgba(255,255,255,.18), transparent 55%),
+    radial-gradient(1000px 700px at 85% 20%, rgba(255,255,255,.14), transparent 55%),
+    linear-gradient(180deg,#4f7df3,#2f5fe0);
 }
 body.theme-pirate{
   background: radial-gradient(1200px 700px at 20% 10%, rgba(255,255,255,.12), transparent 55%),
@@ -172,9 +203,16 @@ body.theme-cloud{
 
 .trackOuter{
   border-radius: 22px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(0,0,0,.20);
-  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,.18);
+
+  background: rgba(8, 2, 72, 0.55);   /* molto più scuro */
+
+  backdrop-filter: blur(4px);
+
+  box-shadow:
+    inset 0 2px 8px rgba(0,0,0,.6),
+    0 18px 40px rgba(0,0,0,.35);
+
   overflow: hidden;
 }
 
@@ -466,4 +504,34 @@ body.theme-cloud{
   0%   { filter: saturate(1.05); transform: translateY(0); }
   50%  { filter: saturate(1.35); transform: translateY(-2px); }
   100% { filter: saturate(1.05); transform: translateY(0); }
+}
+
+/* rotaia sotto i vagoni */
+
+.track{
+  position: relative;
+}
+
+.track::after{
+  content:"";
+  position:absolute;
+
+  left:0;
+  right:0;
+  bottom:5px;
+
+  height:6px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.25) 0px,
+      rgba(255,255,255,.25) 14px,
+      transparent 14px,
+      transparent 32px
+    );
+
+  opacity:.35;
+
+  pointer-events:none;
 }

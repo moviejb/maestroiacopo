@@ -482,10 +482,7 @@ function compute(current, op){
     setTimeout(() => track.scrollTo({left:0, behavior:"smooth"}), 50);
   }
 
-  // APRI IL MENU DI DEFAULT SU MOBILE (prima visualizzazione)
-if (window.matchMedia && window.matchMedia("(max-width: 680px)").matches) {
-  document.body.classList.add("menuOpen");
-}
+
   function resetGame(){
     stopSound(sndWin);
 
@@ -521,7 +518,10 @@ if (window.matchMedia && window.matchMedia("(max-width: 680px)").matches) {
   applyTheme(themeSel.value);
   applyZoom(Number(zoomRange.value));
   resetGame();
-
+  // APRI IL MENU DI DEFAULT SU MOBILE (prima visualizzazione)
+if (window.matchMedia && window.matchMedia("(max-width: 680px)").matches) {
+  document.body.classList.add("menuOpen");
+}
 
 
   // ===== MOBILE MENU TOGGLE =====
@@ -542,5 +542,21 @@ if(gameArea){
   });
 }
 
+/* BLOCCA ZOOM CON DUE DITA SU MOBILE */
+document.addEventListener("touchmove", function(e){
+  if(e.scale !== undefined && e.scale !== 1){
+    e.preventDefault();
+  }
+},{ passive:false });
+
+/* BLOCCA DOUBLE TAP ZOOM */
+let lastTouchEnd = 0;
+document.addEventListener("touchend", function (event) {
+  const now = Date.now();
+  if (now - lastTouchEnd <= 300) {
+    event.preventDefault();
+  }
+  lastTouchEnd = now;
+}, false);
 
 })();

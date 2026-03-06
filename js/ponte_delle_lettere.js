@@ -43,6 +43,7 @@
   let selectedIndex = null;
   let dragIndex = null;
   let currentZoom = 1;
+  let resizeTimer = null;
 
   function clampZoom(value) {
     return Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, Number(value) || 1));
@@ -80,6 +81,52 @@
       saved = Number(localStorage.getItem(ZOOM_KEY)) || 1;
     } catch (_) {}
     applyZoom(saved);
+  }
+
+
+
+  function applyAdaptiveBridgeSizing() {
+    if (!els.bridgeRow) return;
+    const len = Math.max(1, currentOrder.length || (currentItem ? normalizeWord(currentItem.word).length : 0) || 1);
+    const vw = window.innerWidth || document.documentElement.clientWidth || 1024;
+    const root = document.documentElement;
+
+    let tileW;
+    let tileH;
+    let font;
+    let gap;
+
+    if (vw <= 390) {
+      tileW = Math.max(44, Math.min(48, Math.floor((vw - 34) / Math.min(len, 6))));
+      tileH = Math.round(tileW * 1.15);
+      font = Math.max(18, Math.round(tileW * 0.50));
+      gap = 4;
+    } else if (vw <= 560) {
+      tileW = Math.max(48, Math.min(56, Math.floor((vw - 40) / Math.min(len, 6))));
+      tileH = Math.round(tileW * 1.16);
+      font = Math.max(20, Math.round(tileW * 0.52));
+      gap = 4;
+    } else if (vw <= 760) {
+      tileW = Math.max(58, Math.min(66, Math.floor((vw - 60) / Math.min(len, 7))));
+      tileH = Math.round(tileW * 1.14);
+      font = Math.max(24, Math.round(tileW * 0.5));
+      gap = 6;
+    } else if (vw <= 1179) {
+      tileW = len >= 9 ? 68 : len >= 7 ? 74 : 78;
+      tileH = Math.round(tileW * 1.12);
+      font = Math.max(27, Math.round(tileW * 0.48));
+      gap = len >= 9 ? 6 : 8;
+    } else {
+      tileW = len >= 9 ? 76 : len >= 7 ? 82 : 88;
+      tileH = Math.round(tileW * 1.10);
+      font = Math.max(30, Math.round(tileW * 0.46));
+      gap = len >= 9 ? 6 : 8;
+    }
+
+    root.style.setProperty('--bridge-tile-w', `${tileW}px`);
+    root.style.setProperty('--bridge-tile-h', `${tileH}px`);
+    root.style.setProperty('--bridge-font', `${font}px`);
+    root.style.setProperty('--bridge-gap', `${gap}px`);
   }
 
   function normalizeWord(word) {
@@ -182,6 +229,7 @@
   async function loadRound(index) {
     currentIndex = index;
     currentItem = rounds[currentIndex];
+    applyAdaptiveBridgeSizing();
     solved = false;
     selectedIndex = null;
     dragIndex = null;
@@ -193,6 +241,7 @@
     initialOrder = [...currentOrder];
 
     renderBridge();
+    applyAdaptiveBridgeSizing();
     els.shadowWord.textContent = "• ".repeat(chars.length).trim();
     updateRoundUi();
     setStatus("Riordina le lettere per costruire il ponte giusto.");
@@ -281,6 +330,7 @@
       selectedIndex = null;
     }
     renderBridge();
+    applyAdaptiveBridgeSizing();
   }
 
   function swapTiles(a, b) {
@@ -288,6 +338,7 @@
     [currentOrder[a], currentOrder[b]] = [currentOrder[b], currentOrder[a]];
     selectedIndex = null;
     renderBridge();
+    applyAdaptiveBridgeSizing();
   }
 
   function handleTileClick(index) {
@@ -343,6 +394,7 @@
     selectedIndex = null;
     currentOrder = [...initialOrder];
     renderBridge();
+    applyAdaptiveBridgeSizing();
     els.shadowWord.textContent = "• ".repeat(currentOrder.length).trim();
     els.nextBtn.disabled = true;
     setStatus("Ponte riportato alla posizione iniziale.");
@@ -353,6 +405,7 @@
     currentOrder = ensureShuffled([...currentOrder]);
     selectedIndex = null;
     renderBridge();
+    applyAdaptiveBridgeSizing();
     setStatus("Lettere mescolate di nuovo.");
   }
 
@@ -379,6 +432,14 @@
   if (els.zoomInBtn) els.zoomInBtn.addEventListener("click", () => changeZoom(ZOOM_STEP));
 
   loadSavedZoom();
+  applyAdaptiveBridgeSizing();
+
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      applyAdaptiveBridgeSizing();
+    }, 60);
+  });
 
   if (!source.length) {
     setStatus("Archivio parole non trovato. Controlla il file js delle parole.");

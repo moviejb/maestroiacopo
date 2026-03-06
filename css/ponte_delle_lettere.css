@@ -510,82 +510,412 @@ body{
   .bridgeRow{gap:5px}
 }
 
-/* ===============================
-   VERSIONE COMPATTA PER LIM
-   =============================== */
 
-.topBar{
-  padding:8px 14px;
+/* ======================================
+   RESPONSIVE MULTI-DISPOSITIVO FINALE
+   Focus: parola / ponte centrale
+   ====================================== */
+
+:root{
+  --topbar-pad-y: 8px;
+  --topbar-pad-x: 14px;
+  --img-max-w: 300px;
+  --img-ratio: 4 / 3;
+  --bridge-tile-w: 84px;
+  --bridge-tile-h: 92px;
+  --bridge-font: 2.1rem;
+  --bridge-gap: 8px;
+  --bank-w: 190px;
+  --bridge-min-h: 118px;
 }
 
-.topBar h1{
-  font-size:22px;
-  margin:2px 0;
+.gameShell{
+  padding-bottom: 12px;
+}
+
+.topBar{
+  padding: var(--topbar-pad-y) var(--topbar-pad-x);
+  gap: 10px;
+  align-items: center;
+}
+
+.titleWrap{
+  min-width: 0;
+}
+
+.titleWrap h1{
+  font-size: clamp(1.15rem, 1.1vw + .9rem, 1.8rem);
+  line-height: 1.02;
+  margin: 0;
 }
 
 .eyebrow{
-  font-size:12px;
+  font-size: .72rem;
+  padding: 4px 8px;
+  margin-bottom: 4px;
 }
 
 .titleWrap p{
-  font-size:12px;
-  margin:2px 0 0 0;
+  font-size: .8rem;
+  margin-top: 4px;
 }
 
-/* riduce i box delle statistiche */
-
 .topStats{
-  gap:6px;
+  gap: 8px;
+  align-self: stretch;
 }
 
 .statCard{
-  padding:4px 8px;
-  min-width:60px;
+  min-height: 58px;
+  padding: 7px 9px;
+  border-radius: 18px;
 }
 
 .statLabel{
-  font-size:11px;
+  font-size: .72rem;
 }
 
 .statCard strong{
-  font-size:16px;
+  font-size: clamp(.95rem, .6vw + .82rem, 1.2rem);
+  margin-top: 2px;
 }
 
-/* riduce il pannello immagine */
+.controls{
+  margin-top: 10px;
+  padding: 8px 10px;
+  gap: 10px;
+}
+
+.controlGroup{
+  gap: 8px;
+}
+
+.ctrl{
+  padding: 6px 10px;
+  gap: 6px;
+  font-size: .92rem;
+  border-radius: 16px;
+}
+
+.ctrl select{
+  padding: 6px 9px;
+  font-size: .92rem;
+}
+
+.buttonsGroup{
+  row-gap: 8px;
+}
+
+.uiBtn{
+  padding: 10px 14px;
+  font-size: .95rem;
+  border-radius: 16px;
+}
+
+.zoomControl{
+  padding: 5px 7px;
+}
+
+.zoomBtn{
+  width: 38px;
+  height: 38px;
+}
+
+.zoomPct{
+  min-width: 56px;
+  font-size: .95rem;
+}
 
 .imagePanel{
-  padding:8px;
+  margin-top: 10px;
+  padding: 8px 10px 10px;
 }
 
 .imageFrame{
-  max-height:140px;
+  width: min(100%, var(--img-max-w));
+  aspect-ratio: var(--img-ratio);
+  border-radius: 22px;
 }
 
-.imageFrame img{
-  max-height:140px;
-  object-fit:contain;
+.progressWrap{
+  margin-top: 8px;
+  width: min(100%, 440px);
 }
 
-/* meno spazio tra le sezioni */
+.progressText{
+  font-size: .92rem;
+  margin-bottom: 5px;
+}
 
-.controls{
-  padding:6px 10px;
+.progressBar{
+  height: 14px;
 }
 
 .bridgeScene{
-  margin-top:6px;
+  margin-top: 10px;
+  grid-template-columns: minmax(120px, var(--bank-w)) 1fr minmax(120px, var(--bank-w));
+  min-height: 280px;
+  gap: 12px;
 }
 
-/* il ponte diventa il focus visivo */
+.bridgeScene::before{
+  height: 102px;
+}
+
+.bridgeScene::after{
+  bottom: 78px;
+  height: 34px;
+}
+
+.bankBox{
+  padding: 8px;
+  margin-bottom: 70px;
+  border-radius: 22px;
+}
+
+.bridgeWrap{
+  padding: 18px 4px 102px;
+}
+
+.bridgeHint{
+  margin-bottom: 10px;
+  font-size: .9rem;
+}
+
+.rope{
+  left: 6%;
+  right: 6%;
+}
+
+.ropeTop{ top: 48px; }
+.ropeBottom{ bottom: 92px; }
 
 .bridgeRow{
-  min-height:120px;
+  gap: var(--bridge-gap);
+  min-height: var(--bridge-min-h);
 }
 
-/* lettere più evidenti */
+.tile{
+  width: var(--bridge-tile-w);
+  height: var(--bridge-tile-h);
+  font-size: var(--bridge-font);
+  border-width: 3px;
+  border-radius: 15px;
+}
 
-.bridgeTile{
-  width:70px;
-  height:70px;
-  font-size:32px;
+.tile::before,
+.tile::after{
+  top: -15px;
+  height: 24px;
+}
+
+.bottomInfo{
+  margin-top: 12px;
+  gap: 12px;
+}
+
+.tipCard{
+  padding: 11px 12px;
+  border-radius: 20px;
+}
+
+.tipCard strong{
+  font-size: .86rem;
+}
+
+.tipCard span{
+  font-size: 1rem;
+}
+
+/* LIM / desktop grandi: header piccolo, ponte centrale dominante */
+@media (min-width: 1180px){
+  :root{
+    --img-max-w: 250px;
+    --bridge-tile-w: 86px;
+    --bridge-tile-h: 94px;
+    --bridge-font: 2.15rem;
+    --bridge-gap: 8px;
+    --bank-w: 190px;
+  }
+  .gameShell{
+    width: min(96vw, 1280px);
+    margin-top: 10px;
+  }
+  .topBar{
+    grid-template-columns: 1.05fr .95fr;
+  }
+  .controls{
+    justify-content: space-between;
+  }
+}
+
+/* laptop / tablet landscape */
+@media (max-width: 1179px){
+  :root{
+    --img-max-w: 270px;
+    --bridge-tile-w: 76px;
+    --bridge-tile-h: 84px;
+    --bridge-font: 1.9rem;
+    --bank-w: 160px;
+  }
+}
+
+@media (max-width: 980px){
+  .topBar{
+    grid-template-columns: 1fr;
+  }
+  .topStats{
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .controls{
+    justify-content: center;
+  }
+  .controlGroup{
+    justify-content: center;
+  }
+  .bridgeScene{
+    grid-template-columns: 130px 1fr 130px;
+  }
+}
+
+/* tablet portrait */
+@media (max-width: 760px){
+  :root{
+    --img-max-w: 220px;
+    --bridge-tile-w: 64px;
+    --bridge-tile-h: 72px;
+    --bridge-font: 1.6rem;
+    --bridge-gap: 6px;
+  }
+  .gameShell{
+    width: min(100vw, 100%);
+    margin: 8px auto 16px;
+    padding: 0 8px 10px;
+  }
+  .topBar{
+    border-radius: 20px;
+    padding: 8px 10px;
+  }
+  .topStats{
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .controls{
+    padding: 8px;
+  }
+  .ctrl,
+  .uiBtn{
+    min-height: 44px;
+  }
+  .bridgeScene{
+    grid-template-columns: 1fr;
+    gap: 8px;
+    min-height: unset;
+  }
+  .bridgeScene::before{
+    height: 90px;
+  }
+  .bridgeScene::after{
+    bottom: 70px;
+    height: 28px;
+  }
+  .bankBox{
+    width: min(220px, 58vw);
+    margin: 0 auto;
+    order: 2;
+  }
+  .bankLeft{ display: none; }
+  .bankRight{ display: none; }
+  .bridgeWrap{
+    order: 1;
+    padding: 8px 0 88px;
+  }
+  .ropeTop{ top: 36px; }
+  .ropeBottom{ bottom: 78px; }
+  .bridgeHint{
+    font-size: .82rem;
+    margin-bottom: 8px;
+  }
+  .bottomInfo{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* smartphone */
+@media (max-width: 560px){
+  :root{
+    --img-max-w: 180px;
+    --bridge-tile-w: 52px;
+    --bridge-tile-h: 60px;
+    --bridge-font: 1.35rem;
+    --bridge-gap: 4px;
+  }
+  .eyebrow{font-size:.66rem}
+  .titleWrap h1{font-size: 1.02rem;}
+  .titleWrap p{font-size: .72rem;}
+  .topStats{
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .statWide{grid-column: 1 / -1;}
+  .statCard{
+    min-height: 50px;
+    padding: 6px 8px;
+  }
+  .statLabel{font-size: .66rem;}
+  .statCard strong{font-size: .94rem;}
+  .controls{
+    justify-content: center;
+  }
+  .controlGroup{
+    width: 100%;
+    justify-content: center;
+  }
+  .buttonsGroup{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    width: 100%;
+  }
+  .zoomControl{
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+  .uiBtn{
+    width: 100%;
+    padding: 10px 8px;
+    font-size: .9rem;
+  }
+  .bridgeRow{
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 4px 6px 8px;
+    scrollbar-width: thin;
+  }
+  .tile{
+    flex: 0 0 auto;
+  }
+  .tile::before,
+  .tile::after{
+    top: -12px;
+    width: 7px;
+    height: 18px;
+  }
+  .tipCard span{
+    font-size: .94rem;
+  }
+}
+
+/* smartphone piccolo */
+@media (max-width: 390px){
+  :root{
+    --bridge-tile-w: 48px;
+    --bridge-tile-h: 56px;
+    --bridge-font: 1.22rem;
+  }
+  .ctrl{
+    width: 100%;
+    justify-content: space-between;
+  }
+  .ctrl select{
+    min-width: 110px;
+  }
 }

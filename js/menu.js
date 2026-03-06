@@ -330,6 +330,7 @@
   <button class="dditem" type="button" data-href="index_quiz.html">▸ Quiz</button>
   <button class="dditem" type="button" data-href="pairs_select.html">▸ Abbinamenti</button>
   <button class="dditem" type="button" data-href="memory.html">▸ Memory</button>
+  <button class="dditem" type="button" data-href="ponte_delle_lettere.html">▸ ITALIANO - Un ponte di lettere</button>
   <button class="dditem" type="button" data-href="tug_of_math.html">▸ MATEMATICA - Sfida di velocità</button>
   <button class="dditem" type="button" data-href="hole_duel.html">▸ MATEMATICA - Chi arriva prima?</button>
   <button class="dditem" type="button" data-href="mat_pre_succ.html">▸ MATEMATICA - Precedente/Successivo</button>
@@ -357,6 +358,7 @@
       <button class="dditem" type="button" data-href="index_quiz.html">↳ Quiz</button>
       <button class="dditem" type="button" data-href="pairs_select.html">↳ Abbinamenti</button>
       <button class="dditem" type="button" data-href="memory.html">↳ Memory</button>
+      <button class="dditem" type="button" data-href="ponte_delle_lettere.html">↳ ITALIANO - Un ponte di lettere</button>
        <button class="dditem" type="button" data-href="tug_of_math.html">↳ MATEMATICA - Sfida di velocità</button>
   <button class="dditem" type="button" data-href="hole_duel.html">↳ MATEMATICA - Chi arriva prima?</button>
   <button class="dditem" type="button" data-href="mat_pre_succ.html">↳ MATEMATICA - Precedente/Successivo</button>

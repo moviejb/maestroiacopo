@@ -43,6 +43,7 @@
   let selectedIndex = null;
   let dragIndex = null;
   let currentZoom = 1;
+  let pointerDrag = null;
   let resizeTimer = null;
 
   function clampZoom(value) {
@@ -240,7 +241,7 @@
     applyAdaptiveBridgeSizing();
     els.shadowWord.textContent = "• ".repeat(chars.length).trim();
     updateRoundUi();
-    setStatus("Riordina le lettere per costruire il ponte giusto.");
+    setStatus("Trascina i riquadri oppure tocca una lettera e poi la destinazione.");
 
     const imgPath = await resolveImage(currentItem.id);
     if (currentItem !== rounds[currentIndex]) return;
@@ -255,6 +256,89 @@
     }
   }
 
+  function clearPointerHover() {
+    els.bridgeRow.querySelectorAll(".tile.drag-hover").forEach(tile => tile.classList.remove("drag-hover"));
+  }
+
+  function getTileIndexFromPoint(x, y) {
+    const el = document.elementFromPoint(x, y);
+    const tile = el && el.closest ? el.closest(".tile") : null;
+    if (!tile || !els.bridgeRow.contains(tile)) return null;
+    const idx = Number(tile.dataset.index);
+    return Number.isInteger(idx) ? idx : null;
+  }
+
+  function endPointerDrag(cancelled = false) {
+    if (!pointerDrag) return;
+    clearPointerHover();
+
+    if (pointerDrag.ghost && pointerDrag.ghost.parentNode) {
+      pointerDrag.ghost.parentNode.removeChild(pointerDrag.ghost);
+    }
+
+    if (pointerDrag.sourceEl) {
+      pointerDrag.sourceEl.classList.remove("pointer-dragging");
+      pointerDrag.sourceEl.style.visibility = "";
+    }
+
+    if (!cancelled && pointerDrag.started) {
+      const from = pointerDrag.index;
+      const to = pointerDrag.overIndex;
+      if (Number.isInteger(from) && Number.isInteger(to) && from !== to) {
+        moveTile(from, to);
+      } else {
+        renderBridge();
+      }
+    }
+
+    pointerDrag = null;
+  }
+
+  function onTilePointerMove(event) {
+    if (!pointerDrag) return;
+
+    const dx = event.clientX - pointerDrag.startX;
+    const dy = event.clientY - pointerDrag.startY;
+
+    if (!pointerDrag.started) {
+      if (Math.hypot(dx, dy) < 10) return;
+      pointerDrag.started = true;
+      pointerDrag.sourceEl.classList.add("pointer-dragging");
+      pointerDrag.sourceEl.style.visibility = "hidden";
+      pointerDrag.ghost.style.display = "flex";
+      selectedIndex = null;
+    }
+
+    event.preventDefault();
+
+    pointerDrag.ghost.style.left = `${event.clientX - pointerDrag.offsetX}px`;
+    pointerDrag.ghost.style.top = `${event.clientY - pointerDrag.offsetY}px`;
+
+    clearPointerHover();
+    const overIndex = getTileIndexFromPoint(event.clientX, event.clientY);
+    pointerDrag.overIndex = overIndex;
+
+    if (Number.isInteger(overIndex)) {
+      const overTile = els.bridgeRow.querySelector(`.tile[data-index="${overIndex}"]`);
+      if (overTile) overTile.classList.add("drag-hover");
+    }
+  }
+
+  function onTilePointerUp(event) {
+    if (!pointerDrag) return;
+    if (pointerDrag.pointerId != null && event.pointerId !== pointerDrag.pointerId) return;
+
+    const wasDrag = pointerDrag.started;
+    const clickIndex = pointerDrag.index;
+    endPointerDrag(false);
+
+    if (!wasDrag) {
+      handleTileClick(clickIndex);
+    } else {
+      setStatus("Lettera spostata. Premi Verifica quando hai finito.");
+    }
+  }
+
   function createTile(letter, index) {
     const tile = document.createElement("button");
     tile.type = "button";
@@ -263,8 +347,56 @@
     tile.draggable = true;
     tile.dataset.index = String(index);
     tile.setAttribute("aria-label", `Lettera ${letter}`);
+    tile.setAttribute("aria-pressed", selectedIndex === index ? "true" : "false");
+    tile.style.touchAction = "none";
+    tile.style.userSelect = "none";
+    tile.style.webkitUserSelect = "none";
 
-    tile.addEventListener("click", () => handleTileClick(index));
+    tile.addEventListener("click", e => {
+      if (pointerDrag && pointerDrag.started) {
+        e.preventDefault();
+      }
+    });
+
+    tile.addEventListener("pointerdown", e => {
+      if (solved) return;
+      if (e.button != null && e.button !== 0) return;
+
+      const rect = tile.getBoundingClientRect();
+      const ghost = tile.cloneNode(true);
+      ghost.classList.add("drag-ghost");
+      ghost.style.position = "fixed";
+      ghost.style.left = `${rect.left}px`;
+      ghost.style.top = `${rect.top}px`;
+      ghost.style.width = `${rect.width}px`;
+      ghost.style.height = `${rect.height}px`;
+      ghost.style.pointerEvents = "none";
+      ghost.style.zIndex = "9999";
+      ghost.style.display = "none";
+
+      document.body.appendChild(ghost);
+
+      pointerDrag = {
+        index,
+        overIndex: index,
+        startX: e.clientX,
+        startY: e.clientY,
+        offsetX: e.clientX - rect.left,
+        offsetY: e.clientY - rect.top,
+        ghost,
+        sourceEl: tile,
+        started: false,
+        pointerId: e.pointerId
+      };
+
+      if (tile.setPointerCapture) {
+        try { tile.setPointerCapture(e.pointerId); } catch (_) {}
+      }
+    });
+
+    tile.addEventListener("pointermove", onTilePointerMove);
+    tile.addEventListener("pointerup", onTilePointerUp);
+    tile.addEventListener("pointercancel", () => endPointerDrag(true));
 
     tile.addEventListener("dragstart", e => {
       dragIndex = index;
@@ -289,6 +421,7 @@
       const to = index;
       if (Number.isInteger(from) && from !== to) {
         moveTile(from, to);
+        setStatus("Lettera spostata. Premi Verifica quando hai finito.");
       }
     });
 
@@ -342,14 +475,17 @@
     if (selectedIndex == null) {
       selectedIndex = index;
       renderBridge();
+      setStatus("Lettera selezionata. Tocca la destinazione oppure trascina il riquadro.");
       return;
     }
     if (selectedIndex === index) {
       selectedIndex = null;
       renderBridge();
+      setStatus("Selezione annullata.");
       return;
     }
     swapTiles(selectedIndex, index);
+    setStatus("Lettere scambiate. Premi Verifica quando hai finito.");
   }
 
   function markAll(className) {

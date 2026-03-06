@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dff9ff"/>
+      <stop offset="100%" stop-color="#a8ecff"/>
+    </linearGradient>
+    <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8cd64b"/>
+      <stop offset="100%" stop-color="#4ab43c"/>
+    </linearGradient>
+  </defs>
+  <rect width="420" height="420" rx="34" fill="url(#bg)"/>
+  <circle cx="92" cy="76" r="28" fill="#fff" opacity="0.9"/>
+  <circle cx="118" cy="72" r="22" fill="#fff" opacity="0.9"/>
+  <circle cx="140" cy="79" r="25" fill="#fff" opacity="0.9"/>
+  <rect x="0" y="315" width="420" height="105" rx="26" fill="url(#grass)"/>
+  <path d="M58 316c26-54 52-80 78-80 35 0 56 34 80 34 17 0 31-8 43-20 12-12 20-24 34-24 24 0 44 24 60 90z" fill="#7fd15d"/>
+  <rect x="214" y="170" width="18" height="132" rx="9" fill="#714222"/>
+  <circle cx="223" cy="151" r="54" fill="#55ad41"/>
+  <circle cx="189" cy="167" r="34" fill="#4ca73b"/>
+  <circle cx="258" cy="174" r="35" fill="#61ba47"/>
+  <ellipse cx="94" cy="233" rx="40" ry="48" fill="#c08e63"/>
+  <circle cx="96" cy="177" r="42" fill="#c89a72"/>
+  <circle cx="73" cy="167" r="13" fill="#e7c4a0"/>
+  <circle cx="120" cy="167" r="13" fill="#e7c4a0"/>
+  <circle cx="84" cy="174" r="6" fill="#111"/>
+  <circle cx="109" cy="174" r="6" fill="#111"/>
+  <ellipse cx="97" cy="192" rx="16" ry="10" fill="#f2d8bf"/>
+  <circle cx="97" cy="190" r="4" fill="#111"/>
+  <path d="M63 230c-34 15-46 42-36 62 10 18 33 18 52 8" fill="none" stroke="#8f5a32" stroke-width="12" stroke-linecap="round"/>
+  <path d="M135 224c26 12 42 36 48 72" fill="none" stroke="#8f5a32" stroke-width="12" stroke-linecap="round"/>
+  <path d="M81 273c-8 20-6 36 8 36 13 0 16-9 18-29" fill="none" stroke="#8f5a32" stroke-width="12" stroke-linecap="round"/>
+  <path d="M117 273c6 22 10 36 25 34 12-2 14-18 10-39" fill="none" stroke="#8f5a32" stroke-width="12" stroke-linecap="round"/>
+  <path d="M44 352h144" stroke="#2f7c2d" stroke-width="10" stroke-linecap="round" opacity=".5"/>
+  <text x="210" y="392" text-anchor="middle" font-family="Trebuchet MS, Arial" font-size="34" font-weight="700" fill="#156087">PARTENZA</text>
+</svg>

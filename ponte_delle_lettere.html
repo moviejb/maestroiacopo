@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Il Ponte delle Lettere</title>
+  <link rel="stylesheet" href="css/ponte_delle_lettere.css" />
+</head>
+<body>
+  <div class="pageBg"></div>
+
+  <main class="gameShell" id="gameShell" aria-live="polite">
+    <header class="topBar glass">
+      <div class="titleWrap">
+        <div class="eyebrow">Italiano • Classe 3</div>
+        <h1>IL PONTE DELLE LETTERE</h1>
+        <p>Riordina i riquadri per costruire la parola corretta.</p>
+      </div>
+
+      <div class="topStats">
+        <div class="statCard">
+          <span class="statLabel">Livello</span>
+          <strong id="levelBadge">1</strong>
+        </div>
+        <div class="statCard">
+          <span class="statLabel">Corrette</span>
+          <strong id="scoreBadge">0</strong>
+        </div>
+        <div class="statCard statWide">
+          <span class="statLabel">Stato</span>
+          <strong id="statusText">Pronto a giocare</strong>
+        </div>
+      </div>
+    </header>
+
+    <section class="controls glass">
+      <div class="controlGroup">
+        <label class="ctrl">
+          Parole
+          <select id="roundCountSel">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+        </label>
+
+        <label class="ctrl">
+          Difficoltà
+          <select id="difficultySel">
+            <option value="all" selected>Tutte</option>
+            <option value="short">Brevi (4-5)</option>
+            <option value="medium">Medie (6-7)</option>
+            <option value="long">Lunghe (8+)</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="controlGroup buttonsGroup">
+        <div class="zoomControl" aria-label="Controllo zoom">
+          <button id="zoomOutBtn" class="zoomBtn" type="button" aria-label="Riduci zoom">−</button>
+          <span id="zoomPct" class="zoomPct" aria-live="polite">100%</span>
+          <button id="zoomInBtn" class="zoomBtn" type="button" aria-label="Aumenta zoom">+</button>
+        </div>
+        <button id="startBtn" class="uiBtn primary">Gioca</button>
+        <button id="shuffleBtn" class="uiBtn">Mescola</button>
+        <button id="resetBtn" class="uiBtn">Reset</button>
+        <button id="checkBtn" class="uiBtn accent">Verifica</button>
+        <button id="nextBtn" class="uiBtn success" disabled>Prossima</button>
+      </div>
+    </section>
+
+    <section class="imagePanel glass">
+      <div class="imageFrame">
+        <img id="wordImage" alt="Immagine della parola" />
+        <div id="imgFallback" class="imgFallback hidden">
+          <span class="fallbackEmoji">🖼️</span>
+          <span>Immagine non trovata</span>
+        </div>
+      </div>
+      <div class="progressWrap">
+        <div class="progressText"><span id="roundNow">0</span> / <span id="roundTotal">0</span></div>
+        <div class="progressBar"><div id="progressFill"></div></div>
+      </div>
+    </section>
+
+    <section class="bridgeScene" aria-label="Area di gioco">
+      <div class="bankBox bankLeft glass">
+        <img src="img/ui/sponda_sinistra.svg" alt="Sponda sinistra" />
+      </div>
+
+      <div class="bridgeWrap">
+        <div class="bridgeHint">Trascina i riquadri oppure tocca due lettere per scambiarle</div>
+        <div class="rope ropeTop"></div>
+        <div class="bridgeRow" id="bridgeRow"></div>
+        <div class="rope ropeBottom"></div>
+      </div>
+
+      <div class="bankBox bankRight glass">
+        <img src="img/ui/sponda_destra.svg" alt="Sponda destra" />
+      </div>
+    </section>
+
+    <section class="bottomInfo">
+      <div class="tipCard glass">
+        <strong>Parola obiettivo</strong>
+        <span id="shadowWord">•••••</span>
+      </div>
+      <div class="tipCard glass">
+        <strong>Messaggio</strong>
+        <span id="feedbackText">Premi Gioca per iniziare.</span>
+      </div>
+    </section>
+  </main>
+
+    <script src="js/nav.js"></script>
+<script src="js/menu.js"></script> 
+  <script src="js/italiano_cl3_words.js"></script>
+  <script src="js/ponte_delle_lettere.js"></script>
+</body>
+</html>

@@ -120,6 +120,22 @@
         <span id="feedbackText">Premi Gioca per iniziare.</span>
       </div>
     </section>
+
+    <div id="endGameModal" class="endGameModal hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="endGameTitle">
+      <div class="endGameBackdrop"></div>
+      <div class="endGameCard glass">
+        <div class="endGameEmoji">🏆</div>
+        <h2 id="endGameTitle">OTTIMO!</h2>
+        <p class="endGameLead">Hai completato tutte le parole.</p>
+        <p class="endGameScore">Risultato: <strong id="endGameScoreText">10/10</strong></p>
+        <p class="endGameQuestion">Continua a giocare?</p>
+        <div class="endGameActions">
+          <button id="endGameYesBtn" class="uiBtn success" type="button">Sì</button>
+          <button id="endGameNoBtn" class="uiBtn accent" type="button">No</button>
+        </div>
+      </div>
+    </div>
+
   </main>
 
     <script src="js/nav.js"></script>

@@ -28,7 +28,11 @@
     gameShell: document.getElementById("gameShell"),
     zoomOutBtn: document.getElementById("zoomOutBtn"),
     zoomInBtn: document.getElementById("zoomInBtn"),
-    zoomPct: document.getElementById("zoomPct")
+    zoomPct: document.getElementById("zoomPct"),
+    endGameModal: document.getElementById("endGameModal"),
+    endGameScoreText: document.getElementById("endGameScoreText"),
+    endGameYesBtn: document.getElementById("endGameYesBtn"),
+    endGameNoBtn: document.getElementById("endGameNoBtn")
   };
 
   const source = Array.isArray(window.ITALIANO_CL3) ? window.ITALIANO_CL3 : [];
@@ -93,32 +97,54 @@
     const vw = window.innerWidth || document.documentElement.clientWidth || 1024;
     const root = document.documentElement;
 
-    const shellPadding = vw <= 560 ? 16 : vw <= 760 ? 20 : 32;
-    const sceneSideSpace = vw <= 760 ? 10 : 40;
-    const available = Math.max(220, vw - shellPadding - sceneSideSpace);
+    const bridgeWrap = els.bridgeRow.closest(".bridgeWrap");
+    const rowStyle = window.getComputedStyle(els.bridgeRow);
+    const wrapStyle = bridgeWrap ? window.getComputedStyle(bridgeWrap) : null;
 
-    let gap = vw <= 560 ? 4 : vw <= 760 ? 6 : 8;
-    if (len >= 9) gap = Math.max(3, gap - 1);
+    const wrapPadL = wrapStyle ? (parseFloat(wrapStyle.paddingLeft) || 0) : 0;
+    const wrapPadR = wrapStyle ? (parseFloat(wrapStyle.paddingRight) || 0) : 0;
 
-    const maxTileByWidth = Math.floor((available - (gap * (len - 1))) / len);
-
-    let tileW;
-    if (vw <= 390) {
-      tileW = Math.min(48, maxTileByWidth);
-    } else if (vw <= 560) {
-      tileW = Math.min(56, maxTileByWidth);
-    } else if (vw <= 760) {
-      tileW = Math.min(len >= 9 ? 58 : len >= 7 ? 64 : 70, maxTileByWidth);
-    } else if (vw <= 1179) {
-      tileW = Math.min(len >= 9 ? 68 : len >= 7 ? 74 : 78, maxTileByWidth);
-    } else {
-      tileW = Math.min(len >= 9 ? 76 : len >= 7 ? 82 : 88, maxTileByWidth);
+    let containerWidth = 0;
+    if (bridgeWrap && bridgeWrap.clientWidth) {
+      containerWidth = bridgeWrap.clientWidth - wrapPadL - wrapPadR;
+    }
+    if (!containerWidth && els.bridgeRow.clientWidth) {
+      containerWidth = els.bridgeRow.clientWidth;
+    }
+    if (!containerWidth) {
+      containerWidth = vw <= 560 ? vw - 20 : vw <= 760 ? vw - 28 : vw - 60;
     }
 
-    tileW = Math.max(vw <= 390 ? 32 : vw <= 560 ? 36 : 44, tileW);
+    let gap = vw <= 390 ? 3 : vw <= 560 ? 4 : vw <= 760 ? 6 : 8;
+    if (len >= 8) gap = Math.max(2, gap - 1);
+
+    const available = Math.max(180, containerWidth - 4);
+    const maxTileByWidth = Math.floor((available - (gap * (len - 1))) / len);
+
+    let targetTileW;
+    if (vw <= 390) {
+      targetTileW = len >= 9 ? 28 : len >= 8 ? 31 : len >= 7 ? 35 : 40;
+    } else if (vw <= 560) {
+      targetTileW = len >= 9 ? 31 : len >= 8 ? 34 : len >= 7 ? 38 : 46;
+    } else if (vw <= 760) {
+      targetTileW = len >= 9 ? 40 : len >= 8 ? 44 : len >= 7 ? 50 : 58;
+    } else if (vw <= 1179) {
+      targetTileW = len >= 9 ? 52 : len >= 8 ? 58 : len >= 7 ? 64 : 74;
+    } else {
+      targetTileW = len >= 9 ? 62 : len >= 8 ? 68 : len >= 7 ? 74 : 84;
+    }
+
+    let tileW = Math.min(targetTileW, maxTileByWidth);
+    const minTile = vw <= 390 ? 24 : vw <= 560 ? 28 : vw <= 760 ? 34 : 42;
+    tileW = Math.max(minTile, tileW);
+
+    const totalNeeded = (tileW * len) + (gap * (len - 1));
+    if (totalNeeded > available) {
+      tileW = Math.max(minTile, Math.floor((available - (gap * (len - 1))) / len));
+    }
 
     const tileH = Math.round(tileW * (vw <= 560 ? 1.12 : 1.10));
-    const font = Math.max(vw <= 390 ? 16 : vw <= 560 ? 18 : 22, Math.round(tileW * 0.50));
+    const font = Math.max(vw <= 390 ? 13 : vw <= 560 ? 15 : vw <= 760 ? 18 : 22, Math.round(tileW * 0.48));
 
     root.style.setProperty("--bridge-tile-w", `${tileW}px`);
     root.style.setProperty("--bridge-tile-h", `${tileH}px`);
@@ -541,10 +567,33 @@
     setStatus("Lettere mescolate di nuovo.");
   }
 
+
+  function openEndGameModal() {
+    if (!els.endGameModal) return;
+    if (els.endGameScoreText) {
+      els.endGameScoreText.textContent = `${score}/${rounds.length}`;
+    }
+    els.endGameModal.classList.remove("hidden");
+    els.endGameModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  }
+
+  function closeEndGameModal() {
+    if (!els.endGameModal) return;
+    els.endGameModal.classList.add("hidden");
+    els.endGameModal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  }
+
+  function showEndGamePrompt() {
+    openEndGameModal();
+  }
+
   function nextRound() {
     if (currentIndex + 1 >= rounds.length) {
       setStatus(`Partita completata! Hai risolto ${score} parole su ${rounds.length}.`);
       els.nextBtn.disabled = true;
+      showEndGamePrompt();
       return;
     }
     loadRound(currentIndex + 1);
@@ -562,6 +611,34 @@
   els.nextBtn.addEventListener("click", nextRound);
   if (els.zoomOutBtn) els.zoomOutBtn.addEventListener("click", () => changeZoom(-ZOOM_STEP));
   if (els.zoomInBtn) els.zoomInBtn.addEventListener("click", () => changeZoom(ZOOM_STEP));
+
+
+  if (els.endGameYesBtn) {
+    els.endGameYesBtn.addEventListener("click", () => {
+      closeEndGameModal();
+      startGame();
+    });
+  }
+
+  if (els.endGameNoBtn) {
+    els.endGameNoBtn.addEventListener("click", () => {
+      closeEndGameModal();
+      window.location.href = "index.html";
+    });
+  }
+
+  if (els.endGameModal) {
+    const backdrop = els.endGameModal.querySelector(".endGameBackdrop");
+    if (backdrop) {
+      backdrop.addEventListener("click", closeEndGameModal);
+    }
+  }
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && els.endGameModal && !els.endGameModal.classList.contains("hidden")) {
+      closeEndGameModal();
+    }
+  });
 
   loadSavedZoom();
   applyAdaptiveBridgeSizing();

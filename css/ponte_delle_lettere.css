@@ -974,3 +974,123 @@ body{
   align-items:center;
   gap:10px;
 }
+
+/* =========================
+   POPUP FINE PARTITA
+   ========================= */
+.endGameModal{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.endGameBackdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(9, 41, 66, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.endGameCard{
+  position: relative;
+  z-index: 1;
+  width: min(92vw, 520px);
+  border-radius: 30px;
+  padding: 24px 22px 20px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(238,250,255,.86));
+  box-shadow: 0 24px 48px rgba(0,0,0,.22);
+  border: 2px solid rgba(255,255,255,.7);
+  animation: endGamePop .22s ease-out;
+}
+
+.endGameEmoji{
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.endGameCard h2{
+  margin: 0;
+  color: #0a3f63;
+  font-size: clamp(1.6rem, 2vw + 1rem, 2.4rem);
+  letter-spacing: .02em;
+}
+
+.endGameLead,
+.endGameScore,
+.endGameQuestion{
+  margin: 10px 0 0;
+  color: #194968;
+  font-weight: 800;
+}
+
+.endGameLead{
+  font-size: 1.02rem;
+}
+
+.endGameScore{
+  font-size: 1.1rem;
+  color: #0b5275;
+}
+
+.endGameScore strong{
+  color: #0e8f49;
+  font-size: 1.18em;
+}
+
+.endGameQuestion{
+  font-size: 1.05rem;
+  margin-top: 14px;
+}
+
+.endGameActions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  flex-wrap: nowrap;
+}
+
+.endGameActions .uiBtn{
+  min-width: 130px;
+}
+
+body.modal-open{
+  overflow: hidden;
+}
+
+@keyframes endGamePop{
+  0%{transform: scale(.92); opacity: 0;}
+  100%{transform: scale(1); opacity: 1;}
+}
+
+@media (max-width: 560px){
+  .endGameCard{
+    width: min(96vw, 420px);
+    padding: 20px 16px 16px;
+    border-radius: 24px;
+  }
+
+  .endGameLead,
+  .endGameScore,
+  .endGameQuestion{
+    font-size: .98rem;
+  }
+
+  .endGameActions{
+    gap: 10px;
+  }
+
+  .endGameActions .uiBtn{
+    min-width: 0;
+    width: 44%;
+    padding: 10px 12px;
+  }
+}

@@ -185,7 +185,7 @@
       els.bridgeRow.innerHTML = "";
       return false;
     }
-    setStatus("Premi Verifica quando la parola è pronta.");
+    //setStatus("Premi Verifica quando la parola è pronta.");
     return true;
   }
 
@@ -579,3 +579,11 @@
     buildRounds();
   }
 })();
+
+const homeBtn = document.getElementById("homeBtn");
+
+if(homeBtn){
+  homeBtn.addEventListener("click", ()=>{
+    window.location.href="index.html";
+  });
+}

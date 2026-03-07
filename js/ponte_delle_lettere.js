@@ -120,6 +120,9 @@
 
     const available = Math.max(180, containerWidth - 4);
     const maxTileByWidth = Math.floor((available - (gap * (len - 1))) / len);
+    // sfrutta meglio lo spazio disponibile
+const expandFactor = vw <= 560 ? 1.15 : 1.08;
+
 
     let targetTileW;
     if (vw <= 390) {
@@ -134,7 +137,7 @@
       targetTileW = len >= 9 ? 62 : len >= 8 ? 68 : len >= 7 ? 74 : 84;
     }
 
-    let tileW = Math.min(targetTileW, maxTileByWidth);
+    let tileW = Math.min(targetTileW * expandFactor, maxTileByWidth);
     const minTile = vw <= 390 ? 24 : vw <= 560 ? 28 : vw <= 760 ? 34 : 42;
     tileW = Math.max(minTile, tileW);
 

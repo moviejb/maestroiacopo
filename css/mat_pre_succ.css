@@ -492,3 +492,34 @@ body{
 .numIn.ok{
   animation: bounceOk .35s ease;
 }
+
+/* ===== FIX CENTRATURA AZIONI =====
+   RESET può essere nascosto: VERIFICA e PROSSIMO restano centrati
+   senza rovinare gli altri dispositivi
+*/
+.actions{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+  margin-top:24px;
+  max-width:600px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.actions .gameBtn{
+  min-width:170px;
+}
+
+@media (max-width:600px){
+  .actions{
+    flex-wrap:nowrap;
+    gap:12px;
+  }
+
+  .actions .gameBtn{
+    min-width:140px;
+  }
+}

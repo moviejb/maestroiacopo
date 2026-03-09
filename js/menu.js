@@ -271,10 +271,21 @@
   opacity:.96;
 }
 
+.drawer{
+  background: rgba(255,255,255,.96);
+  border-bottom:1px solid rgba(15,23,42,.10);
+  overflow:hidden;
+  max-height:0;
+  opacity:0;
+  transform: translateY(-6px);
+  transition: opacity .22s ease, transform .22s ease;
+}
+
 .drawer.open{
-  max-height:520px;
+  max-height:calc(100vh - 60px);
   opacity:1;
   transform: translateY(0);
+  overflow-y:auto;
 }
 
 /* burger “X” when open */

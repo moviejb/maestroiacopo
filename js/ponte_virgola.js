@@ -422,7 +422,7 @@
   els.btnPlay.addEventListener('click', startGame);
   els.zoomIn.addEventListener('click', () => setZoom(state.zoom + 10));
   els.zoomOut.addEventListener('click', () => setZoom(state.zoom - 10));
-  els.btnHome.addEventListener('click', () => { window.location.href = 'giochi_didattici.html'; });
+  els.btnHome.addEventListener('click', () => { window.location.href = 'matematica.html'; });
 
   document.addEventListener('keydown', (e) => {
     if(e.key === 'ArrowLeft'){

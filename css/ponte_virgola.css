@@ -61,7 +61,7 @@ button{font:inherit}
 .fractionCard,.bridgeCard,.playCard,.ruleCard{background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(246,251,255,.95));border:2px solid var(--outline);border-radius:28px;padding:16px;margin-bottom:12px}
 .topCardsRow{display:grid;grid-template-columns:minmax(320px,1.2fr) minmax(260px,.8fr);gap:12px;align-items:stretch}
 .sectionTitle,.bridgeTitle{text-align:center;font-weight:900;letter-spacing:.6px;color:#2f6493;font-size:clamp(18px,2vw,24px);margin-bottom:14px}
-.fractionBox{width:min(320px,100%);margin:0 auto;padding:12px 10px;background:linear-gradient(180deg,#fffef8,#fff6d5);border:3px solid #ffe09d;border-radius:22px}
+.fractionBox{width:min(320px,100%);margin:0 auto;padding:5px 10px;background:linear-gradient(180deg,#fffef8,#fff6d5);border:3px solid #ffe09d;border-radius:22px}
 .fractionBox .num,
 .fractionBox .den{
   text-align:center;

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Il Ponte della Virgola</title>
+  <link rel="stylesheet" href="css/ponte_virgola.css" />
+</head>
+<body>
+  <div class="pageWrap">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brandBadge">🔢</div>
+        <div>
+          <h1>LE FRAZIONI DECIMALI</h1>
+          <p>Trasforma la frazione decimale in numero decimale</p>
+        </div>
+      </div>
+
+      <div class="menuRow">
+        <button id="btnHome" class="menuBtn secondary" title="Home">🏠 HOME</button>
+        <button id="btnPlay" class="menuBtn primary">▶ GIOCA</button>
+        <div class="zoomBox" aria-label="Zoom gioco">
+          <button id="zoomOut" class="zoomBtn" type="button">－</button>
+          <span id="zoomLabel">100%</span>
+          <button id="zoomIn" class="zoomBtn" type="button">＋</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="gameScaler" id="gameScaler">
+      <section class="gameShell">
+        <div class="hudRow">
+          <div class="pill infoPill">Esercizio <span id="currentIndex">1</span>/<span id="totalCount">0</span></div>
+          <div class="pill infoPill" style="display: none;">Punti <span id="scoreValue">0</span></div>
+          <div class="pill infoPill" style="display: none;">Denominatore <span id="denValue">10</span></div>
+        </div>
+
+        <section class="topCardsRow">
+          <section class="fractionCard">
+            <div class="sectionTitle">FRAZIONE</div>
+            <div class="fractionBox" id="fractionBox" aria-live="polite">
+              <div class="num" id="fractionNum">7</div>
+              <div class="line"></div>
+              <div class="den" id="fractionDen">10</div>
+            </div>
+            <div class="hintText" id="hintText">La virgola parte da destra. Puoi trascinarla dove vuoi oppure usare le frecce.</div>
+          </section>
+
+          <section class="bridgeCard">
+            <div class="bridgeTitle">PONTE DEGLI ZERI</div>
+            <div class="bridgeSteps" id="bridgeSteps" aria-hidden="true"></div>
+          </section>
+        </section>
+
+        <section class="playCard">
+          <div class="sectionTitle">COSTRUISCI IL NUMERO DECIMALE</div>
+          <div class="subHint">Trascina la virgola nel punto che ritieni corretto. Se vai troppo a sinistra, gli zeri compariranno comunque.</div>
+
+          <div class="numberBoardWrap">
+            <div class="numberBoard" id="numberBoard" aria-live="polite"></div>
+          </div>
+
+          <div class="buttonRow centerRow arrowsRow">
+            <button id="btnLeft" class="actionBtn accent smallBtn">⬅ , </button>
+            <button id="btnRight" class="actionBtn accent smallBtn">, ➡</button>
+          </div>
+
+          <div class="buttonRow bottomRow">
+            <button id="btnVerify" class="actionBtn success">✔ VERIFICA</button>
+            <button id="btnNext" class="actionBtn ghost" disabled>➜ PROSSIMO</button>
+          </div>
+        </section>
+
+        <section class="ruleCard" style="display: none;">
+          <div class="ruleIcon">💡</div>
+          <div>
+            <strong>Regola visiva:</strong>
+            la virgola parte sempre a destra del numero intero. Se la sposti verso sinistra, il gioco aggiunge gli zeri necessari.
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div class="overlay hidden" id="resultOverlay" aria-hidden="true">
+    <div class="popupCard" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+      <div class="popupEmoji" id="popupEmoji">🎉</div>
+      <h2 id="popupTitle">OTTIMO!</h2>
+      <p id="popupText">7/10 = 0,7</p>
+      <div class="popupActions">
+        <button id="popupContinue" class="actionBtn primary">CONTINUA</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/frazioni_decimali.js"></script>
+  <script src="js/ponte_virgola.js"></script>
+</body>
+</html>

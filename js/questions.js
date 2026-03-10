@@ -2894,5 +2894,587 @@ const QUESTIONS = [
       "src": "img/memory/geografia/36_a.png"
     },
     "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Cosa indica la freccia nella foto?",
+    "opzioni": [
+      {
+        "text": "Piede della montagna",
+        "img": ""
+      },
+      {
+        "text": "Cima della montagna",
+        "img": ""
+      }
+    ],
+    "corretta": 1,
+    "media": {
+      "tipo": "image",
+      "src": "img/memory/geografia/01_a.png"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Cosa indica la freccia nella foto?",
+    "opzioni": [
+      {
+        "text": "Il VERSANTE della montagna",
+        "img": ""
+      },
+      {
+        "text": "La VALLE della montagna",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/memory/geografia/02_a.png"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Si chiamano montagne i rilievi naturali che superano i ...",
+    "opzioni": [
+      {
+        "text": "600 metri",
+        "img": ""
+      },
+      {
+        "text": "100 metri",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/255.jpg"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Spazio e Orientamento",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Dove sorge il SOLE ?",
+    "opzioni": [
+      {
+        "text": "NORD",
+        "img": ""
+      },
+      {
+        "text": "SUD",
+        "img": ""
+      },
+      {
+        "text": "OVEST",
+        "img": ""
+      },
+      {
+        "text": "EST",
+        "img": ""
+      }
+    ],
+    "corretta": 3,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/219.png"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "I paesaggi naturali sono costituiti dagli elementi che si sono formati naturalmente",
+    "opzioni": [
+      {
+        "text": "VERO",
+        "img": ""
+      },
+      {
+        "text": "FALSO",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "E' l’insieme delle piante e dei fiori che crescono spontaneamente in un ambiente",
+    "opzioni": [
+      {
+        "text": "FLORA",
+        "img": ""
+      },
+      {
+        "text": "FAUNA",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/194.jpg"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "E' l’insieme delle varie specie di animali presenti in un ambiente.",
+    "opzioni": [
+      {
+        "text": "FLORA",
+        "img": ""
+      },
+      {
+        "text": "FAUNA",
+        "img": ""
+      }
+    ],
+    "corretta": 1,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/265.jpg"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Cosa sono i PAESAGGI ANTROPICI?",
+    "opzioni": [
+      {
+        "text": "Paesaggi modificati dall'uomo",
+        "img": ""
+      },
+      {
+        "text": "Paesaggio creati direttamente dalla Natura",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/321.jpg"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Cos'è la VALANGA?",
+    "opzioni": [
+      {
+        "text": "grande massa di neve  o ghiaccio che si stacca dai monti",
+        "img": ""
+      },
+      {
+        "text": "grandi quantità di acqua di un  fiume che inondano i terreni",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/memory/geografia/25_a.png"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Cosa sono le FRANE?",
+    "opzioni": [
+      {
+        "text": "improvvise cadute di massi dal pendio di una montagna",
+        "img": ""
+      },
+      {
+        "text": "quando dalla Terra la roccia fusa fuoriesce dal  cratere di un vulcano",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/memory/geografia/24_a.png"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Quando si verifica un ALLUVIONE?",
+    "opzioni": [
+      {
+        "text": "quando grandi quantità di acqua di un  fiume  inondano i terreni circostanti",
+        "img": ""
+      },
+      {
+        "text": "quando forti scosse nel terreno provocano crolli di edifici",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/memory/geografia/26_a.png"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Cosa accade durante un TERREMOTO?",
+    "opzioni": [
+      {
+        "text": "forti scosse del terreno possono provocare crolli di edifici",
+        "img": ""
+      },
+      {
+        "text": "grandi quantità di acqua di un  fiume inondano i terreni",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Quando avviene un'ERUZIONE VULCANICA?",
+    "opzioni": [
+      {
+        "text": "quando dalle profondità della Terra la roccia fusa e caldissima sale fino alla superficie e fuoriesce dal  cratere di un vulcano",
+        "img": ""
+      },
+      {
+        "text": "quando dalle profondità della Terra la roccia fusa e caldissima sale fino alla superficie e fuoriesce dalla collina",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/memory/geografia/09_b.png"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Cos'è l'ALTITUDINE?",
+    "opzioni": [
+      {
+        "text": "l'altezza del  rilievo rispetto al livello del  mare",
+        "img": ""
+      },
+      {
+        "text": "altezza del  rilievo rispetto al livello delle colline",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Qual è il punto più basso fra due montagne?",
+    "opzioni": [
+      {
+        "text": "Piede",
+        "img": ""
+      },
+      {
+        "text": "Passo o Valico",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/241.jpg"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Come si chiama  il punto più basso della montagna?",
+    "opzioni": [
+      {
+        "text": "Massiccio",
+        "img": ""
+      },
+      {
+        "text": "Piede",
+        "img": ""
+      }
+    ],
+    "corretta": 1,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/237.jpg"
+    },
+    "explain": "Il MASSICCIO indica dei GRUPPI DI MONTAGNE"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Tante montagne allineate formano...",
+    "opzioni": [
+      {
+        "text": "una catena",
+        "img": ""
+      },
+      {
+        "text": "un massiccio",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Sono accumuli di neve ghiacciata sulle cime delle montagne",
+    "opzioni": [
+      {
+        "text": "Ghiacciai",
+        "img": ""
+      },
+      {
+        "text": "Pendii",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": "I fianchi o pareti si chiamano pendii o versanti della montagna."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "E' una montagna a forma di cono, aperto alla sommità",
+    "opzioni": [
+      {
+        "text": "Vulcano",
+        "img": ""
+      },
+      {
+        "text": "Massiccio",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": "Il massiccio è un raggruppamento di montagne"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Come si chiama l'apertura, sulla cima del vulcano, dalla quale esce la lava?",
+    "opzioni": [
+      {
+        "text": "cratere",
+        "img": ""
+      },
+      {
+        "text": "camino",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/memory/geografia/03_b.png"
+    },
+    "explain": "Durante le eruzioni, il magma sale attraverso il camino, un canale al centro del vulcano, ed esce dal cratere sotto forma di lava."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "un materiale formato da rocce incandescenti fuse, provenienti dal centro della Terra",
+    "opzioni": [
+      {
+        "text": "MAGMA",
+        "img": ""
+      },
+      {
+        "text": "LAVA",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/memory/geografia/10_b.png"
+    },
+    "explain": "Si chiama LAVA quando fuoriesce dal vulcano"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Cos'è il CAMINO di un vulcano?",
+    "opzioni": [
+      {
+        "text": "Il canale che porta il magma fuori dal vulcano",
+        "img": ""
+      },
+      {
+        "text": "un materiale formato da rocce in candescenti fuse",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/memory/geografia/11_a.png"
+    },
+    "explain": "MAGMA: un materiale formato da rocce incandescenti fuse, provenienti dal centro della Terra"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Cosa esce dal vulcano oltre alla lava?",
+    "opzioni": [
+      {
+        "text": "GAS, LAPILLI, CENERE",
+        "img": ""
+      },
+      {
+        "text": "ARIA",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/memory/geografia/11_a.png"
+    },
+    "explain": ""
   }
 ];

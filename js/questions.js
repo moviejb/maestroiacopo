@@ -3327,7 +3327,11 @@ const QUESTIONS = [
       }
     ],
     "corretta": 0,
-    "explain": ""
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/catena_montagne.jpg"
+    },
+    "explain": "In ITALIA le più importanti sono le ALPI e gli APPENNINI"
   },
   {
     "classe": "3",
@@ -3447,7 +3451,7 @@ const QUESTIONS = [
     "corretta": 0,
     "media": {
       "tipo": "image",
-      "src": "img/memory/geografia/11_a.png"
+      "src": "img/geografia/243.jpg"
     },
     "explain": "MAGMA: un materiale formato da rocce incandescenti fuse, provenienti dal centro della Terra"
   },
@@ -3476,5 +3480,1075 @@ const QUESTIONS = [
       "src": "img/memory/geografia/11_a.png"
     },
     "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Che vuol dire CLIMA MITE?",
+    "opzioni": [
+      {
+        "text": "Non fa ne troppo caldo ne troppo freddo",
+        "img": ""
+      },
+      {
+        "text": "Fa  troppo caldo",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/CLIMA.jpg"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Da dove si inizia a misurare l'altitudine?",
+    "opzioni": [
+      {
+        "text": "Dal livello del mare",
+        "img": ""
+      },
+      {
+        "text": "Dalle colline",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/323.png"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Cos'è un rilievo?",
+    "opzioni": [
+      {
+        "text": "Un innalzamento costruito dall'uomo",
+        "img": ""
+      },
+      {
+        "text": "Un innalzamento naturale del terreno",
+        "img": ""
+      }
+    ],
+    "corretta": 1,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/238.jpg"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Perchè alla base della montagna c'è più vegetazione e ci sono più animali?",
+    "opzioni": [
+      {
+        "text": "Perchè c'è un clima mite",
+        "img": ""
+      },
+      {
+        "text": "Perchè è più basso",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/231.jpg"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Quali animali vivono all'altitudine di 1000 metri?",
+    "opzioni": [
+      {
+        "text": "volpi, i lupi, le  lepri, i ricci, i cinghiali",
+        "img": ""
+      },
+      {
+        "text": "marmotta, il camoscio e lo stambecco",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": "Tra i 2000 e i 3000 metri: vivono la marmotta, il camoscio e lo stambecco."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "In montagna dai 1000 ai 2000 metri, vivono:",
+    "opzioni": [
+      {
+        "text": "aquile",
+        "img": ""
+      },
+      {
+        "text": "le marmotte, i cervi, i caprioli, gli orsi, i  ghiri, i gufi e gli scoiattoli",
+        "img": ""
+      }
+    ],
+    "corretta": 1,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/240.jpg"
+    },
+    "explain": "Oltre i 3000 metri vivono le Aquile."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Quali animali vivono tra i 2000 e i 3000 metri?",
+    "opzioni": [
+      {
+        "text": "la marmotta, il camoscio e lo stambecco",
+        "img": ""
+      },
+      {
+        "text": "marmotte, i cervi, i caprioli, gli orsi, i  ghiri, i gufi e gli scoiattoli",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/237.jpg"
+    },
+    "explain": "Dai 1000 ai 2000 metri: marmotte, i cervi, i caprioli, gli orsi, i ghiri, i gufi e gli scoiattoli"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Oltre i 3000 metri, la temperatura molto bassa. quali animali troviamo?",
+    "opzioni": [
+      {
+        "text": "le volpi, i lupi, le  lepri, i ricci, i cinghiali",
+        "img": ""
+      },
+      {
+        "text": "aquile",
+        "img": ""
+      }
+    ],
+    "corretta": 1,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/226.jpg"
+    },
+    "explain": "Fino a 1000 metri:  le volpi, i lupi, le lepri, i ricci, i cinghiali"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "In montagna la flora e la fauna cambiano a seconda dell’altitudine.",
+    "opzioni": [
+      {
+        "text": "VERO",
+        "img": ""
+      },
+      {
+        "text": "FALSO",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/255.jpg"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Il ginepro, il rododendro, e il pino mugo. Vi si trovano anche le stelle alpine e le genziane, si trovano in montagna",
+    "opzioni": [
+      {
+        "text": "Tra i 2000 e i 3000 metri",
+        "img": ""
+      },
+      {
+        "text": "Fino a 1000 metri",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/pino mugo 1.jpg"
+    },
+    "explain": "Fino a 1000 metri, ci sono i boschi di latifoglie con querce, faggi, castagni."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Muschi e licheni si trovano in montagna",
+    "opzioni": [
+      {
+        "text": "Dai 1000 ai 2000 metri",
+        "img": ""
+      },
+      {
+        "text": "Oltre i 3000 metri",
+        "img": ""
+      }
+    ],
+    "corretta": 1,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/lichens-ecosystemes-1920x1080.jpg"
+    },
+    "explain": "Dai 1000 ai 2000 metri, crescono le aghifoglie: abeti, pini, larici e betulle."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Le aghifoglie (abeti, pini, larici e betulle) crescono",
+    "opzioni": [
+      {
+        "text": "Dai 1000 ai 2000 metri",
+        "img": ""
+      },
+      {
+        "text": "Oltre i 3000 metri",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/larici.jpg"
+    },
+    "explain": "Oltre i 3000 metri, la temperatura molto bassa e il terreno roccioso e ricoperto di neve e ghiaccio permettono la sopravvivenza solo dei muschi e dei licheni."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "A quale altezza ci sono i boschi di latifoglie con querce, faggi e castagni?",
+    "opzioni": [
+      {
+        "text": "Fino a 1000 metri",
+        "img": ""
+      },
+      {
+        "text": "Dai 1000 ai 2000 metri",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": "Dai 1000 ai 2000 metri, crescono le aghifoglie: abeti, pini, larici e betulle."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Cosa sono le MALGHE?",
+    "opzioni": [
+      {
+        "text": "Strutture  dove i pastori producono i formaggi",
+        "img": ""
+      },
+      {
+        "text": "Animali di montagna",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/malghe.JPG"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Perchè in montagna le case hanno il TETTO SPIOVENTE?",
+    "opzioni": [
+      {
+        "text": "Per far scivolare la neve",
+        "img": ""
+      },
+      {
+        "text": "Per un panorama più bello",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/TETTO_SPIOVENTE.jpg"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Quali coltivazioni ci sono nel FONDOVALLE della montagna?",
+    "opzioni": [
+      {
+        "text": "patate, orzo  e alberi da frutto, in particolare mele, pere e viti",
+        "img": ""
+      },
+      {
+        "text": "Limoni, fragole, banane",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Come mai in montagna si usa il legno come materiale per costruire mobili, oggetti e strutture?",
+    "opzioni": [
+      {
+        "text": "Perchè ci sono tanti alberi",
+        "img": ""
+      },
+      {
+        "text": "Perchè piove spesso",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Cosa vuol dire DISBOSCAMENTO?",
+    "opzioni": [
+      {
+        "text": "tagliare molti alberi senza piantarne di nuovi",
+        "img": ""
+      },
+      {
+        "text": "tagliare molte siepi nei giardini",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "La collina è un rilievo naturale",
+    "opzioni": [
+      {
+        "text": "tra i  200 e i 600 metri di altitudine",
+        "img": ""
+      },
+      {
+        "text": "oltre i 600 metri di altitudine",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/COLLINA.jpg"
+    },
+    "explain": "oltre i 600 metri di altitudine si definisce MONTAGNA"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "E' una superficie in forte pendenza, e quindi assai difficile a risalire o a scendere.",
+    "opzioni": [
+      {
+        "text": "RIPIDO, SCOSCESO",
+        "img": ""
+      },
+      {
+        "text": "PIANEGGIANTE",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/357.jpg"
+    },
+    "explain": "PIANEGGIANTI: superfici che non hanno una forte pendenza (il contrario di RIPIDO)"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Se le cime sono tondeggianti e i versanti meno ripidi, dove ci troviamo?",
+    "opzioni": [
+      {
+        "text": "in Collina",
+        "img": ""
+      },
+      {
+        "text": "in Montagna",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": "La montagna ha la cima RIPIDA"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "E' il paesaggio più diffuso nel territorio italiano e sulla cartina è colorata di giallo",
+    "opzioni": [
+      {
+        "text": "Montagna",
+        "img": ""
+      },
+      {
+        "text": "Collina",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/213.jpg"
+    },
+    "explain": "La montagna è colorata di MARRONE"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "I terrazzamenti che si trovano sulle colline servono per coltivare alberi da frutta, viti e ulivi: cosa sono?",
+    "opzioni": [
+      {
+        "text": "gradoni cemento",
+        "img": ""
+      },
+      {
+        "text": "gradoni di terreno sostenuti  da muretti in pietra",
+        "img": ""
+      }
+    ],
+    "corretta": 1,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/257.jpg"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Tra una collina e l’altra vi sono ampie valli, in cui spesso scorrono i fiumi",
+    "opzioni": [
+      {
+        "text": "Vero",
+        "img": ""
+      },
+      {
+        "text": "Falso",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Sono state formate dal sollevamento del fondale marino",
+    "opzioni": [
+      {
+        "text": "Le colline tettoniche",
+        "img": ""
+      },
+      {
+        "text": "Le colline moreniche",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/258.png"
+    },
+    "explain": "Le colline moreniche hanno avuto origine milioni di anni fa dall’accumulo di rocce, sassi (chiamati morene) e ghiaia, trascinati dai ghiacciai."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Hanno avuto origine milioni di anni fa dall’accumulo di rocce, sassi (chiamati morene) e ghiaia, trascinati dai ghiacciai",
+    "opzioni": [
+      {
+        "text": "Le colline moreniche",
+        "img": ""
+      },
+      {
+        "text": "Le colline strutturali",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/259.png"
+    },
+    "explain": "Le colline strutturali sono vecchie montagne consumate da pioggia, vento e neve."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Sono vecchie montagne consumate da pioggia, vento e neve",
+    "opzioni": [
+      {
+        "text": "Le colline vulcaniche",
+        "img": ""
+      },
+      {
+        "text": "Le colline strutturali",
+        "img": ""
+      }
+    ],
+    "corretta": 1,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/260.png"
+    },
+    "explain": "Le colline vulcaniche sono vulcani ormai spenti e ricoperti di vegetazione."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Sono vulcani ormai spenti e ricoperti di vegetazione",
+    "opzioni": [
+      {
+        "text": "Le colline vulcaniche",
+        "img": ""
+      },
+      {
+        "text": "Le colline tettoniche",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/261.png"
+    },
+    "explain": "Le COLLINE TETTONICHE sono state formate dal sollevamento del fondale marino. Nelle loro rocce si possono trovare fossili di conchiglie."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "I CALANCHI si trovano lungo i fianchi della collina e sopra non cresce la vegetazione ma...cosa sono?",
+    "opzioni": [
+      {
+        "text": "solchi profondi scavati dall'acqua",
+        "img": ""
+      },
+      {
+        "text": "vulcani spenti",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/262.jpg"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Quali sono le colline BRULLE?",
+    "opzioni": [
+      {
+        "text": "rilievi caratterizzati da scarsa vegetazione",
+        "img": ""
+      },
+      {
+        "text": "rilievi caratterizzati da abbondante vegetazione",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/brulle.jpg"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "La collina è un ambiente favorevole per il clima e la fertilità del terreno.",
+    "opzioni": [
+      {
+        "text": "VERO",
+        "img": ""
+      },
+      {
+        "text": "FALSO",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Le attività principali dell'uomo in collina sono",
+    "opzioni": [
+      {
+        "text": "Agricoltura e allevamento",
+        "img": ""
+      },
+      {
+        "text": "Produzione di formaggi",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": "Produzione di formaggi: sulle montagna nelle MALGHE (case di legno)"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "IN COLLINA, la coltivazione più diffusa è quella della vite, dell’ulivo e degli alberi da frutto.",
+    "opzioni": [
+      {
+        "text": "VERO",
+        "img": ""
+      },
+      {
+        "text": "FALSO",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/274.jpg"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Quali sono gli animali che si allevano  in collina?",
+    "opzioni": [
+      {
+        "text": "Mucche, capre, pecore e cavalli",
+        "img": ""
+      },
+      {
+        "text": "Il camoscio e lo stambecco.",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "explain": "Il camoscio e lo stambecco, vivono in montagna Tra i 2000 e i 3000 metri"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Da quale pianta si produce dalle OLIVE?",
+    "opzioni": [
+      {
+        "text": "Olio",
+        "img": ""
+      },
+      {
+        "text": "Vino",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/274.jpg"
+    },
+    "explain": "Il vino si produce dall'uva"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Da quale pianta si produce dall'UVA?",
+    "opzioni": [
+      {
+        "text": "Olio",
+        "img": ""
+      },
+      {
+        "text": "Vino",
+        "img": ""
+      }
+    ],
+    "corretta": 1,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/uva.jpg"
+    },
+    "explain": "L'olio si produce dalle olive."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Gli ambienti della terra",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "E' un posto speciale dove le persone possono andare in vacanza per stare in mezzo alla natura, vedere gli animali e imparare come si vive in una fattoria",
+    "opzioni": [
+      {
+        "text": "Agriturismo",
+        "img": ""
+      },
+      {
+        "text": "Terme",
+        "img": "img/geografia/toskana-naravne-terme-saturnia4.jpg"
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/geografia/agriturismo.jpg"
+    },
+    "explain": "Le TERME sono luoghi dove si fa il bagno e l'acqua è di temperature diverse. Serve per rilassarsi e fare nuove amicizie."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Spazio e Orientamento",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Ha un ago magnetico che indica sempre il NORD",
+    "opzioni": [
+      {
+        "text": "Bussola",
+        "img": "img/memory/geografia/19_b.png"
+      },
+      {
+        "text": "Stella polare",
+        "img": "img/memory/geografia/18_a.png"
+      }
+    ],
+    "corretta": 0,
+    "explain": "LA STELLA POLARE indica sempre il nord ma non ha un ago magnetico"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Spazio e Orientamento",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Mostra i confini di REGIONI E STATI",
+    "opzioni": [
+      {
+        "text": "CARTA FISICA",
+        "img": "img/memory/geografia/13_a.png"
+      },
+      {
+        "text": "CARTA POLITICA",
+        "img": "img/memory/geografia/14_a.png"
+      }
+    ],
+    "corretta": 1,
+    "explain": "CARTA FISICA : rappresenta gli elementi naturali di un territorio."
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Spazio e Orientamento",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Rappresenta gli elementi naturali di un territorio.",
+    "opzioni": [
+      {
+        "text": "CARTA FISICA",
+        "img": "img/memory/geografia/13_a.png"
+      },
+      {
+        "text": "CARTA TEMATICA",
+        "img": "img/memory/geografia/15_a.png"
+      }
+    ],
+    "corretta": 0,
+    "explain": "CARTA TEMATICA: Rappresenta un aspetto particolare di un territorio"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Spazio e Orientamento",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Rappresenta un aspetto particolare di un territorio.",
+    "opzioni": [
+      {
+        "text": "CARTA TEMATICA",
+        "img": "img/memory/geografia/15_a.png"
+      },
+      {
+        "text": "CARTA FISICA",
+        "img": "img/memory/geografia/13_a.png"
+      }
+    ],
+    "corretta": 0,
+    "explain": "CARTA FISICA: rappresenta gli elementi naturali di un territorio"
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Spazio e Orientamento",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "A cosa serve il PLANISFERO?",
+    "opzioni": [
+      {
+        "text": "Rappresenta la TERRA su una superficie piana",
+        "img": ""
+      },
+      {
+        "text": "Rappresenta l'Universo su una superficie piana",
+        "img": ""
+      }
+    ],
+    "corretta": 0,
+    "media": {
+      "tipo": "image",
+      "src": "img/memory/geografia/16_b.png"
+    },
+    "explain": ""
+  },
+  {
+    "classe": "3",
+    "disciplina": "geografia",
+    "livello": "facile",
+    "argomento": "Spazio e Orientamento",
+    "argomentiSecondari": [
+      "Ripasso"
+    ],
+    "domanda": "Quanti sono i PUNTI CARDINALI?",
+    "opzioni": [
+      {
+        "text": "2",
+        "img": ""
+      },
+      {
+        "text": "3",
+        "img": ""
+      },
+      {
+        "text": "4",
+        "img": ""
+      },
+      {
+        "text": "5",
+        "img": ""
+      }
+    ],
+    "corretta": 2,
+    "media": {
+      "tipo": "image",
+      "src": "img/memory/geografia/19_b.png"
+    },
+    "explain": "NORD - SUD - OVEST - EST"
   }
 ];

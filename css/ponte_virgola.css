@@ -142,7 +142,27 @@ button{font:inherit}
 .arrowsRow .smallBtn{min-width:240px}
 .ruleCard{display:flex;gap:14px;align-items:center;font-weight:800;color:#41617c}
 .ruleIcon{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(180deg,#fff2b0,#ffd456);font-size:30px;flex:none}
-.overlay{position:fixed;inset:0;background:rgba(15,39,61,.36);backdrop-filter:blur(4px);display:grid;place-items:center;padding:20px;z-index:50}
+
+/*.overlay{position:fixed;inset:0;background:rgba(15,39,61,.36);backdrop-filter:blur(4px);display:grid;place-items:center;padding:20px;z-index:50} */
+
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(15,39,61,.36);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+  display:grid;
+  place-items:center;
+  padding:20px;
+  z-index:20000;
+}
+
+.popupCard{
+  position:relative;
+  z-index:20001;
+}
+
 .overlay.hidden{display:none}
 .popupCard{width:min(520px,100%);background:#fff;border-radius:28px;border:3px solid #e4f1ff;padding:22px;text-align:center}
 .popupEmoji{font-size:56px;line-height:1}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Valore Posizionale</title>
+  <link rel="stylesheet" href="css/valore_posizionale.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <header class="hero-card">
+      <div class="hero-badge" style="display: none;">MATEMATICA</div>
+      <h1>VALORE POSIZIONALE</h1>
+      <p>Trascina cifre e virgola nella colonna giusta per ricostruire il numero.</p>
+    </header>
+
+  <div class="zoom-box" aria-label="Zoom pagina">
+  <span class="zoom-label" style="display: none;">ZOOM</span> 
+  <div class="zoom-controls">
+     <a href="matematica.html" class="zoom-btn home-btn" aria-label="Torna a matematica">🏠</a>
+    <button id="zoomOutBtn" class="zoom-btn" type="button" aria-label="Riduci zoom">−</button>
+      <button id="zoomResetBtn" class="zoom-btn zoom-reset" type="button">100%</button>
+    <input id="zoomRange" class="zoom-range" type="range" min="60" max="140" step="10" value="100" aria-label="Regola zoom" style="display: none;" />
+    <button id="zoomInBtn" class="zoom-btn" type="button" aria-label="Aumenta zoom">+</button>
+  
+  </div>
+</div>
+
+    <main id="gameZoomWrap" class="board-wrap">
+      <section class="top-controls">
+        <div class="mode-box" aria-label="Modalità di gioco">
+          <span class="mode-label">MODALITÀ</span>
+          <div class="mode-buttons">
+            <button id="easyBtn" class="mode-btn active" type="button">FACILE</button>
+            <button id="hardBtn" class="mode-btn" type="button">DIFFICILE</button>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section class="place-board" aria-label="Tabella del valore posizionale">
+        <div class="board-label head k">K</div>
+        <div class="board-label head h">h</div>
+        <div class="board-label head da">da</div>
+        <div class="board-label head u">u</div>
+        <div class="board-label head comma">,</div>
+        <div class="board-label head d">d</div>
+        <div class="board-label head c">c</div>
+        <div class="board-label head m">m</div>
+
+        <div class="drop-slot" data-pos="K"></div>
+        <div class="drop-slot" data-pos="h"></div>
+        <div class="drop-slot" data-pos="da"></div>
+        <div class="drop-slot" data-pos="u"></div>
+        <div class="drop-slot comma-slot" data-pos=","></div>
+        <div class="drop-slot" data-pos="d"></div>
+        <div class="drop-slot" data-pos="c"></div>
+        <div class="drop-slot" data-pos="m"></div>
+      </section>
+
+      <section class="number-panel">
+        <div class="panel-topline" style="flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+  <div class="target-chip" style="display: none;">Numero da sistemare</div>
+
+  <div class="input-help" style="width:100%; text-align:center;">
+    Se scrivi un numero tu, premi USA per confermare
+  </div>
+
+  <div class="target-editor" style="justify-content:center; width:100%;">
+    <input id="targetInput" class="target-display target-input" aria-label="Scrivi un numero" inputmode="decimal" value="" />
+    <button id="applyNumberBtn" class="mini-btn" type="button">USA</button>
+  </div>
+</div>
+<div class="input-help" style="display: none;">Se scrivi un numero tu, premi USA per confermare</div>
+
+        <div class="tray-title" style="text-align: center;">TRASCINA LE TESSERE NELLA TABELLA</div>
+        <div class="tray-help" style="display: none;">Puoi anche scambiare le tessere tra loro direttamente qui sotto.</div>
+        <div id="tileTray" class="tile-tray" aria-label="Tessere da trascinare"><div id="tileTrayRow" class="tile-tray-row"></div></div>
+      </section>
+
+      <section class="actions">
+        <button id="checkBtn" class="action-btn primary">VERIFICA</button>
+        <button id="resetBtn" class="action-btn">RESET</button>
+        <button id="nextBtn" class="action-btn ghost" disabled>PROSSIMO</button>
+      </section>
+
+      <section id="feedbackBox" class="feedback-box" aria-live="polite"></section>
+
+      <section id="decompositionBox" class="decomposition-box hidden" aria-live="polite">
+        <h2>SCOMPOSIZIONE</h2>
+        <div id="decompositionText" class="decomposition-text"></div>
+      </section>
+    </main>
+  </div>
+<script src="js/nav.js"></script>
+<script src="js/menu.js"></script>
+  <script src="js/valore_posizionale.js"></script>
+</body>
+</html>

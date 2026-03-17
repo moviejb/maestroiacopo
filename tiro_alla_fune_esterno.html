@@ -231,37 +231,43 @@
       }
     }
 
-    @media (max-width: 560px){
-      .page{
-        width:95vw;
-        margin:10px auto;
-      }
+   @media (max-width: 700px){
+  .page{
+    width:95vw;
+    margin:10px auto;
+  }
 
-      .topbar{
-        padding:12px;
-        border-radius:16px;
-      }
+  .topbar{
+    padding:12px;
+    border-radius:16px;
+  }
 
-      .panel{
-        padding:10px;
-        border-radius:16px;
-      }
+  .frameWrap{
+    display:none;
+  }
 
-      .info{
-        padding:10px 12px;
-        border-radius:14px;
-      }
+  .mobileLaunch{
+    display:block;
+  }
 
-      .frameWrap{
-        min-height:420px;
-        border-radius:14px;
-      }
+  .openTop{
+    display:none;
+  }
 
-      .btn{
-        font-size:14px;
-        padding:11px 14px;
-      }
-    }
+  .btn{
+    font-size:14px;
+    padding:11px 14px;
+  }
+}
+
+    .mobileLaunch{
+  display:none;
+  margin-bottom:12px;
+}
+
+.openTop{
+  display:inline-flex;
+}
   </style>
 </head>
 <body>
@@ -281,9 +287,9 @@
       </div>
 
       <div class="actions">
-        <a class="btn btnHome" href="matematica.html">🏠 Torna a Matematica</a>
-        <!-- <a class="btn btnOpen" href="https://edugames.uz/game/arqon/" target="_blank" rel="noopener noreferrer">🔗 Apri in nuova scheda</a> -->
-      </div>
+  <a class="btn btnHome" href="matematica.html">🏠 Torna a Matematica</a>
+  <a class="btn btnOpen openTop" href="https://edugames.uz/game/arqon/" target="_blank" rel="noopener noreferrer">🚀 Apri il gioco</a>
+</div>
     </div>
 
    <!-- <div class="panel">
@@ -312,10 +318,11 @@
             </a>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
-
+<div class="frameWrap"></div>
   <script>
     const frame = document.getElementById("gameFrame");
     const fallback = document.getElementById("fallback");

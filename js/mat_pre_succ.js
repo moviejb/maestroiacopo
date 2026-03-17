@@ -1,3 +1,4 @@
+
 const msg = document.getElementById("msg");
 const centerNumEl = document.getElementById("centerNum");
 const prevIn = document.getElementById("prevIn");
@@ -12,6 +13,7 @@ const maxSel = document.getElementById("maxSel");
 const stepSel = document.getElementById("stepSel");
 
 let center = null;
+let modalitàNumero = "interi"; // "interi" oppure "decimali"
 
 function setMsg(type, text){
   msg.className = "msg" + (type ? " " + type : "");
@@ -24,10 +26,50 @@ function randInt(min, max){
 
 function parseNum(val){
   if(val == null) return null;
-  const cleaned = String(val).trim();
+  const cleaned = String(val).trim().replace(",", ".");
   if(cleaned === "") return null;
   const n = Number(cleaned);
   return Number.isFinite(n) ? n : null;
+} 
+
+function getDecimalsFromStep(step){
+  const s = String(step);
+  if(!s.includes(".")) return 0;
+  return s.split(".")[1].length;
+}
+
+function roundByStep(value, step){
+  const decimals = getDecimalsFromStep(step);
+  return Number(value.toFixed(decimals));
+}
+
+function aggiornaStepOptions(){
+  const options = stepSel.querySelectorAll("option");
+
+  options.forEach(opt => {
+    const val = opt.value;
+
+    const èDecimale = val.includes(".");
+
+    if(modalitàNumero === "interi"){
+      // nascondi decimali
+      opt.style.display = èDecimale ? "none" : "block";
+    } else {
+      // nascondi interi
+      opt.style.display = èDecimale ? "block" : "none";
+    }
+  });
+
+  // sicurezza: se selezione attuale non è valida → correggi
+  const current = stepSel.value;
+
+  if(modalitàNumero === "interi" && current.includes(".")){
+    stepSel.value = "1";
+  }
+
+  if(modalitàNumero === "decimali" && !current.includes(".")){
+    stepSel.value = "0.1";
+  }
 }
 
 // ===== SUONI MORBIDI =====
@@ -99,7 +141,9 @@ function animateCenter(kind){
 function generateCenter(){
   const min = parseInt(minSel.value, 10);
   const max = parseInt(maxSel.value, 10);
-  const step = parseInt(stepSel.value, 10);
+  const step = modalitàNumero === "decimali"
+  ? parseFloat(stepSel.value)
+  : parseInt(stepSel.value, 10);
 
   const low = min + step;
   const high = max - step;
@@ -120,6 +164,10 @@ function generateCenter(){
 
   center = min + k * step;
 
+if(modalitàNumero === "decimali"){
+  center = roundByStep(center, step);
+}
+
   centerNumEl.textContent = center;
   sfxNew();
   animateCenter("pop");
@@ -136,9 +184,11 @@ function generateCenter(){
 function check(){
   if(center == null) return;
 
-  const step = parseInt(stepSel.value, 10);
-  const prevAns = center - step;
-  const nextAns = center + step;
+  const step = modalitàNumero === "decimali"
+  ? parseFloat(stepSel.value)
+  : parseInt(stepSel.value, 10);
+  const prevAns = roundByStep(center - step, step);
+const nextAns = roundByStep(center + step, step);
 
   const p = parseNum(prevIn.value);
   const n = parseNum(nextIn.value);
@@ -238,3 +288,32 @@ zoomOutBtn.addEventListener("click", () => {
   const cur = Number(zoomSel.value);
   applyZoom(getNextZoom(cur, -1));
 });
+
+const btnInteri = document.getElementById("integersBtn");
+const btnDecimali = document.getElementById("decimalsBtn");
+
+btnInteri.addEventListener("click", () => {
+  modalitàNumero = "interi";
+
+  aggiornaStepOptions();   // 👈 NUOVO
+
+  aggiornaBottoni();
+  generateCenter();
+});
+
+btnDecimali.addEventListener("click", () => {
+  modalitàNumero = "decimali";
+
+  aggiornaStepOptions();   // 👈 NUOVO
+
+  aggiornaBottoni();
+  generateCenter();
+});
+
+function aggiornaBottoni(){
+  btnInteri.classList.toggle("active", modalitàNumero === "interi");
+  btnDecimali.classList.toggle("active", modalitàNumero === "decimali");
+}
+
+aggiornaBottoni();
+aggiornaBottoni();

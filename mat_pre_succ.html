@@ -13,7 +13,10 @@
   <div class="title">MATEMATICA • PRECEDENTE / SUCCESSIVO</div>
 
   <div class="topControls">
-    
+    <div class="modeSwitch" aria-label="Modalità numeri">
+      <button class="modeBtn active" id="integersBtn" type="button" title="Usa solo numeri interi">Solo INTERI</button>
+      <button class="modeBtn" id="decimalsBtn" type="button" title="Usa anche i numeri decimali">CON DECIMALI</button>
+    </div>
 
     <button class="topBtn" id="zoomOutBtn" title="Zoom −">−</button>
 
@@ -48,7 +51,7 @@
       <div class="grid">
         <div class="box">
           <div class="lbl">PRECEDENTE</div>
-          <input id="prevIn" class="numIn" inputmode="numeric" autocomplete="off" />
+          <input id="prevIn" class="numIn" inputmode="decimal" autocomplete="off" />
         </div>
 
         <div class="center">
@@ -72,19 +75,23 @@
               <option value="10000">10000</option>
             </select>
 
-            <label class="smallLbl">PASSO</label>
-            <select id="stepSel" class="sel">
-              <option value="1" selected>1</option>
-              <option value="2">2</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-            </select>
+<label class="smallLbl">PASSO</label>
+<select id="stepSel" class="sel">
+  <option value="0.001">0,001</option>
+  <option value="0.01">0,01</option>
+  <option value="0.1">0,1</option>
+  
+  <option value="1" selected>1</option>
+  <option value="2">2</option>
+  <option value="5">5</option>
+  <option value="10">10</option>
+</select>
           </div>
         </div>
 
         <div class="box">
           <div class="lbl">SUCCESSIVO</div>
-          <input id="nextIn" class="numIn" inputmode="numeric" autocomplete="off" />
+          <input id="nextIn" class="numIn" inputmode="decimal" autocomplete="off" />
         </div>
       </div>
     </div>
